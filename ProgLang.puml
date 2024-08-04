@@ -1,0 +1,52 @@
+@startuml
+
+class Token {
+    + from
+    + to
+    + value
+    + type / enum
+}
+
+class AST {
+    + left
+    + right
+    + content : Element
+}
+
+Interface Lexer {
+    splitFile(File) -> List<String>
+    mapKeysWithLiterals(List<String>) List<DataTocken>
+}
+class TSLexer implements Lexer
+
+
+Interface Parser {
+    parseList(List<DataTocken>) ->  List<AST>
+    checkForError(DataTocken) -> Boolean
+    createASTFromDataTocken(DataTocken) -> AST
+}
+class TSParser implements Parser
+
+Interface Interpreter {
+    PrintScript(File) : void
+}
+class TSInterpreter implements Interpreter
+
+class RunScript {
+    run (File) : Void
+
+}
+
+
+RunScript --> Interpreter
+RunScript --> Lexer
+RunScript --> Parser
+Parser --> AST
+Interpreter --> AST
+Parser --> Token
+Lexer --> Token
+
+
+@enduml
+
+//astexplorer.net
