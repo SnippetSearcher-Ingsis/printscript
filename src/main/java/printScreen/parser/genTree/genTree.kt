@@ -1,7 +1,7 @@
 package printScreen.parser.genTree
 
 import printScreen.models.ast.AST
-import printScreen.models.token.Token
+import token.Token
 
 class genTree {
 
