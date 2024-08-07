@@ -1,0 +1,15 @@
+package token
+
+enum class TokenType {
+    LET_KEYWORD,
+    PRINT_KEYWORD,
+    STRING,
+    NUMBER,
+    STRING_TYPE,
+    NUMBER_TYPE,
+    IDENTIFIER,
+    ASSIGNMENT_OPERATOR,
+    SEMICOLON,
+    WHITESPACE,
+    SEPARATOR,
+}
