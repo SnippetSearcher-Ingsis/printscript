@@ -1,4 +1,4 @@
-package lexer
+package printScreen.lexer
 
 import token.Token
 
