@@ -8,21 +8,20 @@ import printScreen.models.token.TokenType
 class VariableDeclaration : BuilderAST{
     override fun createAST(line: List<Token>): AST {
         val firstToken = line[0]
-        return when  {
+        return when {
             firstToken.type == TokenType.KEYWORD -> newVariable (line)
             firstToken.type == TokenType.IDENTIFIER -> createdVariable (line)
-            else -> {
-
+            else -> { TODO()
             }
         }
     }
 
     fun newVariable (line: List<Token>): AST {
-
+        TODO()
     }
 
     fun createdVariable (line: List<Token>): AST {
-
+        TODO()
     }
 
 }

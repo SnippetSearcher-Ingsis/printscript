@@ -29,4 +29,7 @@ public record ValuedToken(TokenType type, String value, Integer line, Integer co
         return line;
 
     }
+    public String toString() {
+        return type + " with value: " + '`' + value  + '`' + " at " + line + ":" + column;
+    }
 }
