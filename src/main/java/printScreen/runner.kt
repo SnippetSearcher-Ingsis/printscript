@@ -6,7 +6,7 @@ import printScreen.models.ast.AST
 import printScreen.parser.Parser
 import printScreen.parser.genTree.genTree
 import printScreen.parser.verify.verifyAST
-import token.Token
+import printScreen.models.token.Token
 import java.io.File
 
 class runner (private val file : File) {

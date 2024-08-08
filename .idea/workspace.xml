@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="si">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/lexer/Lexer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/models/token/NonValuedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/models/token/NonValuedToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/models/token/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/models/token/Token.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/models/token/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/models/token/TokenType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/models/token/ValuedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/models/token/ValuedToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/parser/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/parser/Parser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/parser/genTree/genTree.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/parser/genTree/genTree.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/runner.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

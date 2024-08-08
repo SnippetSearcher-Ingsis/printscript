@@ -1,15 +1,9 @@
-package token
+package printScreen.models.token
 
 enum class TokenType {
-    LET_KEYWORD,
-    PRINT_KEYWORD,
-    STRING,
-    NUMBER,
-    STRING_TYPE,
-    NUMBER_TYPE,
+    KEYWORD,
     IDENTIFIER,
-    ASSIGNMENT_OPERATOR,
-    SEMICOLON,
-    WHITESPACE,
-    SEPARATOR,
+    OPERATOR,
+    LITERAL,
+    SYNTAX
 }
