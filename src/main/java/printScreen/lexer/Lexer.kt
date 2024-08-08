@@ -8,6 +8,7 @@ class Lexer(private val sourceCode: String) {
     private var position: Int = 0
     private var line: Int = 1
     private var column: Int = 1
+    private var indent: Int = 1
 
     private val tokenPatterns = listOf(
         "\\blet\\b" to TokenType.KEYWORD,
@@ -36,7 +37,14 @@ class Lexer(private val sourceCode: String) {
         while (position < sourceCode.length && sourceCode[position].isWhitespace()) {
             if (sourceCode[position] == '\n') {
                 line++
-                column = 1
+                if (sourceCode[position - 1] == '{') {
+                    indent += 4
+                    column = indent
+                }
+                if (sourceCode[position - 1] == '}') {
+                    indent -= 4
+                    column = indent
+                }
             }
             column++
             position++

@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="si">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/lexer/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/lexer/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/printScreen/models/token/ValuedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/printScreen/models/token/ValuedToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +22,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -137,6 +139,7 @@
       <workItem from="1723038087983" duration="2960000" />
       <workItem from="1723058780415" duration="891000" />
       <workItem from="1723123431051" duration="3793000" />
+      <workItem from="1723146177700" duration="219000" />
     </task>
     <task id="LOCAL-00001" summary="si">
       <option name="closed" value="true" />
