@@ -3,7 +3,7 @@ package printScreen.parser
 import printScreen.models.ast.AST
 import printScreen.parser.genTree.genTree
 import printScreen.parser.verify.verifyAST
-import token.Token
+import printScreen.models.token.Token
 
 class Parser (private val generator : genTree, private val verifier: verifyAST) {
 

@@ -1,4 +1,4 @@
-package token;
+package printScreen.models.token;
 
 import org.jetbrains.annotations.NotNull;
 

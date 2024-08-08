@@ -1,6 +1,8 @@
-package token;
+package printScreen.models.token;
 
 import org.jetbrains.annotations.NotNull;
+import printScreen.models.token.Token;
+import printScreen.models.token.TokenType;
 
 public record ValuedToken(TokenType type, String value, Integer line, Integer column) implements Token {
 

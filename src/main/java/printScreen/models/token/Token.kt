@@ -1,4 +1,4 @@
-package token
+package printScreen.models.token
 
 interface Token {
     val type: TokenType
