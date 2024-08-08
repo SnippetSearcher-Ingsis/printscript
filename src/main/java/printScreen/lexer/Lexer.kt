@@ -12,6 +12,12 @@ class Lexer(private val sourceCode: String) {
 
     private val tokenPatterns = listOf(
         "\\blet\\b" to TokenType.KEYWORD,
+        "\\bif\\b" to TokenType.KEYWORD,
+        "\\belse\\b" to TokenType.KEYWORD,
+        "\\bwhile\\b" to TokenType.KEYWORD,
+        "\\btrue\\b" to TokenType.KEYWORD,
+        "\\bfalse\\b" to TokenType.KEYWORD,
+        "\\bboolean\\b" to TokenType.KEYWORD,
         "\\bstring\\b" to TokenType.KEYWORD,
         "\\bnumber\\b" to TokenType.KEYWORD,
         "\\bprintln\\b" to TokenType.KEYWORD,
@@ -19,7 +25,7 @@ class Lexer(private val sourceCode: String) {
         "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
         "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
         "[+\\-*/]" to TokenType.OPERATOR,
-        "[=:;()]" to TokenType.SYNTAX
+        "[=:;(){}]" to TokenType.SYNTAX
     )
 
     fun tokenize(): List<Token> {
@@ -37,14 +43,7 @@ class Lexer(private val sourceCode: String) {
         while (position < sourceCode.length && sourceCode[position].isWhitespace()) {
             if (sourceCode[position] == '\n') {
                 line++
-                if (sourceCode[position - 1] == '{') {
-                    indent += 4
-                    column = indent
-                }
-                if (sourceCode[position - 1] == '}') {
-                    indent -= 4
-                    column = indent
-                }
+                column = 0
             }
             column++
             position++
