@@ -6,15 +6,15 @@ import printScreen.models.token.Token
 
 class genTree {
 
-    fun tockenToAST ( tokens : List<Token>)  : List<AST> {
-        //TODO: Aca se pasa de Token a AST
+    fun tokenToAST ( tokens : List<Token>? ): List<AST> {
+        TODO("Aca se pasa de Token a AST")
     }
 
-    fun rootTocken (token : Token) : AST {
-        //TODO: Caso donde () o * o / para que se maneje bien la prioridad de las operaciones.
+    fun rootToken (token : Token): AST {
+        TODO("Aca se pasa de Token a AST")
     }
 
     fun createTree (token: Token) : Node {
-
+        TODO("si")
     }
 }
