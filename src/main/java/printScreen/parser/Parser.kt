@@ -15,6 +15,7 @@ class Parser (private val generator : genTree, private val verifier: verifyAST) 
     }
 
     fun checkTokens(tokens : List<Token>) : List<AST> {
-
+        val asts : List<AST>  = generator.tockenToAST(tokens)
+        return if (verifier.verify(asts)) asts else emptyList()
     }
 }

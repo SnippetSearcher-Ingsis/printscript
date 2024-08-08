@@ -6,7 +6,7 @@ import token.Token
 
 class genTree {
 
-    fun tockenToAST ( tokens : List<Token>? )  : List<AST> {
+    fun tockenToAST ( tokens : List<Token>)  : List<AST> {
         //TODO: Aca se pasa de Token a AST
     }
 
