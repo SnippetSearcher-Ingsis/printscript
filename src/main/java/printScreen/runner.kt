@@ -9,15 +9,15 @@ import printScreen.parser.verify.verifyAST
 import printScreen.models.token.Token
 import java.io.File
 
-class runner (private val file : File) {
+class runner (private val file : String) {
 
-    private val lexer : Lexer = Lexer()
+    private val lexer : Lexer = Lexer(file)
     private val parser : Parser = Parser(genTree() , verifyAST() )
     private val interpreter : Interpreter = Interpreter()
 
     fun run ( file : File ) {
-        val tokens : List<Token>? = lexer.lex(file)
+        val tokens : List<Token> = lexer.tokenize()
         val asts  : List<AST> =  parser.parse(tokens)
-        interpreter.evaluat(asts)
+        //interpreter.evaluat(asts)
     }
 }
