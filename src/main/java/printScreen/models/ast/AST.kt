@@ -1,16 +1,16 @@
 package printScreen.models.ast
 
-class AST ( private val variable : Pair<String, String>? , private val type : DataType , private val node : List<AST>) {
+class AST ( private val variable : Pair<String, String>? , private val type : DataType , private val node : List<AST>) : ExecutableAST {
 
-    fun variable () : Pair<String, String>? {
+    override fun variable () : Pair<String, String>? {
         return variable
     }
 
-    fun type () : DataType {
+    override fun type () : DataType {
         return type
     }
 
-    fun node () : List<AST> {
+    override fun node () : List<AST> {
         return node
     }
 }
