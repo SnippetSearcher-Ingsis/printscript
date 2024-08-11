@@ -1,6 +1,6 @@
 package interpreter
 
-import printScreen.models.ast.AST
+import ast.AST
 
 interface Interpreter {
     fun interpret(ast: List<AST>)
