@@ -1,5 +1,5 @@
 package ast
 
-interface ASTVisitor<T> {
-    fun visit(node: AST): T
+interface ASTVisitor {
+    fun visit(node: AST): AST
 }

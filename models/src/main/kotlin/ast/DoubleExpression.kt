@@ -1,17 +1,7 @@
 package ast
 
-class DoubleExpression (private val left: Node, private val operator: String, private val right: Node) : Node {
-
-    fun left () : Node {
-        return left
+class DoubleExpression(val operator: String, val left: AST, val right: AST) : AST {
+    override fun <T> accept(visitor: ASTVisitor<T>): T {
+        return visitor.visit(this)
     }
-
-    fun right () : Node {
-        return right
-    }
-
-    fun operator () : String {
-        return operator
-    }
-
 }
