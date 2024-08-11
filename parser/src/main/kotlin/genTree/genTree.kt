@@ -11,7 +11,7 @@ class genTree {
         TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
     )
 
-    // por cada linea de codigo se genera un AST.
+    // por cada linea de codigo se genera un ast.AST.
     fun tokensToAST ( tokens : List<Token>)  : List<AST> {
         val split : List<List<Token>> = splitEachLine(tokens)
         //

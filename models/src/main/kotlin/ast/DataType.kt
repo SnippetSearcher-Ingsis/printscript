@@ -1,4 +1,4 @@
-package printScreen.models.ast.ast
+package ast
 
 enum class DataType {
     VariableDeclaration, Conditional, Loop

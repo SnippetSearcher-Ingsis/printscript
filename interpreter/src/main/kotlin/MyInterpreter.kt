@@ -1,7 +1,7 @@
-import printScreen.models.ast.ast.AST
+import ast.AST
 
 class MyInterpreter : Interpreter {
     override fun interpret(ast: List<AST>) {
-        TODO("Not yet implemented")
+        TODO()
     }
 }

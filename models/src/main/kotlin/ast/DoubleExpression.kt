@@ -1,4 +1,4 @@
-package printScreen.models.ast.ast
+package ast
 
 class DoubleExpression (private val left: Node, private val operator: String, private val right: Node) : Node {
 
