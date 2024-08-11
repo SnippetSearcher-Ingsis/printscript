@@ -7,4 +7,8 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
 rootProject.name = "ing-sis-PrintScreen"
-
+include("lexer")
+include("models")
+include("parser")
+include("interpreter")
+include("engine")
