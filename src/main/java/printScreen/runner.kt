@@ -18,6 +18,6 @@ class runner (private val file : String) {
     fun run ( file : File ) {
         val tokens : List<Token> = lexer.tokenize()
         val asts  : List<AST> =  parser.parse(tokens)
-        //interpreter.evaluat(asts)
+        interpreter.evaluate(asts)
     }
 }

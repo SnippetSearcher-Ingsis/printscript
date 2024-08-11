@@ -7,7 +7,7 @@ import printScreen.models.token.Token
 
 class Parser (private val generator : genTree, private val verifier: verifyAST) {
 
-    fun parse (tokens : List<Token>?) : List<AST> {
+    fun parse (tokens : List<Token>?) : List<AST>  {
         return  when {
             tokens == null -> emptyList()
             else -> checkTokens(tokens)
@@ -15,6 +15,7 @@ class Parser (private val generator : genTree, private val verifier: verifyAST) 
     }
 
     fun checkTokens(tokens : List<Token>) : List<AST> {
-        TODO()
+        val asts : List<AST>  = generator.tokenToAST(tokens)
+        return if (verifier.verify(asts)) asts else emptyList()
     }
 }

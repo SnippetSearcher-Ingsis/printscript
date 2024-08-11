@@ -2,7 +2,7 @@ package printScreen.lexer
 
 import printScreen.models.token.Token
 import printScreen.models.token.TokenType
-import printScreen.models.token.ValuedToken
+import printScreen.models.token.*
 
 class Lexer(private val sourceCode: String) {
     private var position: Int = 0
