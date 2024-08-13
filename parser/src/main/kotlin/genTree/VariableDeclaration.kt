@@ -1,10 +1,8 @@
 package printScreen.parser.genTree
 
-import printScreen.models.ast.AST
-import printScreen.models.ast.DataType
-import printScreen.models.ast.Node
-import printScreen.models.token.Token
-import printScreen.models.token.TokenType
+import ast.AST
+import ast.DataType
+import ast.Node
 import token.Token
 import token.TokenType
 

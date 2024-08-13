@@ -1,10 +1,11 @@
 package printScreen.parser.genTree
 
-import printScreen.models.ast.AST
-import printScreen.models.token.Token
-import printScreen.models.token.TokenType
+import ast.AST
+import printScreen.parser.verify.VerifyAST
+import token.Token
+import token.TokenType
 
-class genTree {
+class GenTree {
 
     private val dataToToken = mapOf (
         TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
@@ -14,7 +15,7 @@ class genTree {
     // por cada linea de codigo se genera un ast.AST.
     fun tokensToAST ( tokens : List<Token>)  : List<AST> {
         val split : List<List<Token>> = splitEachLine(tokens)
-        //
+        VerifyAST(split).validate()
         return if (split.isEmpty()) emptyList() else split.map { token -> createAST( token ) }
 
     }

@@ -39,8 +39,12 @@ class VerifyAST(private val tokens: List<List<Token>>) {
     }
 
     private fun validateExpression() {
+        val typeName = peek().value::class.simpleName
         validatePrimary()
         while (match(TokenType.OPERATOR)) {
+            if (typeName != peek().value::class.simpleName) {
+                throw IllegalArgumentException("No se puede mezclar tipos en la expresión.")
+            }
             validatePrimary()
         }
     }

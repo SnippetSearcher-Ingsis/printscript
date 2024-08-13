@@ -1,11 +1,11 @@
 package printScreen.parser
 
-import printScreen.models.ast.AST
-import printScreen.parser.genTree.genTree
-import printScreen.parser.verify.verifyAST
-import printScreen.models.token.Token
+import ast.AST
+import token.Token
+import printScreen.parser.genTree.GenTree
+import printScreen.parser.verify.VerifyAST
 
-class Parser (private val generator : genTree, private val verifier: verifyAST) {
+class Parser (private val generator : GenTree, private val verifier: VerifyAST) {
 
     fun parse (tokens : List<Token>?) : List<AST>  {
         return  when {
@@ -15,7 +15,7 @@ class Parser (private val generator : genTree, private val verifier: verifyAST) 
     }
 
     fun checkTokens(tokens : List<Token>) : List<AST> {
-        val asts : List<AST>  = generator.tokenToAST(tokens)
-        return if (verifier.verify(asts)) asts else emptyList()
+        val asts : List<AST>  = generator.tokensToAST(tokens)
+        return emptyList()
     }
 }
