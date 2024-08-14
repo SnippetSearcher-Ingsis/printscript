@@ -52,7 +52,6 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
         line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
         val root = addNodes(line, operators)
         return root
-
     }
 
     private fun addNodes(line : List<Token>, operators: List<Pair<Token, Int>>): ASTNode {

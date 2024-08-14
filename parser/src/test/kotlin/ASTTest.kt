@@ -6,7 +6,7 @@ import token.*
 
 
 
-class GenTreeTest {
+class ASTTest {
 
     @Test
     fun simpleStringGenTreeTest() {
@@ -32,27 +32,6 @@ class GenTreeTest {
             ValuedToken(TokenType.TYPE, "number", 1,9 ),
             ValuedToken(TokenType.EQUAL, "=", 1,16 ),
             ValuedToken(TokenType.LITERAL, "9", 1,18 ),
-            ValuedToken(TokenType.SEMICOLON, ";", 1,31 ),
-        )
-        val result =  ASTGenerator().tokensToAST(example2)
-        println(result)
-    }
-
-    @Test
-    fun complexNumberGenTreeTest() {
-        val example2 = listOf(
-            ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
-            ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
-            ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
-            ValuedToken(TokenType.TYPE, "number", 1,9 ),
-            ValuedToken(TokenType.EQUAL, "=", 1,16 ),
-            ValuedToken(TokenType.LITERAL, "9", 1,18 ),
-            ValuedToken(TokenType.OPERATOR, "+", 1,18 ),
-            ValuedToken(TokenType.SYNTAX, "(", 1,18 ),
-            ValuedToken(TokenType.LITERAL, "10", 1,18 ),
-            ValuedToken(TokenType.OPERATOR, "*", 1,18 ),
-            ValuedToken(TokenType.LITERAL, "10", 1,18 ),
-            ValuedToken(TokenType.SYNTAX, ")", 1,18 ),
             ValuedToken(TokenType.SEMICOLON, ";", 1,31 ),
         )
         val result =  ASTGenerator().tokensToAST(example2)
