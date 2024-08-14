@@ -11,7 +11,7 @@ import token.TokenType
 class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
     private var currentTokenIndex = 0
 
-    override fun createAST(): ASTNode {
+    override fun build(): ASTNode {
         val firstToken = line[0]
         return when {
             firstToken.type == TokenType.KEYWORD && firstToken.value == "let" -> validateDeclaration()

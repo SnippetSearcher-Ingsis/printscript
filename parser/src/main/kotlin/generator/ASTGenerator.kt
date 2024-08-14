@@ -7,8 +7,8 @@ import token.TokenType
 class ASTGenerator {
 
     private val dataToToken = mapOf (
-        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).createAST() },
-        TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).createAST() },
+        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
+        TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
     )
 
     fun tokensToAST ( tokens : List<Token>)  : List<ASTNode> {
