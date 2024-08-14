@@ -8,8 +8,8 @@ import token.TokenType
 class GenTree {
 
     private val dataToToken = mapOf (
-        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
         TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
+        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
     )
 
     // por cada linea de codigo se genera un ast.AST.

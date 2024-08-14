@@ -1,10 +1,7 @@
 package printScreen.parser.genTree
 
 
-import ast.AST
-import ast.DataType
-import ast.DoubleExpression
-import ast.ExecutionLine
+import ast.*
 import token.Token
 import token.TokenType
 
@@ -21,8 +18,8 @@ class VariableDeclaration : BuilderAST {
 
     private fun newVariable (line: List<Token>): AST {
         val name = line.find { it.type == TokenType.IDENTIFIER }!!.value
-        val type = line.find { it.type == TokenType.OPERATOR }!!.value
-        val expression = line.dropWhile { token -> token.type == TokenType.OPERATOR && token.value == "=" }
+        val type = line.find { it.type == TokenType.KEYWORD && it.value == "string" || it.value == "number" }?.value
+        val expression = line.subList(line.indexOfFirst { it.value == "="} + 1, line.size - 1)
         return ExecutionLine (name, type, DataType.VariableDeclaration, createTree(expression))
     }
 
@@ -35,7 +32,12 @@ class VariableDeclaration : BuilderAST {
     }
 
     private fun addNodes(line : List<Token>, operators: List<Pair<Token, Int>>): AST {
-        val (operator, index) = findLowestPrecedenceOperator(operators)
+        if (line.size == 1) {
+            return Literal(line[0].value)
+        }
+
+        val tupla = findLowestPrecedenceOperator(operators)
+        val (operator, index) = tupla
 
         if (line.first().value == "(" && line.last().value == ")") {
             return addNodes(line.subList(1, line.size - 1), operators)
