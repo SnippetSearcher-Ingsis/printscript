@@ -63,11 +63,12 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
         val (operator, index) = tuple
 
         if (line.first().value == "(" && line.last().value == ")") {
-            return addNodes(line.subList(1, line.size - 1), operators)
+            val newOperator = operators.subList(1, operators.size-1)
+            return addNodes(line.subList(1, line.size - 1), newOperator)
         }
 
-        val leftTokens = line.subList(0, index)
-        val rightTokens = line.subList(index + 1, line.size)
+        val leftTokens = line.subList(0, index - 1)
+        val rightTokens = line.subList(index, line.size)
 
         val leftNode = addNodes(leftTokens, operators.filter { it.second < index })
         val rightNode = addNodes(rightTokens, operators.filter { it.second > index })
