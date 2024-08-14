@@ -1,6 +1,6 @@
 
+import generator.ASTGenerator
 import org.junit.jupiter.api.Test
-import printScreen.parser.genTree.GenTree
 import token.*
 
 
@@ -14,14 +14,13 @@ class GenTreeTest {
             ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
-            ValuedToken(TokenType.KEYWORD, "string", 1,9 ),
-            ValuedToken(TokenType.SYNTAX, "=", 1,16 ),
+            ValuedToken(TokenType.TYPE, "string", 1,9 ),
+            ValuedToken(TokenType.EQUAL, "=", 1,16 ),
             ValuedToken(TokenType.LITERAL, "\"Hello World\"", 1,18 ),
-            ValuedToken(TokenType.SYNTAX, ";", 1,31 ),
+            ValuedToken(TokenType.SEMICOLON, ";", 1,31 ),
         )
-        val result = GenTree().tokensToAST(example1)
-        result.forEach {ast -> println(ast.toString())}
-        // tendria que hacer un toString() para que se vea mas facil si funciona o no.
+        val result = ASTGenerator().tokensToAST(example1)
+        println(result)
     }
 
     @Test
@@ -30,15 +29,16 @@ class GenTreeTest {
             ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
-            ValuedToken(TokenType.KEYWORD, "number", 1,9 ),
-            ValuedToken(TokenType.SYNTAX, "=", 1,16 ),
+            ValuedToken(TokenType.TYPE, "number", 1,9 ),
+            ValuedToken(TokenType.EQUAL, "=", 1,16 ),
             ValuedToken(TokenType.LITERAL, "9", 1,18 ),
-            ValuedToken(TokenType.SYNTAX, ";", 1,31 ),
+            ValuedToken(TokenType.SEMICOLON, ";", 1,31 ),
         )
-        val result =  GenTree().tokensToAST(example2)
-        result.forEach {ast -> println(ast.toString())}
+        val result =  ASTGenerator().tokensToAST(example2)
+        println(result)
     }
 
+    // NO FUNCIONA PORQUE ME FALTA EL ASSIGNATION
     @Test
     fun alreadyExistingVariableTest () {
         val example = listOf(
@@ -47,8 +47,7 @@ class GenTreeTest {
             ValuedToken(TokenType.LITERAL, "9", 1,18 ),
             ValuedToken(TokenType.SYNTAX, ";", 1,31 ),
         )
-        val result =  GenTree().tokensToAST(example)
-        result.forEach {ast -> println(ast.toString())}
-
+        val result =  ASTGenerator().tokensToAST(example)
+        println(result)
     }
 }
