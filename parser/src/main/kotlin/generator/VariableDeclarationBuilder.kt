@@ -50,11 +50,14 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
     private fun createTree(line : List<Token>): ASTNode {
         val operators = mutableListOf<Pair<Token, Int>>()
         line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
-        val root = addNodes(line, operators)
+        val root = addNodes(line)
         return root
     }
 
-    private fun addNodes(line : List<Token>, operators: List<Pair<Token, Int>>): ASTNode {
+    private fun addNodes(line : List<Token>): ASTNode {
+        val operators = mutableListOf<Pair<Token, Int>>()
+        line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
+
         if (line.size == 1) {
             return LiteralNode(line[0].value)
         }
@@ -62,16 +65,17 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
         val tuple = findLowestPrecedenceOperator(operators)
         val (operator, index) = tuple
 
+        // usar index esta mal porque en la recursion al sacar elementos de line y de operators el indice queda corrido.
+
         if (line.first().value == "(" && line.last().value == ")") {
-            val newOperator = operators.subList(1, operators.size-1)
-            return addNodes(line.subList(1, line.size - 1), newOperator)
+            return addNodes(line.subList(1, line.size - 1))
         }
 
-        val leftTokens = line.subList(0, index - 1)
-        val rightTokens = line.subList(index, line.size)
+        val leftTokens = line.subList(0, index)
+        val rightTokens = line.subList(index + 1, line.size)
 
-        val leftNode = addNodes(leftTokens, operators.filter { it.second < index })
-        val rightNode = addNodes(rightTokens, operators.filter { it.second > index })
+        val leftNode = addNodes(leftTokens)
+        val rightNode = addNodes(rightTokens)
 
         return DoubleExpressionNode( operator.value, leftNode, rightNode)
     }
