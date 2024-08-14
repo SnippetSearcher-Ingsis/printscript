@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="NEW TEST">
+    <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="si">
+      <change afterPath="$PROJECT_DIR$/engine/src/main/kotlin/TXTHandler.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/src/main/resources/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/runner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/DoubleExpressionNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/DoubleExpressionNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/VariableDeclarationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/generator/VariableDeclarationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/test/kotlin/GenTreeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/Runner.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,8 +61,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
-        <option value="Class" />
         <option value="Kotlin File" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -101,7 +100,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/sasy/AyedProjects/ing-sis-PrintScreen",
+    "last_opened_file_path": "C:/Users/Marcos/Austral/3ero/IngenieriaSis/ing-sis-PrintScreen/linter",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -120,6 +119,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Marcos\Austral\3ero\IngenieriaSis\ing-sis-PrintScreen\linter" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\sasy\AyedProjects\ing-sis-PrintScreen\src\main\resources" />
     </key>
@@ -331,7 +333,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723662684854</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="si">
+      <option name="closed" value="true" />
+      <created>1723667247982</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1723667247982</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -349,7 +359,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="si" />
     <MESSAGE value="nuevos token types" />
     <MESSAGE value="indent para el lexer?!" />
     <MESSAGE value="test" />
@@ -357,7 +366,8 @@
     <MESSAGE value="tests" />
     <MESSAGE value="fix assignation" />
     <MESSAGE value="NEW TEST" />
-    <option name="LAST_COMMIT_MESSAGE" value="NEW TEST" />
+    <MESSAGE value="si" />
+    <option name="LAST_COMMIT_MESSAGE" value="si" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
