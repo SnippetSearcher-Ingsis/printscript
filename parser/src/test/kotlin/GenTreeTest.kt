@@ -38,14 +38,13 @@ class GenTreeTest {
         println(result)
     }
 
-    // NO FUNCIONA PORQUE ME FALTA EL ASSIGNATION
     @Test
     fun alreadyExistingVariableTest () {
         val example = listOf(
             ValuedToken(TokenType.IDENTIFIER, "a", 1,1 ),
-            ValuedToken(TokenType.SYNTAX, "=", 1,16 ),
+            ValuedToken(TokenType.EQUAL, "=", 1,16 ),
             ValuedToken(TokenType.LITERAL, "9", 1,18 ),
-            ValuedToken(TokenType.SYNTAX, ";", 1,31 ),
+            ValuedToken(TokenType.SEMICOLON, ";", 1,31 ),
         )
         val result =  ASTGenerator().tokensToAST(example)
         println(result)

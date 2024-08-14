@@ -15,6 +15,7 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
         val firstToken = line[0]
         return when {
             firstToken.type == TokenType.KEYWORD && firstToken.value == "let" -> validateDeclaration()
+            firstToken.type == TokenType.IDENTIFIER -> validateAssignation()
             else -> error("There is no definition in this line ")
         }
     }
@@ -28,6 +29,14 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
         val expressionTokens = collectExpressionTokens()
         consume(TokenType.SEMICOLON, "Se esperaba ';' después de la declaración.")
         return VariableDeclarationNode(name, type, createTree(expressionTokens))
+    }
+
+    private fun validateAssignation() : ASTNode {
+        val name = consume(TokenType.IDENTIFIER, "Se esperaba el nombre de la variable.").value
+        consume(TokenType.EQUAL, "Se esperaba '=' después del nombre de la variable.")
+        val expressionTokens = collectExpressionTokens()
+        consume(TokenType.SEMICOLON, "Se esperaba ';' después de la declaración.")
+        return VariableDeclarationNode(name, null, createTree(expressionTokens))
     }
 
     private fun collectExpressionTokens(): List<Token> {

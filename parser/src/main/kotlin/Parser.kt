@@ -5,7 +5,6 @@ import generator.ASTGenerator
 import token.Token
 
 class Parser {
-
     fun parse (tokens : List<Token>?) : List<ASTNode>  {
         return  when {
             tokens == null -> emptyList()
