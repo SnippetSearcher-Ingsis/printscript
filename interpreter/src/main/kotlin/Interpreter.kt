@@ -1,5 +1,5 @@
-import ast.AST
+import node.ASTNode
 
 interface Interpreter {
-    fun interpret(ast: List<AST>)
+    fun interpret(astNode: List<ASTNode>)
 }

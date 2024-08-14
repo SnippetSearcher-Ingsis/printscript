@@ -14,6 +14,9 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Cambiado a la dependencia completa de Kotlin
+    implementation(project(":parser"))
+    implementation(project(":lexer"))
+    implementation(project(":models"))
 }
 
 tasks.test {

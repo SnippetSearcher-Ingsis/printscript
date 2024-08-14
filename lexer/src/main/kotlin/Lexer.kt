@@ -8,18 +8,20 @@ class Lexer(private val sourceCode: String) {
     private var position: Int = 0
     private var line: Int = 1
     private var column: Int = 1
-    private var indent: Int = 1
+    // private var indent: Int = 1
 
     private val tokenPatterns = listOf(
         "\\blet\\b" to TokenType.KEYWORD,
-        "\\bstring\\b" to TokenType.KEYWORD,
-        "\\bnumber\\b" to TokenType.KEYWORD,
         "\\bprintln\\b" to TokenType.KEYWORD,
+        "\\bstring\\b" to TokenType.TYPE,
+        "\\bnumber\\b" to TokenType.TYPE,
         "[a-zA-Z_][a-zA-Z_0-9]*" to TokenType.IDENTIFIER,
+        "[=]" to TokenType.EQUAL,
         "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
         "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
         "[+\\-*/]" to TokenType.OPERATOR,
-        "[=:;(){}]" to TokenType.SYNTAX
+        "[:(){}]" to TokenType.SYNTAX,
+        "[;]" to TokenType.SEMICOLON
     )
 
     fun tokenize(): List<Token> {

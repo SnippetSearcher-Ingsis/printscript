@@ -1,23 +1,19 @@
-package printScreen.parser.genTree
+package generator
 
-import ast.AST
-import printScreen.parser.verify.VerifyAST
+import node.ASTNode
 import token.Token
 import token.TokenType
 
-class GenTree {
+class ASTGenerator {
 
     private val dataToToken = mapOf (
-        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
-        TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclaration().createAST(tokens) },
+        TokenType.IDENTIFIER to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).createAST() },
+        TokenType.KEYWORD to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).createAST() },
     )
 
-    // por cada linea de codigo se genera un ast.AST.
-    fun tokensToAST ( tokens : List<Token>)  : List<AST> {
+    fun tokensToAST ( tokens : List<Token>)  : List<ASTNode> {
         val split : List<List<Token>> = splitEachLine(tokens)
-        VerifyAST(split).validate()
         return if (split.isEmpty()) emptyList() else split.map { token -> createAST( token ) }
-
     }
 
     private fun splitEachLine(tokens : List<Token>): List<List<Token>> {
@@ -42,14 +38,11 @@ class GenTree {
         return result
     }
 
-
-
-// caracteres que representan el final de una linea de ejecucion.
     private fun isEndOfLine (token : Token) : Boolean {
-        return token.type == TokenType.SYNTAX && token.value == ";"
+        return token.type == TokenType.SEMICOLON
     }
 
-    private fun createAST (line : List<Token>) : AST {
+    private fun createAST (line : List<Token>) : ASTNode {
         val firstToken :Token = line[0]
         return dataToToken[firstToken.type]?.invoke(line) ?: error("Unknown token ${firstToken.type}")
     }

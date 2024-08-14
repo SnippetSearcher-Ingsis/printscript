@@ -1,18 +1,18 @@
-import ast.AST
-import ast.ASTVisitor
-import ast.DoubleExpression
-import ast.Literal
+import node.ASTNode
+import node.ASTVisitor
+import node.DoubleExpressionNode
+import node.LiteralNode
 
 class EvaluationVisitor : ASTVisitor {
     private var result: Any? = null // Result can be of any type
 
-    override fun visit(node: AST): AST {
+    override fun visit(node: ASTNode): ASTNode {
         when (node) {
-            is Literal<*> -> {
+            is LiteralNode<*> -> {
                 result = node.value
             }
 
-            is DoubleExpression -> {
+            is DoubleExpressionNode -> {
                 node.left.accept(this)
                 val left = result
                 node.right.accept(this)
@@ -34,7 +34,7 @@ class EvaluationVisitor : ASTVisitor {
             else -> throw IllegalArgumentException("Unknown node type")
         }
 
-        return AST::class
+        return ASTNode::class
     }
 
     fun getResult(): Any? {
