@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="NEW TEST">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/runner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/DoubleExpressionNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/DoubleExpressionNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/VariableDeclarationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/generator/VariableDeclarationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/test/kotlin/GenTreeTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/ASTVisitor.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +94,12 @@
     "Kotlin.RunnerKt (1).executor": "Run",
     "Kotlin.RunnerKt.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "android.gradle.sync.needed": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/sasy/AyedProjects/ing-sis-PrintScreen",
