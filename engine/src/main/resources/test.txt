@@ -1,2 +1,34 @@
-let y: number = 1 + 2 + 3;
+let a: number = 5;
+let b: number = 10;
+let c: number = a + b;
+let d: number = c * 2;
+let e: number = d - 4;
 
+a = 20;
+b = 15;
+c = a + b;
+d = c / 3;
+e = d + a - b;
+
+println(a);
+println(b);
+println(c);
+println(d);
+println(e);
+println(a + b + c + d + e);
+
+let f: number = 100;
+let g: number = f / 5 + 2 * (a - 10);
+println(g);
+
+f = f + a - e * 2 / d;
+g = f - g + e * 2;
+
+println(f);
+println(g);
+
+let h: number = f * g - a + e / 2;
+println(h);
+
+h = h + h - g * 2 + a - e;
+println(h);

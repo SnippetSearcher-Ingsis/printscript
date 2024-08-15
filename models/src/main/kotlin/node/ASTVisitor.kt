@@ -8,4 +8,6 @@ interface ASTVisitor {
     fun visit(node: PrintStatementNode)
 
     fun visit(node: VariableDeclarationNode)
+
+    fun visit(node: AssignationNode)
 }

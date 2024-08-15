@@ -1,4 +1,4 @@
-package printScreen.parser.genTree
+package printScreen.parser.builder
 
 import node.ASTNode
 

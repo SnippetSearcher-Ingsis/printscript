@@ -8,7 +8,7 @@ class ASTTest {
     @Test
     fun simpleStringGenTreeTest() {
         val example1 = listOf(
-            ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
+            ValuedToken(TokenType.LET, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
             ValuedToken(TokenType.TYPE, "string", 1,9 ),
@@ -23,7 +23,7 @@ class ASTTest {
     @Test
     fun simpleNumberGenTreeTest() {
         val example2 = listOf(
-            ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
+            ValuedToken(TokenType.LET, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
             ValuedToken(TokenType.TYPE, "number", 1,9 ),
@@ -50,7 +50,7 @@ class ASTTest {
     @Test
     fun parenthesisTest () {
         val example = listOf(
-            ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
+            ValuedToken(TokenType.LET, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
             ValuedToken(TokenType.TYPE, "number", 1,9 ),
@@ -70,7 +70,7 @@ class ASTTest {
     @Test
     fun complexExpressionTest () {
         val example = listOf(
-            ValuedToken(TokenType.KEYWORD, "let", 1,1 ),
+            ValuedToken(TokenType.LET, "let", 1,1 ),
             ValuedToken(TokenType.IDENTIFIER, "a", 1,5 ),
             ValuedToken(TokenType.SYNTAX, ":", 1,7 ),
             ValuedToken(TokenType.TYPE, "number", 1,9 ),

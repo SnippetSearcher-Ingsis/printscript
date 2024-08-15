@@ -1,7 +1,8 @@
 package token
 
 enum class TokenType {
-    KEYWORD,
+    LET,
+    PRINTLN,
     TYPE,
     IDENTIFIER,
     OPERATOR,

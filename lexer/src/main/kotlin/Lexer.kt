@@ -8,11 +8,10 @@ class Lexer(private val sourceCode: String) {
     private var position: Int = 0
     private var line: Int = 1
     private var column: Int = 1
-    // private var indent: Int = 1
 
     private val tokenPatterns = listOf(
-        "\\blet\\b" to TokenType.KEYWORD,
-        "\\bprintln\\b" to TokenType.KEYWORD,
+        "\\blet\\b" to TokenType.LET,
+        "\\bprintln\\b" to TokenType.PRINTLN,
         "\\bstring\\b" to TokenType.TYPE,
         "\\bnumber\\b" to TokenType.TYPE,
         "[a-zA-Z_][a-zA-Z_0-9]*" to TokenType.IDENTIFIER,
