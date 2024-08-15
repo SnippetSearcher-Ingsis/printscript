@@ -1,9 +1,9 @@
 import node.ASTNode
 
 class MyInterpreter : Interpreter {
-    override fun interpret(astNode: List<ASTNode>) {
+    override fun interpret(nodes: List<ASTNode>) {
         val visitor = EvaluationVisitor()
-        astNode.forEach { node ->
+        nodes.forEach { node ->
             node.accept(visitor)
         }
     }
