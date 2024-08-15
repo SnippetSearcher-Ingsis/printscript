@@ -27,8 +27,8 @@ public record ValuedToken(TokenType type, String value, Integer line, Integer co
     @Override
     public int getLine() {
         return line;
-
     }
+
     public String toString() {
         return type + " with value: " + '`' + value  + '`' + " at " + line + ":" + column;
     }
