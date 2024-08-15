@@ -1,8 +1,4 @@
-import node.ASTVisitor
-import node.DoubleExpressionNode
-import node.LiteralNode
-import node.PrintStatementNode
-import node.VariableDeclarationNode
+import node.*
 
 class EvaluationVisitor : ASTVisitor {
     private val context = mutableMapOf<String, Any>()
@@ -32,5 +28,9 @@ class EvaluationVisitor : ASTVisitor {
                 }
             }
         }
+    }
+
+    override fun visit(node: AssignationNode) {
+
     }
 }
