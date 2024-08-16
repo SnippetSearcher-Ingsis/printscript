@@ -13,7 +13,7 @@ class InterpreterTest {
             VariableDeclarationNode(
                 variable = "hello",
                 variableType = "string",
-                expression = LiteralNode("world"),
+                expression = LiteralNode("\"world\""),
             )
         )
         val interpreter = MyInterpreter()
@@ -27,11 +27,11 @@ class InterpreterTest {
             VariableDeclarationNode(
                 variable = "hello",
                 variableType = "string",
-                expression = LiteralNode("world"),
+                expression = LiteralNode("\"world\""),
             ),
             AssignationNode(
                 variable = "hello",
-                expression = LiteralNode("universe")
+                expression = LiteralNode("\"universe\"")
             )
         )
         val interpreter = MyInterpreter()
@@ -45,7 +45,7 @@ class InterpreterTest {
             VariableDeclarationNode(
                 variable = "hello",
                 variableType = "string",
-                expression = LiteralNode("world"),
+                expression = LiteralNode("\"world\""),
             ),
             AssignationNode(
                 variable = "hello",
@@ -136,8 +136,8 @@ class InterpreterTest {
                 variable = "hello",
                 variableType = "string",
                 expression = DoubleExpressionNode(
-                    left = LiteralNode("hello"),
-                    right = LiteralNode(" world"),
+                    left = LiteralNode("\"hello\""),
+                    right = LiteralNode("\" world\""),
                     operator = "+"
                 ),
             ),
@@ -154,7 +154,7 @@ class InterpreterTest {
                 variable = "hello",
                 variableType = "string",
                 expression = DoubleExpressionNode(
-                    left = LiteralNode("hello"),
+                    left = LiteralNode("\"hello\""),
                     right = LiteralNode(1),
                     operator = "+"
                 ),

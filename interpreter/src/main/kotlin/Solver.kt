@@ -5,7 +5,18 @@ import node.LiteralNode
 object Solver {
     infix fun getValue(node: ASTNode): Any {
         return when (node) {
-            is LiteralNode<*> -> node.value!!
+            is LiteralNode<*> -> {
+                when {
+                    node.value is String && (node.value as String).startsWith("\"") ->
+                        (node.value as String).replace("\"", "")
+
+                    node.value is String -> (Context get node.value as String)
+                        ?: throw Error("Variable not declared: ${node.value}")
+
+                    else -> node.value!!
+                }
+            }
+
             is DoubleExpressionNode -> {
                 val a = getValue(node.left)
                 val b = getValue(node.right)

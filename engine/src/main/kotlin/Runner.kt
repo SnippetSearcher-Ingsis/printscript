@@ -4,7 +4,9 @@ import printScreen.parser.Parser
 fun main() {
     val code = TXTHandler.content("test.txt")
     val lexer = Lexer(code)
-    val tokenizer = lexer.tokenize()
+    val tokens = lexer.tokenize()
     val parser = Parser()
-    println(parser.parse(tokenizer))
+    val ast = parser.parse(tokens)
+    val interpreter = MyInterpreter()
+    interpreter.interpret(ast)
 }
