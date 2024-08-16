@@ -1,30 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="txt handler">
-      <change afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/AssignationNode.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenHandler.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/ExpressionBuilder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/PrintStatementBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.9/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.9/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/resources/test.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/resources/test.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/ASTVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/ASTVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/PrintStatementNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/PrintStatementNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/VariableDeclarationNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/VariableDeclarationNode.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/AssignationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/AssignationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/Builder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/Builder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/VariableDeclarationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/VariableDeclarationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/src/main/kotlin/MyInterpreter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/src/main/kotlin/MyInterpreter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/AssignationNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/AssignationNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/node/LiteralNode.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/node/LiteralNode.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +69,7 @@
         <option value="Record" />
         <option value="Kotlin File" />
         <option value="Class" />
+        <option value="Kotlin Object" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -117,13 +111,20 @@
     "Gradle.GenTreeTest.executor": "Run",
     "Gradle.GenTreeTest.simpleNumberGenTreeTest.executor": "Run",
     "Gradle.GenTreeTest.simpleStringGenTreeTest.executor": "Run",
+    "Gradle.InterpreterTest.executor": "Coverage",
+    "Gradle.InterpreterTest.testAssignation.executor": "Run",
     "Gradle.LexerTest.executor": "Run",
     "Gradle.LexerTest.simpleLexerTest.executor": "Run",
     "Gradle.ing-sis-PrintScreen [build].executor": "Run",
+    "Kotlin.MyInterpreterKt.executor": "Run",
     "Kotlin.RunnerKt (1).executor": "Run",
     "Kotlin.RunnerKt.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
@@ -141,7 +142,7 @@
   },
   "keyToStringList": {
     "kotlin-gradle-user-dirs": [
-      "C:\\Users\\Marcos\\.gradle"
+      "C:\\Users\\pedro\\.gradle"
     ]
   }
 }]]></component>
@@ -157,7 +158,7 @@
       <recent name="builder" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.RunnerKt">
+  <component name="RunManager" selected="Gradle.InterpreterTest">
     <configuration name="ASTTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -182,7 +183,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GenTreeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="InterpreterTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -193,9 +194,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":parser:test" />
+            <option value=":interpreter:test" />
             <option value="--tests" />
-            <option value="&quot;GenTreeTest&quot;" />
+            <option value="&quot;InterpreterTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -206,7 +207,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="GenTreeTest.complexNumberGenTreeTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="InterpreterTest.testAssignation" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -217,9 +218,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":parser:test" />
+            <option value=":interpreter:test" />
             <option value="--tests" />
-            <option value="&quot;GenTreeTest.complexNumberGenTreeTest&quot;" />
+            <option value="&quot;InterpreterTest.testAssignation&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -230,29 +231,12 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="LexerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":lexer:test" />
-            <option value="--tests" />
-            <option value="&quot;LexerTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <method v="2" />
+    <configuration name="MyInterpreterKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyInterpreterKt" />
+      <module name="ing-sis-PrintScreen.interpreter.main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="RunnerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunnerKt" />
@@ -263,11 +247,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.InterpreterTest" />
+        <item itemvalue="Gradle.InterpreterTest.testAssignation" />
+        <item itemvalue="Kotlin.MyInterpreterKt" />
         <item itemvalue="Kotlin.RunnerKt" />
         <item itemvalue="Gradle.ASTTest" />
-        <item itemvalue="Gradle.LexerTest" />
-        <item itemvalue="Gradle.GenTreeTest" />
-        <item itemvalue="Gradle.GenTreeTest.complexNumberGenTreeTest" />
       </list>
     </recent_temporary>
   </component>

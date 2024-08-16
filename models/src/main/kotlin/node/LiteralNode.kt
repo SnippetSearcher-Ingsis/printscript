@@ -3,7 +3,7 @@ package node
 class LiteralNode<T>(val value: T) : ASTNode {
 
     override fun accept(visitor: ASTVisitor) {
-        visitor.visit(this)
+        return visitor.visit(this)
     }
 
     override fun toString(): String {
