@@ -19,7 +19,16 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
         line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
 
         if (line.size == 1) {
-            return LiteralNode(line[0].value)
+            val value = line[0].value
+            return try {
+                LiteralNode(value.toInt())
+            } catch (e: NumberFormatException) {
+                try {
+                    LiteralNode(value.toDouble())
+                } catch (e: NumberFormatException) {
+                    LiteralNode(value)
+                }
+            }
         }
 
         val tuple = findLowestPrecedenceOperator(operators)
