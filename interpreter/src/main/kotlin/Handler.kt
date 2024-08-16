@@ -21,9 +21,17 @@ object Handler {
 
     fun assignValue(key: String, value: Any) {
         when {
-            Context has key && (Context get key)!!::class == value::class -> Context.add(key, value)
+            Context has key && areSameType((Context get key)!!, value) -> Context.add(key, value)
             Context get key != null -> println("Assignation error: $key is not ${value::class}.")
             else -> println("Assignation error: $key is not defined.")
+        }
+    }
+
+    private fun areSameType(a: Any, b: Any): Boolean {
+        return when {
+            a is Number && b is Number -> true
+            a is String && b is String -> true
+            else -> false
         }
     }
 }
