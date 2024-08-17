@@ -7,6 +7,6 @@ fun main() {
     val tokens = lexer.tokenize()
     val parser = Parser()
     val ast = parser.parse(tokens)
-    val interpreter = MyInterpreter()
-    interpreter.interpret(ast)
+    val interpreter = Interpreter()
+    interpreter interpret  ast
 }

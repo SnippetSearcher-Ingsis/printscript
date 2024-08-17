@@ -2,7 +2,6 @@ import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.LiteralNode
-import node.PrintStatementNode
 import node.VariableDeclarationNode
 import org.junit.jupiter.api.Test
 
@@ -16,8 +15,8 @@ class InterpreterTest {
                 expression = LiteralNode("\"world\""),
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == "world")
     }
 
@@ -34,8 +33,8 @@ class InterpreterTest {
                 expression = LiteralNode("\"universe\"")
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == "universe")
     }
 
@@ -52,8 +51,8 @@ class InterpreterTest {
                 expression = LiteralNode(1)
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == "world")
     }
 
@@ -70,8 +69,8 @@ class InterpreterTest {
                 ),
             ),
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == 3)
     }
 
@@ -88,8 +87,8 @@ class InterpreterTest {
                 )
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == -1)
     }
 
@@ -106,8 +105,8 @@ class InterpreterTest {
                 )
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == 2)
     }
 
@@ -124,8 +123,8 @@ class InterpreterTest {
                 )
             )
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == 0.5)
     }
 
@@ -142,8 +141,8 @@ class InterpreterTest {
                 ),
             ),
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == "hello world")
     }
 
@@ -160,8 +159,8 @@ class InterpreterTest {
                 ),
             ),
         )
-        val interpreter = MyInterpreter()
-        interpreter.interpret(ast)
+        val interpreter = Interpreter()
+        interpreter interpret ast
         assert(Context get "hello" == "hello1")
     }
 }

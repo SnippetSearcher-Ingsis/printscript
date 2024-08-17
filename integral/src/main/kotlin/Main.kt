@@ -6,7 +6,7 @@ fun main() {
         "let hola: number = (1 + 2) / 2; println(hola);"
     )
     val parser = Parser()
-    val interpreter = MyInterpreter()
+    val interpreter = Interpreter()
     val ast = parser.parse(lexer.tokenize())
-    interpreter.interpret(ast)
+    interpreter interpret ast
 }
