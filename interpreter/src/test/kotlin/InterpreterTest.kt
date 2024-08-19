@@ -2,6 +2,7 @@ import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.LiteralNode
+import node.Position
 import node.VariableDeclarationNode
 import org.junit.jupiter.api.Test
 
@@ -13,6 +14,7 @@ class InterpreterTest {
                 variable = "hello",
                 variableType = "string",
                 expression = LiteralNode("\"world\""),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -27,10 +29,12 @@ class InterpreterTest {
                 variable = "hello",
                 variableType = "string",
                 expression = LiteralNode("\"world\""),
+                Position(0, 0)
             ),
             AssignationNode(
                 variable = "hello",
-                expression = LiteralNode("\"universe\"")
+                expression = LiteralNode("\"universe\""),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -45,10 +49,12 @@ class InterpreterTest {
                 variable = "hello",
                 variableType = "string",
                 expression = LiteralNode("\"world\""),
+                Position(0, 0)
             ),
             AssignationNode(
                 variable = "hello",
-                expression = LiteralNode(1)
+                expression = LiteralNode(1),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -67,6 +73,7 @@ class InterpreterTest {
                     right = LiteralNode(2),
                     operator = "+"
                 ),
+                Position(0, 0)
             ),
         )
         val interpreter = Interpreter()
@@ -84,7 +91,8 @@ class InterpreterTest {
                     left = LiteralNode(1),
                     right = LiteralNode(2),
                     operator = "-"
-                )
+                ),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -102,7 +110,8 @@ class InterpreterTest {
                     left = LiteralNode(1),
                     right = LiteralNode(2),
                     operator = "*"
-                )
+                ),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -120,7 +129,8 @@ class InterpreterTest {
                     left = LiteralNode(1),
                     right = LiteralNode(2),
                     operator = "/"
-                )
+                ),
+                Position(0, 0)
             )
         )
         val interpreter = Interpreter()
@@ -139,6 +149,7 @@ class InterpreterTest {
                     right = LiteralNode("\" world\""),
                     operator = "+"
                 ),
+                Position(0, 0)
             ),
         )
         val interpreter = Interpreter()
@@ -157,6 +168,7 @@ class InterpreterTest {
                     right = LiteralNode(1),
                     operator = "+"
                 ),
+                Position(0, 0)
             ),
         )
         val interpreter = Interpreter()

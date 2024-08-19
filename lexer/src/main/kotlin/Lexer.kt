@@ -60,6 +60,7 @@ class Lexer(private val sourceCode: String) {
                 column += value.length
                 return token to position + value.length
             }
-        }; throw IllegalArgumentException("Unexpected character at position $position")
+        }
+        throw IllegalArgumentException("Unexpected character at position $position")
     }
 }
