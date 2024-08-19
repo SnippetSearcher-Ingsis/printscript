@@ -12,9 +12,11 @@ object Handler {
         }
     }
 
-    fun declareValue(key: String, value: Any) {
+    fun declareValue(key: String, type: String, value: Any) {
         when {
             Context has key -> println("Declaration error: $key is already defined.")
+            value is Number && type.lowercase() != "number" -> println("Declaration error: $key is not $type.")
+            value is String && type.lowercase() != "string" -> println("Declaration error: $key is not $type.")
             else -> Context.add(key, value)
         }
     }
@@ -22,7 +24,7 @@ object Handler {
     fun assignValue(key: String, value: Any) {
         when {
             Context has key && areSameType((Context get key)!!, value) -> Context.add(key, value)
-            Context get key != null -> println("Assignation error: $key is not ${value::class}.")
+            Context has key -> println("Assignation error: $key is not ${value::class}.")
             else -> println("Assignation error: $key is not defined.")
         }
     }

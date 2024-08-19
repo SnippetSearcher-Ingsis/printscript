@@ -10,9 +10,8 @@ class EvaluationVisitor : ASTVisitor {
     }
 
     override fun visit(node: VariableDeclarationNode) {
-        // Execution can be Literal or Double Expression
         val value = Solver getValue node.expression
-        Handler.declareValue(node.variable!!, value)
+        Handler.declareValue(node.variable, node.variableType, value)
     }
 
     override fun visit(node: AssignationNode) {

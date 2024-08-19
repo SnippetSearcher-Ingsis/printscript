@@ -1,6 +1,6 @@
 package node
 
-class AssignationNode(val variable: String?, val expression: ASTNode) : ASTNode {
+class AssignationNode(val variable: String?, val expression: ASTNode, val position: Position) : ASTNode {
     override fun accept(visitor: ASTVisitor) {
         visitor.visit(this)
     }
