@@ -34,8 +34,6 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
         val tuple = findLowestPrecedenceOperator(operators)
         val (operator, index) = tuple
 
-        // usar index esta mal porque en la recursion al sacar elementos de line y de operators el indice queda corrido.
-
         if (line.first().value == "(" && line.last().value == ")") {
             return addNodes(line.subList(1, line.size - 1))
         }
@@ -62,7 +60,7 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
             } else if (token.value == ")") {
                 parenCount--
             } else if (parenCount == 0) {
-                if (result == null || getPrecedence(token.value) < getPrecedence(result.first.value)) {
+                if (result == null || getPrecedence(token.value) <= getPrecedence(result.first.value)) {
                     result = Pair(token, index)
                 }
             }
