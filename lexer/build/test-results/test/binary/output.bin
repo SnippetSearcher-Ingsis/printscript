@@ -1,0 +1,31 @@
+LET with value: `let` at 1:1
+#IDENTIFIER with value: `a` at 1:5
+SYNTAX with value: `:` at 1:7
+"TYPE with value: `string` at 1:9
+EQUAL with value: `=` at 1:16
+-LITERAL with value: `"Hello World"` at 1:18
+#SEMICOLON with value: `;` at 1:31
+LET with value: `let` at 1:1
+#IDENTIFIER with value: `a` at 1:5
+SYNTAX with value: `:` at 1:7
+"TYPE with value: `string` at 1:9
+EQUAL with value: `=` at 1:16
+-LITERAL with value: `"Hello World"` at 1:18
+#SEMICOLON with value: `;` at 1:31
+LET with value: `let` at 1:33
+$IDENTIFIER with value: `b` at 1:37
+ SYNTAX with value: `:` at 1:39
+#TYPE with value: `string` at 1:41
+EQUAL with value: `=` at 1:48
++LITERAL with value: `"Bye World"` at 1:50
+#SEMICOLON with value: `;` at 1:61
+$IDENTIFIER with value: `a` at 1:63
+EQUAL with value: `=` at 1:65
+$IDENTIFIER with value: `a` at 1:67
+"OPERATOR with value: `+` at 1:69
+$IDENTIFIER with value: `b` at 1:71
+#SEMICOLON with value: `;` at 1:72
+&PRINTLN with value: `println` at 1:1
+SYNTAX with value: `(` at 1:8
+%LITERAL with value: `"hola"` at 1:9
+ SYNTAX with value: `)` at 1:15
