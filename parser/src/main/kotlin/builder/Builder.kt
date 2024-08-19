@@ -4,5 +4,5 @@ import node.ASTNode
 
 interface Builder {
 
-    fun build() : ASTNode
+    fun build(): ASTNode
 }

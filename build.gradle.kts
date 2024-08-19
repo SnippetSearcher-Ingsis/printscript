@@ -1,6 +1,7 @@
 plugins {
     id("java")
-    id("org.jetbrains.kotlin.jvm") version "2.0.0"// Especifica la versión del plugin de Kotlin
+    kotlin("jvm") version "2.0.0"
+    id("com.diffplug.spotless") version "6.7.1"
 }
 
 group = "org.example"
@@ -13,7 +14,31 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Cambiado a la dependencia completa de Kotlin
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+}
+
+allprojects {
+    apply(plugin = "kotlin")
+    apply(plugin = "com.diffplug.spotless")
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+    }
+
+    spotless {
+        kotlin {
+            ktlint()
+            target("src/**/*.kt")
+        }
+        java {
+            googleJavaFormat()
+        }
+    }
 }
 
 tasks.test {
@@ -22,6 +47,6 @@ tasks.test {
 
 kotlin {
     jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(19)) // Especifica la versión de Java
+        this.languageVersion.set(JavaLanguageVersion.of(21))
     }
 }

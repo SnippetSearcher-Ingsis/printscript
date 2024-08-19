@@ -5,7 +5,7 @@ import node.DoubleExpressionNode
 import node.LiteralNode
 import token.Token
 
-class ExpressionBuilder(private val line : List<Token>) : Builder {
+class ExpressionBuilder(private val line: List<Token>) : Builder {
 
     override fun build(): ASTNode {
         val operators = mutableListOf<Pair<Token, Int>>()
@@ -14,7 +14,7 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
         return root
     }
 
-    private fun addNodes(line : List<Token>): ASTNode {
+    private fun addNodes(line: List<Token>): ASTNode {
         val operators = mutableListOf<Pair<Token, Int>>()
         line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
 
@@ -44,7 +44,7 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
         val leftNode = addNodes(leftTokens)
         val rightNode = addNodes(rightTokens)
 
-        return DoubleExpressionNode( operator.value, leftNode, rightNode)
+        return DoubleExpressionNode(operator.value, leftNode, rightNode)
     }
 
     private fun findLowestPrecedenceOperator(operators: List<Pair<Token, Int>>): Pair<Token, Int> {
@@ -81,7 +81,7 @@ class ExpressionBuilder(private val line : List<Token>) : Builder {
         }
     }
 
-    private fun operatorsToCheck (token : Token) : Boolean {
+    private fun operatorsToCheck(token: Token): Boolean {
         return listOf("/", "*", "(", ")", "+", "-").contains(token.value)
     }
 }
