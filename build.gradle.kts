@@ -1,7 +1,6 @@
 plugins {
     id("java")
     kotlin("jvm") version "2.0.0"
-    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("com.diffplug.spotless") version "6.7.1"
 }
 
@@ -21,9 +20,24 @@ dependencies {
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "com.diffplug.spotless")
+
+    repositories {
+        mavenCentral()
+    }
+
     dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
         implementation("org.jetbrains.kotlin:kotlin-reflect")
+    }
+
+    spotless {
+        kotlin {
+            ktlint()
+            target("src/**/*.kt")
+        }
+        java {
+            googleJavaFormat()
+        }
     }
 }
 
@@ -34,11 +48,5 @@ tasks.test {
 kotlin {
     jvmToolchain {
         this.languageVersion.set(JavaLanguageVersion.of(21))
-    }
-}
-
-spotless {
-    java {
-        googleJavaFormat()
     }
 }

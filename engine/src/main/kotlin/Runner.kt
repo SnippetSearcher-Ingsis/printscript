@@ -8,5 +8,5 @@ fun main() {
     val parser = Parser()
     val ast = parser.parse(tokens)
     val interpreter = Interpreter()
-    interpreter interpret  ast
+    interpreter interpret ast
 }

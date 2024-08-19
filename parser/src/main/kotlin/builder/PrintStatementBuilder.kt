@@ -6,7 +6,7 @@ import token.Token
 import token.TokenHandler
 import token.TokenType
 
-class PrintStatementBuilder(private val line : List<Token>) : Builder {
+class PrintStatementBuilder(private val line: List<Token>) : Builder {
     override fun build(): ASTNode {
         val handler = TokenHandler(line)
         handler.consume(TokenType.PRINTLN, "Se esperaba 'println' al principio de la declaración.")

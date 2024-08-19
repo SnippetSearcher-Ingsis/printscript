@@ -11,35 +11,55 @@
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/kotlin/compileKotlin/cacheable/dirty-sources.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/si.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/integral/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/Runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/Runner.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/TXTHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/TXTHandler.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/classes/InterpreterTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/classes/InterpreterTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/classes/LexerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/classes/LexerTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/test-results/test/binary/results.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/caches-jvm/lookups/counters.tab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/java/token/ValuedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/java/token/ValuedToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/Token.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenHandler.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/classes/ASTTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/classes/ASTTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/AssignationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/AssignationBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/Builder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/Builder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/ExpressionBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/ExpressionBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/PrintStatementBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/PrintStatementBuilder.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

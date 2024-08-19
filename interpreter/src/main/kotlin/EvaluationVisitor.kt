@@ -1,4 +1,9 @@
-import node.*
+import node.ASTVisitor
+import node.AssignationNode
+import node.DoubleExpressionNode
+import node.LiteralNode
+import node.PrintStatementNode
+import node.VariableDeclarationNode
 
 class EvaluationVisitor : ASTVisitor {
     override fun visit(node: DoubleExpressionNode) {}

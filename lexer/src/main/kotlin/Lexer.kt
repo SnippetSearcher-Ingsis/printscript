@@ -51,11 +51,15 @@ class Lexer(private val sourceCode: String) {
             val matchResult = regex.find(sourceCode, position)
             if (matchResult != null && matchResult.range.first == position) {
                 val value = matchResult.value
-                val token = ValuedToken(tokenType, value, line, column)
+                val token = ValuedToken(
+                    tokenType,
+                    value,
+                    line,
+                    column
+                )
                 column += value.length
                 return token to position + value.length
             }
-        }
-        throw IllegalArgumentException("Unexpected character at position $position")
+        }; throw IllegalArgumentException("Unexpected character at position $position")
     }
 }
