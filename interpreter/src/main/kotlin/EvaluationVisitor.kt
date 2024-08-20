@@ -6,7 +6,9 @@ import node.PrintStatementNode
 import node.VariableDeclarationNode
 
 class EvaluationVisitor : ASTVisitor {
-    override fun visit(node: DoubleExpressionNode) {}
+    override fun visit(node: DoubleExpressionNode) {
+        Solver getValue node
+    }
 
     override fun visit(node: LiteralNode<*>) {}
 

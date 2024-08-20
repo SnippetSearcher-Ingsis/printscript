@@ -4,62 +4,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="txt handler">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.9/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.9/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.9/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/checksums/sha1-checksums.bin" afterDir="false" />
+    <list default="true" id="f8842be0-1a03-4adb-9187-562bb64b8e80" name="Changes" comment="Addition of error classes, InterpreterLogger, DummyNode and DummyVisitor, and more tests">
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.9/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/engine/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/Runner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/Runner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/kotlin/TXTHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/kotlin/TXTHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/classes/InterpreterTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/classes/InterpreterTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/reports/tests/test/packages/default-package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/interpreter/src/main/kotlin/EvaluationVisitor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/classes/LexerTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/classes/LexerTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/reports/tests/test/packages/default-package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/main/kotlin/Lexer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/lexer/src/test/kotlin/LexerTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/models/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/java/token/ValuedToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/java/token/ValuedToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/Token.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/Token.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenHandler.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenHandler.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/models/src/main/kotlin/token/TokenType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/cacheable/last-build.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/local-state/build-history.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/kotlin/compileTestKotlin/local-state/build-history.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/classes/ASTTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/classes/ASTTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/reports/tests/test/packages/default-package.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/parser/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/Parser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/AssignationBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/AssignationBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/Builder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/Builder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/ExpressionBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/ExpressionBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/builder/PrintStatementBuilder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/builder/PrintStatementBuilder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/main/kotlin/generator/ASTGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/parser/src/test/kotlin/ASTTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +35,22 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="ing-sis-PrintScreen" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ing-sis-PrintScreen" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ing-sis-PrintScreen" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="other" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ing-sis-PrintScreen" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -101,6 +65,7 @@
         <option value="Kotlin File" />
         <option value="Class" />
         <option value="Kotlin Object" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -133,52 +98,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.ASTTest.executor": "Run",
-    "Gradle.Build ing-sis-PrintScreen.executor": "Run",
-    "Gradle.GenTreeTest.alreadyExistingVariableTest.executor": "Run",
-    "Gradle.GenTreeTest.complexNumberGenTreeTest.executor": "Run",
-    "Gradle.GenTreeTest.executor": "Run",
-    "Gradle.GenTreeTest.simpleNumberGenTreeTest.executor": "Run",
-    "Gradle.GenTreeTest.simpleStringGenTreeTest.executor": "Run",
-    "Gradle.InterpreterTest.executor": "Coverage",
-    "Gradle.InterpreterTest.testAssignation.executor": "Run",
-    "Gradle.LexerTest.executor": "Run",
-    "Gradle.LexerTest.simpleLexerTest.executor": "Run",
-    "Gradle.ing-sis-PrintScreen [build].executor": "Run",
-    "Gradle.ing-sis-PrintScreen [wrapper].executor": "Run",
-    "Kotlin.MainKt.executor": "Run",
-    "Kotlin.MyInterpreterKt.executor": "Run",
-    "Kotlin.RunnerKt (1).executor": "Run",
-    "Kotlin.RunnerKt.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/pedro/Sandbox/austral/ing-sis-PrintScreen",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.ASTTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build ing-sis-PrintScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GenTreeTest.alreadyExistingVariableTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GenTreeTest.complexNumberGenTreeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GenTreeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GenTreeTest.simpleNumberGenTreeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.GenTreeTest.simpleStringGenTreeTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.InterpreterTest.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.InterpreterTest.testAssignation.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.InterpreterTest.testStringPrint.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LexerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.LexerTest.simpleLexerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Tests in 'ing-sis-PrintScreen.interpreter'.executor&quot;: &quot;Coverage&quot;,
+    &quot;Gradle.ing-sis-PrintScreen [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.ing-sis-PrintScreen [wrapper].executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MainKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.MyInterpreterKt.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.RunnerKt (1).executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.RunnerKt.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/pedro/Sandbox/austral/ing-sis-PrintScreen&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "kotlin-gradle-user-dirs": [
-      "C:\\Users\\pedro"
+  &quot;keyToStringList&quot;: {
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;C:\\Users\\pedro&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Marcos\Austral\3ero\IngenieriaSis\ing-sis-PrintScreen\formatter" />
@@ -191,7 +158,7 @@
       <recent name="builder" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.ing-sis-PrintScreen [wrapper]">
+  <component name="RunManager" selected="Gradle.InterpreterTest">
     <configuration name="InterpreterTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -216,7 +183,7 @@
       <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="InterpreterTest.testAssignation" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="InterpreterTest.testStringPrint" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -229,7 +196,29 @@
           <list>
             <option value=":interpreter:test" />
             <option value="--tests" />
-            <option value="&quot;InterpreterTest.testAssignation&quot;" />
+            <option value="&quot;InterpreterTest.testStringPrint&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="Tests in 'ing-sis-PrintScreen.interpreter'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":interpreter:test" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -262,13 +251,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainKt" />
-      <module name="ing-sis-PrintScreen.integral.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="RunnerKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="RunnerKt" />
       <module name="ing-sis-PrintScreen.engine.main" />
@@ -278,11 +260,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.InterpreterTest" />
+        <item itemvalue="Gradle.InterpreterTest.testStringPrint" />
+        <item itemvalue="Gradle.Tests in 'ing-sis-PrintScreen.interpreter'" />
         <item itemvalue="Gradle.ing-sis-PrintScreen [wrapper]" />
         <item itemvalue="Kotlin.RunnerKt" />
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.InterpreterTest" />
-        <item itemvalue="Gradle.InterpreterTest.testAssignation" />
       </list>
     </recent_temporary>
   </component>
@@ -407,7 +389,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723689742027</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Addition of error classes, InterpreterLogger, DummyNode and DummyVisitor, and more tests">
+      <option name="closed" value="true" />
+      <created>1724117555395</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724117555395</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +424,8 @@
     <MESSAGE value="NEW TEST" />
     <MESSAGE value="si" />
     <MESSAGE value="txt handler" />
-    <option name="LAST_COMMIT_MESSAGE" value="txt handler" />
+    <MESSAGE value="Addition of error classes, InterpreterLogger, DummyNode and DummyVisitor, and more tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Addition of error classes, InterpreterLogger, DummyNode and DummyVisitor, and more tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -452,6 +443,9 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/ing_sis_PrintScreen$InterpreterTest.ic" NAME="InterpreterTest Coverage Results" MODIFIED="1723814983859" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ing_sis_PrintScreen$InterpreterTest.ic" NAME="InterpreterTest Coverage Results" MODIFIED="1724116163178" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ing_sis_PrintScreen$ing_sis_PrintScreen__test_.ic" NAME="ing-sis-PrintScreen [test] Coverage Results" MODIFIED="1724117187301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ing_sis_PrintScreen$All_in_ing_sis_PrintScreen.ic" NAME="All in ing-sis-PrintScreen Coverage Results" MODIFIED="1724116838757" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/ing_sis_PrintScreen$Tests_in__ing_sis_PrintScreen_interpreter_.ic" NAME="Tests in 'ing-sis-PrintScreen.interpreter' Coverage Results" MODIFIED="1724103304799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

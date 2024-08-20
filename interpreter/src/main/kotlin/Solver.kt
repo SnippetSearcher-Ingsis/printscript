@@ -1,3 +1,5 @@
+import errors.OperationError
+import errors.ReferenceError
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
@@ -11,7 +13,7 @@ object Solver {
                         (node.value as String).replace("\"", "")
 
                     node.value is String -> (Context get node.value as String)
-                        ?: throw Error("Variable not declared: ${node.value}")
+                        ?: throw ReferenceError(node.value as String)
 
                     else -> node.value!!
                 }
@@ -25,11 +27,11 @@ object Solver {
                     "-" -> subtract(a, b)
                     "*" -> multiply(a, b)
                     "/" -> divide(a, b)
-                    else -> throw Error("Operation error: ${node.operator} is not supported.")
+                    else -> throw OperationError("$a ${node.operator} $b")
                 }
             }
 
-            else -> println("Operation error: $node is not supported.")
+            else -> throw OperationError(node.toString())
         }
     }
 
@@ -46,28 +48,28 @@ object Solver {
             a is Number && b is String -> a.toString() + b
             a is String && b is Number -> a + b.toString()
             a is String && b is String -> a + b
-            else -> throw Error("Operation error: $a + $b is not supported.")
+            else -> throw OperationError("$a + $b")
         }
     }
 
     private fun subtract(a: Any, b: Any): Any {
         return when {
             a is Number && b is Number -> round(a.toDouble() - b.toDouble())
-            else -> throw Error("Operation error: $a - $b is not supported.")
+            else -> throw OperationError("$a - $b")
         }
     }
 
     private fun multiply(a: Any, b: Any): Any {
         return when {
             a is Number && b is Number -> round(a.toDouble() * b.toDouble())
-            else -> throw Error("Operation error: $a * $b is not supported.")
+            else -> throw OperationError("$a * $b")
         }
     }
 
     private fun divide(a: Any, b: Any): Any {
         return when {
             a is Number && b is Number -> round(a.toDouble() / b.toDouble())
-            else -> throw Error("Operation error: $a / $b is not supported.")
+            else -> throw OperationError("$a / $b")
         }
     }
 }
