@@ -22,11 +22,13 @@ object Handler {
         println(value)
         println(Context get key)
         when {
-            Context has key && areSameType((Context get key)!!, value) -> Context.add(key, value)
+            Context has key && (Context get key)!! hasSameTypeAs value -> Context.add(key, value)
             Context has key -> throw AssignationError(key)
             else -> throw AssignationError(key)
         }
     }
 
-    private fun areSameType(a: Any, b: Any): Boolean = a::class == b::class
+    private infix fun Any.hasSameTypeAs(b: Any): Boolean {
+        return this::class == b::class
+    }
 }
