@@ -1,3 +1,4 @@
+import logger.ILogger
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -5,24 +6,26 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 
-class EvaluationVisitor : ASTVisitor {
+class DummyVisitor(private val visitor: ASTVisitor, private val logger: ILogger) : ASTVisitor {
     override fun visit(node: DoubleExpressionNode) {
-        Solver getValue node
+        visitor.visit(node)
     }
 
-    override fun visit(node: LiteralNode<*>) {}
+    override fun visit(node: LiteralNode<*>) {
+        visitor.visit(node)
+    }
 
     override fun visit(node: PrintStatementNode) {
-        Handler print node.expression
+        val result = Solver getValue node.expression
+        logger.log(result.toString())
+        visitor.visit(node)
     }
 
     override fun visit(node: VariableDeclarationNode) {
-        val value = Solver getValue node.expression
-        Handler.declareValue(node.variable, node.variableType, value)
+        visitor.visit(node)
     }
 
     override fun visit(node: AssignationNode) {
-        val value = Solver getValue node.expression
-        Handler.assignValue(node.variable!!, value)
+        visitor.visit(node)
     }
 }

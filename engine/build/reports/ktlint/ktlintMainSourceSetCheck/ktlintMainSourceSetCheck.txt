@@ -1,2 +1,0 @@
-[90mC:\Users\pedro\Sandbox\austral\ing-sis-PrintScreen\engine\src\main\kotlin\[0mRunner.kt[90m:[0m11[90m:27:[0m Unnecessary space(s)
-[90mC:\Users\pedro\Sandbox\austral\ing-sis-PrintScreen\engine\src\main\kotlin\[0mTXTHandler.kt[90m:[0m1[90m:1:[0m File must end with a newline (\n)
