@@ -1,4 +1,3 @@
 package rule
 
-class SpaceBetweenTokens : Rule {
-}
+class SpaceBetweenTokens : Rule

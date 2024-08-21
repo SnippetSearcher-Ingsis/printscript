@@ -1,5 +1,3 @@
 package rule
 
-interface Rule {
-
-}
+interface Rule

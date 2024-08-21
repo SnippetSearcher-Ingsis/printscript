@@ -1,4 +1,6 @@
-import logger.ILogger
+package logger
+
+import Solver
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -6,7 +8,7 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 
-class DummyVisitor(private val visitor: ASTVisitor, private val logger: ILogger) : ASTVisitor {
+class TracingVisitor(private val visitor: ASTVisitor, private val logger: ILogger) : ASTVisitor {
     override fun visit(node: DoubleExpressionNode) {
         visitor.visit(node)
     }

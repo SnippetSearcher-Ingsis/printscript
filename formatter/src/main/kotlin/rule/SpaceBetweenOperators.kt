@@ -1,4 +1,3 @@
 package rule
 
-class SpaceBetweenOperators : Rule {
-}
+class SpaceBetweenOperators : Rule

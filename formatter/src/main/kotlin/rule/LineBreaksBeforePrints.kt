@@ -1,4 +1,3 @@
 package rule
 
-class LineBreaksBeforePrints(lineBreaks: Int) : Rule {
-}
+class LineBreaksBeforePrints(lineBreaks: Int) : Rule

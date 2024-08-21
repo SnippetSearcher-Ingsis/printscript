@@ -1,4 +1,3 @@
 package rule
 
-class SpaceAroundEquals(val active: Boolean) : Rule {
-}
+class SpaceAroundEquals(val active: Boolean) : Rule

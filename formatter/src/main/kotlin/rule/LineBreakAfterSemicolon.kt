@@ -1,4 +1,3 @@
 package rule
 
-class LineBreakAfterSemicolon : Rule {
-}
+class LineBreakAfterSemicolon : Rule

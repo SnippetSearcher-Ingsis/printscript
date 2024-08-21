@@ -11,6 +11,9 @@ repositories {
 }
 
 dependencies {
+    // add gson dependency
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation(project(":models"))
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Cambiado a la dependencia completa de Kotlin

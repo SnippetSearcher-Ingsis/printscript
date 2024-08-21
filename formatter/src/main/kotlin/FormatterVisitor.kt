@@ -1,9 +1,14 @@
-import node.*
+import node.ASTVisitor
+import node.AssignationNode
+import node.DoubleExpressionNode
+import node.LiteralNode
+import node.PrintStatementNode
+import node.VariableDeclarationNode
 import rule.Rule
 
-class FormatterVisitor(private val rules: List<Rule>, private val outputCode: StringBuilder) : ASTVisitor{
+class FormatterVisitor(private val rules: List<Rule>, private val outputCode: StringBuilder) :
+    ASTVisitor {
     override fun visit(node: DoubleExpressionNode) {
-
     }
 
     override fun visit(node: LiteralNode<*>) {

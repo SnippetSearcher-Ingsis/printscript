@@ -2,6 +2,7 @@ import errors.AssignationError
 import errors.DeclarationError
 import errors.OperationError
 import errors.ReferenceError
+import logger.TracingInterpreter
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -189,7 +190,7 @@ class InterpreterTest {
                 Position(0, 0)
             )
         )
-        val interpreter = InterpreterLogger()
+        val interpreter = TracingInterpreter()
         interpreter.interpret(ast)
         assert(interpreter.getLog() == listOf("HOLA XOACO"))
     }
@@ -208,7 +209,7 @@ class InterpreterTest {
                 Position(0, 0)
             )
         )
-        val interpreter = InterpreterLogger()
+        val interpreter = TracingInterpreter()
         interpreter.interpret(ast)
         assert(interpreter.getLog() == listOf("world"))
     }
@@ -218,7 +219,7 @@ class InterpreterTest {
         val ast = listOf<ASTNode>(
             LiteralNode(1),
         )
-        val interpreter = InterpreterLogger()
+        val interpreter = TracingInterpreter()
         interpreter.interpret(ast)
         assert(interpreter.getLog() == emptyList<String>())
     }
@@ -228,7 +229,7 @@ class InterpreterTest {
         val ast = listOf<ASTNode>(
             LiteralNode("xoaco"),
         )
-        val interpreter = InterpreterLogger()
+        val interpreter = TracingInterpreter()
         interpreter.interpret(ast)
         assert(interpreter.getLog() == emptyList<String>())
     }
@@ -242,7 +243,7 @@ class InterpreterTest {
                 operator = "-",
             )
         )
-        val interpreter = InterpreterLogger()
+        val interpreter = TracingInterpreter()
         interpreter.interpret(ast)
         assert(interpreter.getLog() == emptyList<String>())
     }

@@ -1,13 +1,19 @@
 import com.google.gson.Gson
 import node.ASTNode
-import rule.*
+import rule.LineBreakAfterSemicolon
+import rule.LineBreaksBeforePrints
+import rule.SpaceAroundColons
+import rule.SpaceAroundEquals
+import rule.SpaceBetweenOperators
+import rule.SpaceBetweenTokens
 import java.io.File
 
-data class MyConfig(val lineBreaksBeforePrints: Int,
-                    val spaceAroundEquals: Boolean,
-                    val spaceBeforeColon: Boolean,
-                    val spaceAfterColon: Boolean,
-                    )
+data class MyConfig(
+    val lineBreaksBeforePrints: Int,
+    val spaceAroundEquals: Boolean,
+    val spaceBeforeColon: Boolean,
+    val spaceAfterColon: Boolean,
+)
 
 class Formatter {
     fun format(nodes: List<ASTNode>): String {
