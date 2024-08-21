@@ -42,3 +42,4 @@ local.properties
 *.css
 *.html
 **/*.xml
+/gradle/
