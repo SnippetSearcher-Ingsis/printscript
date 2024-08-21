@@ -28,8 +28,8 @@ hs_err_pid*
 replay_pid*
 
 local.properties
-.idea/
-.gradle/
+.idea
+.gradle
 
 # Ignorar archivos de compilación de Kotlin
 **/build-history.bin
@@ -37,7 +37,8 @@ local.properties
 **/checksums.lock
 **/last-build.bin
 
-# Ignorar carpetas de Gradle
-
-build/
-
+*/build/*
+*.json
+*.css
+*.html
+**/*.xml
