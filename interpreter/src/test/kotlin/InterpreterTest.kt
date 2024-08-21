@@ -411,4 +411,23 @@ class InterpreterTest {
         val interpreter = Interpreter()
         assertThrows<DeclarationError> { interpreter interpret ast }
     }
+
+    @Test
+    fun tracingInterpreterAssignationTest() {
+        val ast = listOf<ASTNode>(
+            VariableDeclarationNode(
+                variable = "hello",
+                variableType = "string",
+                expression = LiteralNode("\"world\""),
+                Position(0, 0)
+            ),
+            AssignationNode(
+                variable = "hello",
+                expression = LiteralNode("\"universe\""),
+                Position(0, 0)
+            )
+        )
+        val interpreter = TracingInterpreter()
+        interpreter interpret ast
+    }
 }
