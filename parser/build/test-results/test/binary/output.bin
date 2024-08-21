@@ -1,5 +1,0 @@
-¢[VariableDeclarationNode(variable=a, variableType=number, expression=DoubleExpressionNode(operator='+', left=LiteralNode(value=9), right=LiteralNode(value=8)))]
-i[VariableDeclarationNode(variable=a, variableType=string, expression=LiteralNode(value="Hello World"))]
-@[AssignationNode(variable=a, expression=LiteralNode(value=9))]
-][VariableDeclarationNode(variable=a, variableType=number, expression=LiteralNode(value=9))]
-ç[VariableDeclarationNode(variable=a, variableType=number, expression=DoubleExpressionNode(operator='*', left=DoubleExpressionNode(operator='+', left=LiteralNode(value=9), right=LiteralNode(value=8)), right=LiteralNode(value=8)))]
