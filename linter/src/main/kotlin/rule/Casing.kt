@@ -21,13 +21,11 @@ class Casing(private val caseType: String) : Rule {
                     violation = true
                 }
             }
-
             "snake" -> {
                 if (!isSnakeCase(node.variable)) {
                     violation = true
                 }
             }
-
             else -> {
                 throw Exception("Case type $caseType is not supported")
             }

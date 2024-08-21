@@ -2,7 +2,7 @@ import printScreen.lexer.Lexer
 import printScreen.parser.Parser
 
 fun main() {
-    val lexer = Lexer("println(1+2);")
+    val lexer = Lexer("println(\"si\");")
     val tokens = lexer.tokenize()
     val parser = Parser()
     val ast = parser.parse(tokens)

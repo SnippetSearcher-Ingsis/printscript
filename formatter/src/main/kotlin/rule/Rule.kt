@@ -1,0 +1,5 @@
+package rule
+
+interface Rule {
+
+}

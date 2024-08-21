@@ -7,7 +7,7 @@ import java.io.File
 
 data class MyConfig(val casing: String, val noExpressionInsidePrint: Boolean)
 
-class Linter() {
+class Linter {
     fun lint(nodes: List<ASTNode>): List<Violation> {
         val file = File("linter/src/main/resources/si.json").readText(Charsets.UTF_8)
         val gson = Gson()
