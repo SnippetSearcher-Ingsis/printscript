@@ -89,4 +89,18 @@ class ASTTest {
     val result = ASTGenerator().tokensToAST(example)
     println(result)
   }
+
+  @Test
+  fun exeptionTest () {
+    val example = listOf(
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "\"Hello World\"", 1, 18),
+    )
+    val result = ASTGenerator().tokensToAST(example)
+    println(result)
+  }
 }

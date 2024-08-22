@@ -39,6 +39,7 @@ class ASTGenerator {
       }
       i++
     }
+    if (line.isNotEmpty()) result.add(line)
     return result
   }
 
