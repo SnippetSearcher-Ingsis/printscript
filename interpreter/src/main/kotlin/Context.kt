@@ -1,5 +1,3 @@
-package interpreter
-
 object Context {
   private val context = mutableMapOf<String, Any>()
 

@@ -1,6 +1,7 @@
-package logger
+package visitor
 
-import interpreter.Solver
+import Handler
+import Solver
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -8,26 +9,24 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 
-class TracingVisitor(private val visitor: ASTVisitor, private val logger: ILogger) : ASTVisitor {
+class EvaluationVisitor : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
-    visitor.visit(node)
+    Solver getValue node
   }
 
-  override fun visit(node: LiteralNode<*>) {
-    visitor.visit(node)
-  }
+  override fun visit(node: LiteralNode<*>) {}
 
   override fun visit(node: PrintStatementNode) {
-    val result = Solver getValue node.expression
-    logger.log(result.toString())
-    visitor.visit(node)
+    Handler print node.expression
   }
 
   override fun visit(node: VariableDeclarationNode) {
-    visitor.visit(node)
+    val value = Solver getValue node.expression
+    Handler.declareValue(node.variable, node.variableType, value)
   }
 
   override fun visit(node: AssignationNode) {
-    visitor.visit(node)
+    val value = Solver getValue node.expression
+    Handler.assignValue(node.variable!!, value)
   }
 }

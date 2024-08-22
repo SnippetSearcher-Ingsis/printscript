@@ -1,11 +1,7 @@
-import catchable.CatchableTracingInterpreter
-import errors.AssignationError
-import errors.DeclarationError
-import errors.OperationError
-import errors.ReferenceError
-import interpreter.Context
-import interpreter.Interpreter
-import logger.TracingInterpreter
+import exception.AssignationException
+import exception.DeclarationException
+import exception.OperationException
+import exception.ReferenceException
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -68,7 +64,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationError> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast }
   }
 
   @Test
@@ -321,7 +317,7 @@ class InterpreterTest {
       ),
     )
     val interpreter = Interpreter()
-    assertThrows<OperationError> { interpreter.interpret(ast) }
+    assertThrows<OperationException> { interpreter.interpret(ast) }
   }
 
   @Test
@@ -335,7 +331,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationError> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast }
   }
 
   @Test
@@ -349,7 +345,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationError> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast }
   }
 
   @Test
@@ -361,7 +357,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<ReferenceError> { interpreter interpret ast }
+    assertThrows<ReferenceException> { interpreter interpret ast }
   }
 
   @Test
@@ -373,7 +369,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<OperationError> { interpreter interpret ast }
+    assertThrows<OperationException> { interpreter interpret ast }
   }
 
   @Test
@@ -392,7 +388,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<OperationError> { interpreter interpret ast }
+    assertThrows<OperationException> { interpreter interpret ast }
   }
 
   @Test
@@ -412,7 +408,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationError> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast }
   }
 
   @Test
@@ -455,8 +451,8 @@ class InterpreterTest {
     )
     val interpreter = CatchableTracingInterpreter()
     interpreter interpret ast
-    assert(interpreter.hasError())
-    assert(interpreter.getError() is AssignationError)
+    assert(interpreter.hasException())
+    assert(interpreter.getException() is AssignationException)
     assert(interpreter.getLog() == emptyList<String>())
   }
 }

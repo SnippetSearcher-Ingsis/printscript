@@ -1,8 +1,5 @@
-package catchable
-
-import interpreter.IInterpreter
+import catchable.ICatchable
 import logger.ILog
-import logger.TracingInterpreter
 import node.ASTNode
 
 /**
@@ -11,19 +8,19 @@ import node.ASTNode
 class CatchableTracingInterpreter : IInterpreter, ILog, ICatchable {
   private val interpreter = TracingInterpreter()
 
-  private var error: Error? = null
+  private var exception: Exception? = null
 
   override fun interpret(nodes: List<ASTNode>) {
     try {
       interpreter.interpret(nodes)
-    } catch (e: Error) {
-      error = e
+    } catch (e: Exception) {
+      exception = e
     }
   }
 
   override fun getLog(): List<String> = interpreter.getLog()
 
-  override fun hasError(): Boolean = error != null
+  override fun hasException(): Boolean = exception != null
 
-  override fun getError(): Error? = error
+  override fun getException(): Exception? = exception
 }

@@ -1,6 +1,5 @@
-package interpreter
-
 import node.ASTNode
+import visitor.EvaluationVisitor
 
 /**
  * Interpreter that evaluates the AST.

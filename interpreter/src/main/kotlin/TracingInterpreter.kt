@@ -1,9 +1,8 @@
-package logger
-
-import interpreter.Context
-import interpreter.EvaluationVisitor
-import interpreter.IInterpreter
+import logger.ILog
+import logger.Logger
 import node.ASTNode
+import visitor.EvaluationVisitor
+import visitor.TracingVisitor
 
 /**
  * Interpreter that logs the execution of the program.

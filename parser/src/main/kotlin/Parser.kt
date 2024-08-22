@@ -4,8 +4,8 @@ import generator.ASTGenerator
 import node.ASTNode
 import token.Token
 
-class Parser {
-  fun parse(tokens: List<Token>?): List<ASTNode> {
+class Parser : IParser {
+  override fun parse(tokens: List<Token>?): List<ASTNode> {
     return when {
       tokens == null -> emptyList()
       else -> checkTokens(tokens)

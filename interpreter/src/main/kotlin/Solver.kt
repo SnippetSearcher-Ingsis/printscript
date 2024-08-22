@@ -1,7 +1,5 @@
-package interpreter
-
-import errors.OperationError
-import errors.ReferenceError
+import exception.OperationException
+import exception.ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
@@ -14,11 +12,19 @@ object Solver {
           node.value is String && (node.value as String).startsWith("\"") ->
             (node.value as String).replace("\"", "")
 
+<<<<<<< HEAD
           node.value is String && (node.value as String).startsWith("\'") ->
             (node.value as String).replace("\'", "")
+=======
+                    node.value is String && (node.value as String).startsWith("'") ->
+                        (node.value as String).replace("'", "")
+
+                    node.value is String -> (Context get node.value as String)
+                        ?: throw ReferenceError(node.value as String)
+>>>>>>> 736857229d1a6447f2d70635b2c775520d322df5
 
           node.value is String -> (Context get node.value as String)
-            ?: throw ReferenceError(node.value as String)
+            ?: throw ReferenceException(node.value as String)
 
           else -> node.value!!
         }
@@ -32,11 +38,11 @@ object Solver {
           "-" -> subtract(a, b)
           "*" -> multiply(a, b)
           "/" -> divide(a, b)
-          else -> throw OperationError("$a ${node.operator} $b")
+          else -> throw OperationException("$a ${node.operator} $b")
         }
       }
 
-      else -> throw OperationError(node.toString())
+      else -> throw OperationException(node.toString())
     }
   }
 
@@ -53,28 +59,28 @@ object Solver {
       a is Number && b is String -> a.toString() + b
       a is String && b is Number -> a + b.toString()
       a is String && b is String -> a + b
-      else -> throw OperationError("$a + $b")
+      else -> throw OperationException("$a + $b")
     }
   }
 
   private fun subtract(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() - b.toDouble())
-      else -> throw OperationError("$a - $b")
+      else -> throw OperationException("$a - $b")
     }
   }
 
   private fun multiply(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() * b.toDouble())
-      else -> throw OperationError("$a * $b")
+      else -> throw OperationException("$a * $b")
     }
   }
 
   private fun divide(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() / b.toDouble())
-      else -> throw OperationError("$a / $b")
+      else -> throw OperationException("$a / $b")
     }
   }
 }
