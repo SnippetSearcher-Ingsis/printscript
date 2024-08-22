@@ -1,3 +1,4 @@
+import catchable.CatchableTracingInterpreter
 import errors.AssignationError
 import errors.DeclarationError
 import errors.OperationError
@@ -431,5 +432,31 @@ class InterpreterTest {
     )
     val interpreter = TracingInterpreter()
     interpreter interpret ast
+  }
+
+  @Test
+  fun catchableTracingInterpreterTest() {
+    val ast = listOf<ASTNode>(
+      VariableDeclarationNode(
+        variable = "hello",
+        variableType = "string",
+        expression = LiteralNode("\"world\""),
+        Position(0, 0)
+      ),
+      AssignationNode(
+        variable = "hello",
+        expression = LiteralNode(1),
+        Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
+    )
+    val interpreter = CatchableTracingInterpreter()
+    interpreter interpret ast
+    assert(interpreter.hasError())
+    assert(interpreter.getError() is AssignationError)
+    assert(interpreter.getLog() == emptyList<String>())
   }
 }
