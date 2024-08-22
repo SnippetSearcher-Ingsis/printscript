@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -7,47 +6,30 @@ import node.PrintStatementNode
 import node.VariableDeclarationNode
 import rule.Rule
 
-class FormatterVisitor(private val rules: List<Rule>, private val outputCode: StringBuilder) :
-  ASTVisitor {
-  override fun visit(node: DoubleExpressionNode) {
-  }
-
-  override fun visit(node: LiteralNode<*>) {
-    TODO("Not yet implemented")
-  }
-
-  override fun visit(node: PrintStatementNode) {
-    TODO("Not yet implemented")
-  }
-
-  override fun visit(node: VariableDeclarationNode) {
-    TODO("Not yet implemented")
-  }
-
-  override fun visit(node: AssignationNode) {
-    TODO("Not yet implemented")
-  }
-}
-=======
-import node.*
 import rule.RuleSet
 
 class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: StringBuilder) : ASTVisitor{
     override fun visit(node: DoubleExpressionNode) {
+        openExpression()
         node.left.accept(this)
+        closeExpression()
         append(" ${node.operator} ")
+        openExpression()
         node.right.accept(this)
+        closeExpression()
     }
 
     override fun visit(node: LiteralNode<*>) {
+
         append(node.value.toString())
     }
 
     override fun visit(node: PrintStatementNode) {
         append("\n".repeat(ruleSet.lineBreaksBeforePrints.lineBreaks))
-        append("println(")
+        append("println")
+        openExpression()
         node.expression.accept(this)
-        append(")")
+        closeExpression()
         appendNewLine()
     }
 
@@ -59,7 +41,6 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
         node.expression.accept(this)
         appendNewLine()
     }
-
     override fun visit(node: AssignationNode) {
         append("${node.variable}")
         append(ruleSet.spaceAroundEquals.apply())
@@ -70,11 +51,14 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
     private fun append(string: String) {
         outputCode.append(string)
     }
-    private fun appendWhitespace() {
-        outputCode.append(" ")
-    }
+
     private fun appendNewLine() {
         outputCode.append(";\n")
     }
+    private fun openExpression() {
+        outputCode.append("(")
+    }
+    private fun closeExpression() {
+        outputCode.append(")")
+    }
 }
->>>>>>> 736857229d1a6447f2d70635b2c775520d322df5
