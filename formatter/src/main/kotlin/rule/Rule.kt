@@ -1,5 +1,6 @@
 package rule
 
-interface Rule {
+import node.ASTNode
 
+interface Rule {
 }

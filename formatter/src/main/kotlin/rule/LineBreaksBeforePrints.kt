@@ -1,4 +1,6 @@
 package rule
 
-class LineBreaksBeforePrints(lineBreaks: Int) : Rule {
+import node.ASTNode
+
+class LineBreaksBeforePrints(val lineBreaks: Int) : Rule {
 }
