@@ -17,6 +17,10 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.11.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Cambiado a la dependencia completa de Kotlin
+    implementation("com.google.code.gson:gson:2.8.8")
+    implementation(project(":models"))
+    implementation(project(":lexer"))
+    implementation(project(":parser"))
 }
 
 tasks.test {

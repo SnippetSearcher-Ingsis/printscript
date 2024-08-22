@@ -12,8 +12,16 @@ object Solver {
           node.value is String && (node.value as String).startsWith("\"") ->
             (node.value as String).replace("\"", "")
 
+<<<<<<< HEAD
           node.value is String && (node.value as String).startsWith("\'") ->
             (node.value as String).replace("\'", "")
+=======
+                    node.value is String && (node.value as String).startsWith("'") ->
+                        (node.value as String).replace("'", "")
+
+                    node.value is String -> (Context get node.value as String)
+                        ?: throw ReferenceError(node.value as String)
+>>>>>>> 736857229d1a6447f2d70635b2c775520d322df5
 
           node.value is String -> (Context get node.value as String)
             ?: throw ReferenceException(node.value as String)
