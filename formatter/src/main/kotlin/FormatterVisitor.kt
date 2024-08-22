@@ -19,12 +19,11 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
   }
 
   override fun visit(node: PrintStatementNode) {
-    append("\n".repeat(ruleSet.lineBreaksBeforePrints.lineBreaks))
-    append("println")
-    openExpression()
+    append(ruleSet.lineBreaksBeforePrints.apply())
+    append("println(")
     node.expression.accept(this)
-    closeExpression()
-    appendNewLine()
+    append(")")
+    endStatement()
   }
 
   override fun visit(node: VariableDeclarationNode) {
@@ -33,20 +32,20 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
     append(node.variableType)
     append(ruleSet.spaceAroundEquals.apply())
     node.expression.accept(this)
-    appendNewLine()
+    endStatement()
   }
   override fun visit(node: AssignationNode) {
     append("${node.variable}")
     append(ruleSet.spaceAroundEquals.apply())
     node.expression.accept(this)
-    appendNewLine()
+    endStatement()
   }
-
+// utility functions
   private fun append(string: String) {
     outputCode.append(string)
   }
 
-  private fun appendNewLine() {
+  private fun endStatement() {
     outputCode.append(";\n")
   }
   private fun openExpression() {

@@ -7,6 +7,14 @@ class Format() : ActionBuilder {
     val code = TXTHandler.content("test.txt")
     val tokens = Lexer(code).tokenize()
     val ast = Parser().parse(tokens)
-    return Result("", listOf(Formatter().format(ast)))
+    return Result(
+      "",
+      listOf(
+        Formatter.format(
+          ast,
+          File("formatter/src/main/resources/formatterConfig.json")
+        )
+      )
+    )
   }
 }
