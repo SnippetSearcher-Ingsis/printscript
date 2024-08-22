@@ -3,35 +3,37 @@ import java.io.File
 class CLI {
 
   private val commandToBuilder = mapOf(
-    "execute" to { file: File -> Execute().build(file) },
-    "analyze" to { file: File -> Analyze().build(file) },
-    "format" to { file: File -> Format().build(file) },
-    "verify" to { file: File -> Verify().build(file) },
+    "execute" to { file: String -> Execute().build(file) },
+    "analyze" to { file: String -> Analyze().build(file) },
+    "format" to { file: String -> Format().build(file) },
+    "verify" to { file: String -> Verify().build(file) },
 
   )
 
   fun executeFile(fileToString: String) {
-    val commandPath = splitLine(fileToString)
+    val stringify  = TXTHandler.content(fileToString)
+    val commandPath = splitLine(stringify)
     commandPath.forEach { (command, path) ->
-      print("Executing $command with $path")
+      println("Executing $command with $path")
 
       val result = sendCommand(Pair(command, path))
 
       when {
         result == null -> print("Can't do action $command")
         result.error == "" -> {
-          print("Execution was successful :)")
-          print("This execution response was : ${result.output}")
+          println("Execution was successful :)")
+          println("This execution response was : ${result.output}")
         }
         else -> {
-          print("Execution failed :( ")
-          print(result.error)
+          println("Execution failed :( ")
+          println(result.error)
         }
       }
     }
   }
 
   private fun splitLine(fileToString: String): List<Pair<String, String>> {
+
     val commands = fileToString.split("\n")
     return commands.mapNotNull { command ->
       val split = command.split(" ").filter { it.isNotBlank() }
@@ -44,6 +46,6 @@ class CLI {
 
   private fun sendCommand(command: Pair<String, String>): Result? {
     val (action, path) = command
-    return commandToBuilder[action]?.invoke(File(path))
+    return commandToBuilder[action]?.invoke(path)
   }
 }

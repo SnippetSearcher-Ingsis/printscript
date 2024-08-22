@@ -18,6 +18,7 @@ dependencies {
     implementation(project(":lexer"))
     implementation(project(":models"))
     implementation(project(":interpreter"))
+    implementation(project(":cli"))
 }
 
 tasks.test {
