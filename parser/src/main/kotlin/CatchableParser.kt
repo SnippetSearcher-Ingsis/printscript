@@ -11,14 +11,7 @@ class CatchableParser : IParser, ICatchable {
 
   override fun parse(tokens: List<Token>?): List<ASTNode> {
     return try {
-      when (val ast = parser.parse(tokens)) {
-        emptyList<ASTNode>() -> {
-          exception = IllegalStateException()
-          ast
-        }
-
-        else -> ast
-      }
+      parser.parse(tokens)
     } catch (e: Exception) {
       exception = e
       emptyList()

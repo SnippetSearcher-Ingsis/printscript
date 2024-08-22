@@ -101,6 +101,6 @@ class ASTTest {
       ValuedToken(TokenType.EQUAL, "=", 1, 16),
       ValuedToken(TokenType.LITERAL, "\"Hello World\"", 1, 18),
     )
-    assertThrows<IllegalArgumentException> {ASTGenerator().tokensToAST(example)}
+    assertThrows<IllegalArgumentException> { ASTGenerator().tokensToAST(example) }
   }
 }
