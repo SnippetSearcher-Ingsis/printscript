@@ -1,4 +1,3 @@
 package rule
 
-class LineBreaksBeforePrints(val lineBreaks: Int) : Rule {
-}
+class LineBreaksBeforePrints(val lineBreaks: Int) : Rule

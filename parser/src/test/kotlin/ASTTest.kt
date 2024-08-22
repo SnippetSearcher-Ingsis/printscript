@@ -91,7 +91,7 @@ class ASTTest {
   }
 
   @Test
-  fun exeptionTest () {
+  fun exeptionTest() {
     val example = listOf(
       ValuedToken(TokenType.LET, "let", 1, 1),
       ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
