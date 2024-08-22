@@ -1,7 +1,5 @@
-package interpreter
-
-import errors.AssignationError
-import errors.DeclarationError
+import exception.AssignationException
+import exception.DeclarationException
 import node.ASTNode
 
 object Handler {
@@ -12,9 +10,9 @@ object Handler {
 
   fun declareValue(key: String, type: String, value: Any) {
     when {
-      Context has key -> throw DeclarationError(key, type)
-      value is Number && type.lowercase() != "number" -> throw DeclarationError(key, type)
-      value is String && type.lowercase() != "string" -> throw DeclarationError(key, type)
+      Context has key -> throw DeclarationException(key, type)
+      value is Number && type.lowercase() != "number" -> throw DeclarationException(key, type)
+      value is String && type.lowercase() != "string" -> throw DeclarationException(key, type)
       else -> Context.add(key, value)
     }
   }
@@ -25,8 +23,8 @@ object Handler {
     println(Context get key)
     when {
       Context has key && (Context get key)!! hasSameTypeAs value -> Context.add(key, value)
-      Context has key -> throw AssignationError(key)
-      else -> throw AssignationError(key)
+      Context has key -> throw AssignationException(key)
+      else -> throw AssignationException(key)
     }
   }
 

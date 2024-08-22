@@ -1,5 +1,3 @@
-package interpreter
-
 import node.ASTNode
 
 /**
