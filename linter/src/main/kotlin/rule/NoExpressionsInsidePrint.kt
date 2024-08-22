@@ -7,16 +7,16 @@ import violation.ExpressionInsidePrintViolation
 import violation.Violation
 
 class NoExpressionsInsidePrint(private val active: Boolean) : Rule {
-    override fun check(node: ASTNode): Violation? {
-        if (!active || node !is PrintStatementNode) return null
-        return check(node)
-    }
+  override fun check(node: ASTNode): Violation? {
+    if (!active || node !is PrintStatementNode) return null
+    return check(node)
+  }
 
-    private fun check(node: PrintStatementNode): ExpressionInsidePrintViolation? {
-        return if (node.expression !is LiteralNode<*>) {
-            ExpressionInsidePrintViolation(node.position)
-        } else {
-            null
-        }
+  private fun check(node: PrintStatementNode): ExpressionInsidePrintViolation? {
+    return if (node.expression !is LiteralNode<*>) {
+      ExpressionInsidePrintViolation(node.position)
+    } else {
+      null
     }
+  }
 }

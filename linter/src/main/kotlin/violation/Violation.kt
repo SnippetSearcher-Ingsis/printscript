@@ -1,5 +1,5 @@
 package violation
 
 interface Violation {
-    override fun toString(): String
+  override fun toString(): String
 }

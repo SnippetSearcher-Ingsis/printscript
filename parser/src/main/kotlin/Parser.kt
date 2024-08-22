@@ -5,15 +5,15 @@ import node.ASTNode
 import token.Token
 
 class Parser {
-    fun parse(tokens: List<Token>?): List<ASTNode> {
-        return when {
-            tokens == null -> emptyList()
-            else -> checkTokens(tokens)
-        }
+  fun parse(tokens: List<Token>?): List<ASTNode> {
+    return when {
+      tokens == null -> emptyList()
+      else -> checkTokens(tokens)
     }
+  }
 
-    private fun checkTokens(tokens: List<Token>): List<ASTNode> {
-        val astNodes: List<ASTNode> = ASTGenerator().tokensToAST(tokens)
-        return astNodes
-    }
+  private fun checkTokens(tokens: List<Token>): List<ASTNode> {
+    val astNodes: List<ASTNode> = ASTGenerator().tokensToAST(tokens)
+    return astNodes
+  }
 }

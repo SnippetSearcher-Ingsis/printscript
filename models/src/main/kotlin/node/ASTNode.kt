@@ -1,5 +1,5 @@
 package node
 
 interface ASTNode {
-    fun accept(visitor: ASTVisitor)
+  fun accept(visitor: ASTVisitor)
 }

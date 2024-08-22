@@ -1,5 +1,5 @@
 import node.ASTNode
 
 interface IInterpreter {
-    infix fun interpret(nodes: List<ASTNode>)
+  infix fun interpret(nodes: List<ASTNode>)
 }
