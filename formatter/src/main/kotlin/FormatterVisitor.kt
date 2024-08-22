@@ -1,24 +1,22 @@
-import node.ASTVisitor
-import node.AssignationNode
+import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.AssignationNode
+import node.ASTVisitor
+
+
 import rule.RuleSet
 
 class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: StringBuilder) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
-    openExpression()
-    node.left.accept(this)
-    closeExpression()
+    handleExpression(node.left)
     append(" ${node.operator} ")
-    openExpression()
-    node.right.accept(this)
-    closeExpression()
+    handleExpression(node.right)
   }
 
   override fun visit(node: LiteralNode<*>) {
-
     append(node.value.toString())
   }
 
@@ -58,5 +56,24 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
   }
   private fun closeExpression() {
     outputCode.append(")")
+  }
+
+  private fun handleExpression(node: ASTNode) {
+    if (node is LiteralNode<*>) {
+      node.accept(this)
+    } else if (node is DoubleExpressionNode){
+      if (node.operator == "+" || node.operator == "-") {
+        node.left.accept(this)
+      }
+      if (node.operator == "-") {
+        openExpression()
+        node.left.accept(this)
+        closeExpression()
+      }
+
+      openExpression()
+      node.accept(this)
+      closeExpression()
+    }
   }
 }
