@@ -60,15 +60,6 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
     if (node is LiteralNode<*>) {
       node.accept(this)
     } else if (node is DoubleExpressionNode) {
-      if (node.operator == "+" || node.operator == "-") {
-        node.left.accept(this)
-      }
-      if (node.operator == "-") {
-        openExpression()
-        node.left.accept(this)
-        closeExpression()
-      }
-
       openExpression()
       node.accept(this)
       closeExpression()
