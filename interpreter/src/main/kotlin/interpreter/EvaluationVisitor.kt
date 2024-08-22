@@ -1,3 +1,5 @@
+package interpreter
+
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode

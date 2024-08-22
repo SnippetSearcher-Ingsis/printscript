@@ -2,6 +2,8 @@ import errors.AssignationError
 import errors.DeclarationError
 import errors.OperationError
 import errors.ReferenceError
+import interpreter.Context
+import interpreter.Interpreter
 import logger.TracingInterpreter
 import node.ASTNode
 import node.AssignationNode

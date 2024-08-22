@@ -1,10 +1,13 @@
 package logger
 
-import Context
-import EvaluationVisitor
-import IInterpreter
+import interpreter.Context
+import interpreter.EvaluationVisitor
+import interpreter.IInterpreter
 import node.ASTNode
 
+/**
+ * Interpreter that logs the execution of the program.
+ */
 class TracingInterpreter : IInterpreter, ILog {
   private val logger = Logger()
 

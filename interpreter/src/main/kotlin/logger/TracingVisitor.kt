@@ -1,6 +1,6 @@
 package logger
 
-import Solver
+import interpreter.Solver
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode

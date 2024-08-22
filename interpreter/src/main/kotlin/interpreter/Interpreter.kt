@@ -1,5 +1,10 @@
+package interpreter
+
 import node.ASTNode
 
+/**
+ * Interpreter that evaluates the AST.
+ */
 class Interpreter : IInterpreter {
   override fun interpret(nodes: List<ASTNode>) {
     Context.clear()

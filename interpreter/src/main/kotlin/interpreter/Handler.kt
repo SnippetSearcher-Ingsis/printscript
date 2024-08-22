@@ -1,3 +1,5 @@
+package interpreter
+
 import errors.AssignationError
 import errors.DeclarationError
 import node.ASTNode

@@ -1,3 +1,4 @@
+import interpreter.Interpreter
 import printScreen.lexer.Lexer
 import printScreen.parser.Parser
 
