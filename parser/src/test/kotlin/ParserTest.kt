@@ -43,6 +43,6 @@ class ParserTest {
     )
     parser.parse(tokens)
     assert(parser.hasException())
-    assert(parser.getException() is IllegalStateException)
+    assert(parser.getException() is IllegalArgumentException)
   }
 }

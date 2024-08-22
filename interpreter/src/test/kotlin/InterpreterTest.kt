@@ -19,7 +19,7 @@ class InterpreterTest {
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
-        expression = LiteralNode("\"world\""),
+        expression = LiteralNode("'world'"),
         Position(0, 0)
       )
     )

@@ -1,6 +1,7 @@
 
 import generator.ASTGenerator
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import token.TokenType
 import token.ValuedToken
 
@@ -91,7 +92,7 @@ class ASTTest {
   }
 
   @Test
-  fun exeptionTest() {
+  fun exceptionTest() {
     val example = listOf(
       ValuedToken(TokenType.LET, "let", 1, 1),
       ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
@@ -100,7 +101,6 @@ class ASTTest {
       ValuedToken(TokenType.EQUAL, "=", 1, 16),
       ValuedToken(TokenType.LITERAL, "\"Hello World\"", 1, 18),
     )
-    val result = ASTGenerator().tokensToAST(example)
-    println(result)
+    assertThrows<IllegalArgumentException> {ASTGenerator().tokensToAST(example)}
   }
 }

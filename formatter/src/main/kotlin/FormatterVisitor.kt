@@ -1,12 +1,10 @@
 import node.ASTNode
+import node.ASTVisitor
+import node.AssignationNode
 import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
-import node.AssignationNode
-import node.ASTVisitor
-
-
 import rule.RuleSet
 
 class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: StringBuilder) : ASTVisitor {
@@ -61,7 +59,7 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
   private fun handleExpression(node: ASTNode) {
     if (node is LiteralNode<*>) {
       node.accept(this)
-    } else if (node is DoubleExpressionNode){
+    } else if (node is DoubleExpressionNode) {
       if (node.operator == "+" || node.operator == "-") {
         node.left.accept(this)
       }
