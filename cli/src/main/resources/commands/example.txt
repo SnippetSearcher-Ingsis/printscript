@@ -1,0 +1,4 @@
+verify integral.txt
+execute integral.txt
+format integral.txt formatterConfig.json
+analyze integral.txt linterConfig.json

@@ -1,7 +1,7 @@
-src/main/kotlin
-src/main/java
+src\main\kotlin
+src\main\java
 
-build/classes/java/main
-build/classes/kotlin/main
+build\classes\java\main
+build\classes\kotlin\main
 
-build/kover/bin-reports/test.exec
+build\kover\bin-reports\test.exec

@@ -5,11 +5,9 @@ import rule.NoExpressionsInsidePrint
 import violation.Violation
 import java.io.File
 
-data class MyConfig(val casing: String, val noExpressionInsidePrint: Boolean)
-
 class Linter {
-  fun lint(nodes: List<ASTNode>): List<Violation> {
-    val file = File("linter/src/main/resources/si.json").readText(Charsets.UTF_8)
+  fun lint(nodes: List<ASTNode>, fileToRead: File): List<Violation> {
+    val file = fileToRead.readText(Charsets.UTF_8)
     val gson = Gson()
     val config = gson.fromJson(file, MyConfig::class.java)
     val result: MutableList<Violation> = mutableListOf()

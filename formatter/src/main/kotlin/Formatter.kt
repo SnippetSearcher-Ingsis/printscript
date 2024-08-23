@@ -6,18 +6,11 @@ import rule.SpaceAroundColons
 import rule.SpaceAroundEquals
 import java.io.File
 
-data class MyConfig(
-  val lineBreaksBeforePrints: Int,
-  val spaceAroundEquals: Boolean,
-  val spaceBeforeColon: Boolean,
-  val spaceAfterColon: Boolean,
-)
-
 class Formatter {
-  fun format(nodes: List<ASTNode>): String {
-    val file = File("formatter/src/main/resources/config.json").readText(Charsets.UTF_8)
+  fun format(nodes: List<ASTNode>, fileToRead: File): String {
+    val file = fileToRead.readText(Charsets.UTF_8)
     val gson = Gson()
-    val config = gson.fromJson(file, MyConfig::class.java)
+    val config = gson.fromJson(file, Config::class.java)
     val result = StringBuilder()
     val ruleSet = RuleSet(
       LineBreaksBeforePrints(config.lineBreaksBeforePrints),
