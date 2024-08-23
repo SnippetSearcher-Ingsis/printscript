@@ -1,3 +1,5 @@
+package util
+
 import exception.OperationException
 import exception.ReferenceException
 import node.ASTNode

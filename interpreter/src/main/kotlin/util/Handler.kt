@@ -1,3 +1,5 @@
+package util
+
 import exception.AssignationException
 import exception.DeclarationException
 import node.ASTNode

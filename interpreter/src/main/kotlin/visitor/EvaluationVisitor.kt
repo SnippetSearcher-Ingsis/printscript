@@ -1,14 +1,14 @@
 package visitor
 
-import Context
-import Handler
-import Solver
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import util.Context
+import util.Handler
+import util.Solver
 
 internal class EvaluationVisitor(private val context: Context) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {

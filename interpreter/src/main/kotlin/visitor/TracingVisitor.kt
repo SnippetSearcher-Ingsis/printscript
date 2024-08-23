@@ -1,7 +1,5 @@
 package visitor
 
-import Context
-import Solver
 import logger.ILogger
 import node.ASTVisitor
 import node.AssignationNode
@@ -9,6 +7,8 @@ import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import util.Context
+import util.Solver
 
 /**
  * Visitor that logs print statements
