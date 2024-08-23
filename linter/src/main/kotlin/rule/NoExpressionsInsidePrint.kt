@@ -8,7 +8,9 @@ import violation.Violation
 
 class NoExpressionsInsidePrint(private val active: Boolean) : Rule {
   override fun check(node: ASTNode): Violation? {
-    if (!active || node !is PrintStatementNode) return null
+    if (!active || node !is PrintStatementNode) {
+      return null
+    }
     return check(node)
   }
 

@@ -6,11 +6,17 @@ import rule.SpaceAroundColons
 import rule.SpaceAroundEquals
 import java.io.File
 
-class Formatter {
-  fun format(nodes: List<ASTNode>, fileToRead: File): String {
-    val file = fileToRead.readText(Charsets.UTF_8)
-    val gson = Gson()
-    val config = gson.fromJson(file, Config::class.java)
+object Formatter {
+  fun format(nodes: List<ASTNode>, json: File): String {
+    val config = Gson().fromJson(json.readText(Charsets.UTF_8), FormatterConfig::class.java)
+    if (config.lineBreaksBeforePrints < 0 || config.lineBreaksBeforePrints > 2) {
+      throw IllegalArgumentException(
+        (
+          "Number of line breaks before print statements must be between 0 and 2, " +
+            "${config.lineBreaksBeforePrints} was provided"
+          )
+      )
+    }
     val result = StringBuilder()
     val ruleSet = RuleSet(
       LineBreaksBeforePrints(config.lineBreaksBeforePrints),

@@ -17,7 +17,7 @@ class Analyze : CommandExecute {
     return if (parser.hasException()) Result(parser.getException()!!.message!!, emptyList()) else {
       val configFile = File("cli/src/main/resources/config/${file[1]}")
       if (!configFile.exists()) return Result("Config file ${file[1]} not found", listOf())
-      val res = Linter().lint(ast, configFile)
+      val res = Linter.lint(ast, configFile)
       if (res.isEmpty()) Result("", emptyList()) else Result(res.toString(), emptyList())
     }
   }

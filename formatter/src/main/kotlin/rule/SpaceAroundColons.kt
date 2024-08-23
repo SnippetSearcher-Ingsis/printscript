@@ -1,6 +1,6 @@
 package rule
 
-class SpaceAroundColons(val before: Boolean, val after: Boolean) : Rule {
+class SpaceAroundColons(private val before: Boolean, private val after: Boolean) : ConfigurableRule {
   fun apply(): String {
     val result = StringBuilder()
     if (before) {

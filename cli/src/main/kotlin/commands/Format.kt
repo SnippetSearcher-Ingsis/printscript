@@ -15,6 +15,6 @@ class Format : CommandExecute {
     val ast = Parser().parse(tokens)
     val configFile = File("cli/src/main/resources/config/${file[1]}")
     if (!configFile.exists()) return Result("Config file ${file[1]} not found", listOf())
-    return Result("", listOf(Formatter().format(ast, configFile)))
+    return Result("", listOf(Formatter.format(ast, configFile)))
   }
 }
