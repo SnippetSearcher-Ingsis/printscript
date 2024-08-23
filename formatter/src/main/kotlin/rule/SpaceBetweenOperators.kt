@@ -1,3 +1,3 @@
-package rule
-
-class SpaceBetweenOperators : Rule
+// package rule
+//
+// class SpaceBetweenOperators : Rule
