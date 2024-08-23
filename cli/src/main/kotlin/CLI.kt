@@ -1,49 +1,42 @@
-import java.io.File
+import builder.AnalyzeBuilder
+import builder.ExecuteBuilder
+import builder.FormatBuilder
+import builder.VerifyBuilder
 
 class CLI {
 
   private val commandToBuilder = mapOf(
-    "execute" to { file: File -> Execute().build(file) },
-    "analyze" to { file: File -> Analyze().build(file) },
-    "format" to { file: File -> Format().build(file) },
-    "verify" to { file: File -> Verify().build(file) },
-
+    "execute" to { command: List<String> -> ExecuteBuilder().build(command.drop(1)) },
+    "analyze" to { command: List<String> -> AnalyzeBuilder().build(command.drop(1)) },
+    "format" to { command: List<String> -> FormatBuilder().build(command.drop(1)) },
+    "verify" to { command: List<String> -> VerifyBuilder().build(command.drop(1)) },
   )
 
-  fun executeFile(fileToString: String) {
-    val commandPath = splitLine(fileToString)
-    commandPath.forEach { (command, path) ->
-      print("Executing $command with $path")
-
-      val result = sendCommand(Pair(command, path))
-
+  fun executeFile(filePath: String) {
+    val commandsSource = TXTHandler.content("/commands/$filePath")
+    if (commandsSource == "") {
+      println("File $filePath not found")
+      return
+    }
+    val commands = splitLine(commandsSource)
+    commands.forEach { command ->
+      val commandPair = command.split(" ")
+      val result = sendCommand(commandPair)
+      println("COMMAND: ${command.uppercase()}")
       when {
-        result == null -> print("Can't do action $command")
-        result.error == "" -> {
-          print("Execution was successful :)")
-          print("This execution response was : ${result.output}")
-        }
-        else -> {
-          print("Execution failed :( ")
-          print(result.error)
-        }
+        result == null -> println("Can't do action ${commandPair[0]}")
+        result.error == "" -> result.output.forEach { println(it) }
+        else -> println("Error: " + result.error)
       }
+      println("\n")
     }
   }
 
-  private fun splitLine(fileToString: String): List<Pair<String, String>> {
-    val commands = fileToString.split("\n")
-    return commands.mapNotNull { command ->
-      val split = command.split(" ").filter { it.isNotBlank() }
-      when (split.size) {
-        2 -> Pair(split[0], split[1])
-        else -> null
-      }
-    }
+  private fun splitLine(fileToString: String): List<String> {
+    return fileToString.split("\n").filter { it != "" }
   }
 
-  private fun sendCommand(command: Pair<String, String>): Result? {
-    val (action, path) = command
-    return commandToBuilder[action]?.invoke(File(path))
+  private fun sendCommand(parameter: List<String>): Result? {
+    return commandToBuilder[parameter[0]]?.invoke(parameter)
   }
 }

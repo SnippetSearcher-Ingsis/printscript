@@ -4,8 +4,7 @@ import node.ASTNode
 
 object Handler {
   infix fun print(node: ASTNode) {
-    val value = Solver getValue node
-    println(value)
+    Solver getValue node
   }
 
   fun declareValue(key: String, type: String, value: Any) {
@@ -18,9 +17,6 @@ object Handler {
   }
 
   fun assignValue(key: String, value: Any) {
-    println(key)
-    println(value)
-    println(Context get key)
     when {
       Context has key && (Context get key)!! hasSameTypeAs value -> Context.add(key, value)
       Context has key -> throw AssignationException(key)
