@@ -40,6 +40,7 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
     node.expression.accept(this)
     endStatement()
   }
+
 // utility functions
   private fun append(string: String) {
     outputCode.append(string)

@@ -1,7 +1,7 @@
 package rule
 
 class SpaceAroundColons(private val before: Boolean, private val after: Boolean) : ConfigurableRule {
-  fun apply(): String {
+  override fun apply(): String {
     val result = StringBuilder()
     if (before) {
       result.append(" ")

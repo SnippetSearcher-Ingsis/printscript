@@ -1,3 +1,5 @@
 package rule
 
-interface ConfigurableRule
+interface ConfigurableRule {
+  fun apply(): String
+}
