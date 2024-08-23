@@ -12,7 +12,7 @@ class TracingInterpreter : IInterpreter, ILog {
 
   private val visitor = TracingVisitor(EvaluationVisitor(), logger)
 
-  override fun interpret(nodes: List<ASTNode>) {
+         override fun interpret(nodes: List<ASTNode>) {
     Context.clear()
     nodes.forEach { it.accept(visitor) }
   }
