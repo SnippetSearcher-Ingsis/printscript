@@ -1,25 +1,33 @@
 import exception.AssignationException
 import exception.DeclarationException
 import node.ASTNode
+import node.AssignationNode
+import node.VariableDeclarationNode
 
-object Handler {
-  infix fun print(node: ASTNode) {
-    Solver getValue node
+internal object Handler {
+  fun print(context: Context, node: ASTNode) {
+    val value = Solver.getValue(context, node)
+    println(value)
   }
 
-  fun declareValue(key: String, type: String, value: Any) {
+  fun declareValue(context: Context, node: VariableDeclarationNode) {
+    val key = node.variable
+    val type = node.variableType
+    val value = Solver.getValue(context, node.expression)
     when {
-      Context has key -> throw DeclarationException(key, type)
+      context has key -> throw DeclarationException(key, type)
       value is Number && type.lowercase() != "number" -> throw DeclarationException(key, type)
       value is String && type.lowercase() != "string" -> throw DeclarationException(key, type)
-      else -> Context.add(key, value)
+      else -> context.add(key, value)
     }
   }
 
-  fun assignValue(key: String, value: Any) {
+  fun assignValue(context: Context, node: AssignationNode) {
+    val key = node.variable!!
+    val value = Solver.getValue(context, node.expression)
     when {
-      Context has key && (Context get key)!! hasSameTypeAs value -> Context.add(key, value)
-      Context has key -> throw AssignationException(key)
+      context has key && (context get key)!! hasSameTypeAs value -> context.add(key, value)
+      context has key -> throw AssignationException(key)
       else -> throw AssignationException(key)
     }
   }

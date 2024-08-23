@@ -1,4 +1,4 @@
-object Context {
+internal class Context {
   private val context = mutableMapOf<String, Any>()
 
   fun add(key: String, value: Any) {
