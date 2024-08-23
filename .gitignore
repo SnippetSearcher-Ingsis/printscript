@@ -42,4 +42,6 @@ local.properties
 *.css
 *.html
 **/*.xml
-/gradle/
+
+# Gradle wrapper
+!gradle/wrapper
