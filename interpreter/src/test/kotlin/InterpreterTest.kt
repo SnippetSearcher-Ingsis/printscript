@@ -15,22 +15,26 @@ import org.junit.jupiter.api.assertThrows
 class InterpreterTest {
   @Test
   fun testDeclaration() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("'world'"),
         Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == "world")
+    assert(interpreter.getLog() == listOf("world"))
   }
 
   @Test
   fun testAssignation() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -41,11 +45,15 @@ class InterpreterTest {
         variable = "hello",
         expression = LiteralNode("\"universe\""),
         Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == "universe")
+    assert(interpreter.getLog() == listOf("universe"))
   }
 
   @Test
@@ -69,7 +77,7 @@ class InterpreterTest {
 
   @Test
   fun testAddition() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
@@ -80,15 +88,19 @@ class InterpreterTest {
         ),
         Position(0, 0)
       ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == 3)
+    assert(interpreter.getLog() == listOf("3"))
   }
 
   @Test
   fun testSubtraction() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
@@ -98,16 +110,20 @@ class InterpreterTest {
           operator = "-"
         ),
         Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == -1)
+    assert(interpreter.getLog() == listOf("-1"))
   }
 
   @Test
   fun testMultiplication() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
@@ -117,16 +133,20 @@ class InterpreterTest {
           operator = "*"
         ),
         Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == 2)
+    assert(interpreter.getLog() == listOf("2"))
   }
 
   @Test
   fun testDivision() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
@@ -136,16 +156,21 @@ class InterpreterTest {
           operator = "/"
         ),
         Position(0, 0)
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == 0.5)
+    assert(interpreter.getLog() == listOf("0.5"))
   }
 
   @Test
   fun testStringAddition() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -156,10 +181,14 @@ class InterpreterTest {
         ),
         Position(0, 0)
       ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == "hello world")
+    assert(interpreter.getLog() == listOf("hello world"))
   }
 
   @Test
@@ -175,10 +204,14 @@ class InterpreterTest {
         ),
         Position(0, 0)
       ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
     )
-    val interpreter = Interpreter()
+    val interpreter = TracingInterpreter()
     interpreter interpret ast
-    assert(Context get "hello" == "hello1")
+    assert(interpreter.getLog() == listOf("hello1"))
   }
 
   @Test
@@ -196,7 +229,7 @@ class InterpreterTest {
 
   @Test
   fun testVariablePrint() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -313,7 +346,7 @@ class InterpreterTest {
       DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode(1),
-        operator = "pdmwapdmap",
+        operator = "yes",
       ),
     )
     val interpreter = Interpreter()
@@ -413,7 +446,7 @@ class InterpreterTest {
 
   @Test
   fun tracingInterpreterAssignationTest() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -432,7 +465,7 @@ class InterpreterTest {
 
   @Test
   fun catchableTracingInterpreterTest() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -454,5 +487,18 @@ class InterpreterTest {
     assert(interpreter.hasException())
     assert(interpreter.getException() is AssignationException)
     assert(interpreter.getLog() == emptyList<String>())
+  }
+
+  @Test
+  fun testInterpreter() {
+    val interpreter = Interpreter()
+    val ast = listOf(
+      DoubleExpressionNode(
+        left = LiteralNode(1),
+        right = LiteralNode(2),
+        operator = "+"
+      )
+    )
+    interpreter interpret ast
   }
 }

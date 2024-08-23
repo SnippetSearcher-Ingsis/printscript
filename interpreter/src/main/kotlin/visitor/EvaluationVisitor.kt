@@ -1,32 +1,31 @@
 package visitor
 
-import Handler
-import Solver
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import util.Context
+import util.Handler
+import util.Solver
 
-class EvaluationVisitor : ASTVisitor {
+internal class EvaluationVisitor(private val context: Context) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
-    Solver getValue node
+    Solver.getValue(context, node)
   }
 
   override fun visit(node: LiteralNode<*>) {}
 
   override fun visit(node: PrintStatementNode) {
-    Handler print node.expression
+    Handler.print(context, node.expression)
   }
 
   override fun visit(node: VariableDeclarationNode) {
-    val value = Solver getValue node.expression
-    Handler.declareValue(node.variable, node.variableType, value)
+    Handler.declareValue(context, node)
   }
 
   override fun visit(node: AssignationNode) {
-    val value = Solver getValue node.expression
-    Handler.assignValue(node.variable!!, value)
+    Handler.assignValue(context, node)
   }
 }

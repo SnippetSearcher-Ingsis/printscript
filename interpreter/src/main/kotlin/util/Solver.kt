@@ -1,11 +1,13 @@
+package util
+
 import exception.OperationException
 import exception.ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
 
-object Solver {
-  infix fun getValue(node: ASTNode): Any {
+internal object Solver {
+  fun getValue(context: Context, node: ASTNode): Any {
     return when (node) {
       is LiteralNode<*> -> {
         when {
@@ -15,7 +17,7 @@ object Solver {
           node.value is String && (node.value as String).startsWith("'") ->
             (node.value as String).replace("'", "")
 
-          node.value is String -> (Context get node.value as String)
+          node.value is String -> (context get node.value as String)
             ?: throw ReferenceException(node.value as String)
 
           else -> node.value!!
@@ -23,8 +25,8 @@ object Solver {
       }
 
       is DoubleExpressionNode -> {
-        val a = getValue(node.left)
-        val b = getValue(node.right)
+        val a = getValue(context, node.left)
+        val b = getValue(context, node.right)
         when (node.operator) {
           "+" -> add(a, b)
           "-" -> subtract(a, b)

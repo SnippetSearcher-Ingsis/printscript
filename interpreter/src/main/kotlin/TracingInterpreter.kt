@@ -1,6 +1,7 @@
 import logger.ILog
 import logger.Logger
 import node.ASTNode
+import util.Context
 import visitor.EvaluationVisitor
 import visitor.TracingVisitor
 
@@ -10,10 +11,11 @@ import visitor.TracingVisitor
 class TracingInterpreter : IInterpreter, ILog {
   private val logger = Logger()
 
-  private val visitor = TracingVisitor(EvaluationVisitor(), logger)
+  private val context = Context()
+
+  private val visitor = TracingVisitor(context, EvaluationVisitor(context), logger)
 
   override fun interpret(nodes: List<ASTNode>) {
-    Context.clear()
     nodes.forEach { it.accept(visitor) }
   }
 
