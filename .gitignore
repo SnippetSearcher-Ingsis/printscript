@@ -38,10 +38,12 @@ local.properties
 **/last-build.bin
 
 */build/*
-*.json
 *.css
 *.html
 **/*.xml
 
 # Gradle wrapper
 !gradle/wrapper
+
+# Formatter styles
+!formatter/src/test/resources

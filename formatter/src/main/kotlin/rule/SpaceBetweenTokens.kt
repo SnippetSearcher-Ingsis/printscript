@@ -1,3 +1,3 @@
-package rule
-
-class SpaceBetweenTokens : Rule
+// package rule
+//
+// class SpaceBetweenTokens : Rule
