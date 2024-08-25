@@ -11,6 +11,10 @@ name: Publish package to GitHub Packages
 on:
   release:
     types: [created]
+  workflow_run:
+    workflows: ["Java CI with Gradle"]
+    types:
+      - completed
 jobs:
   publish:
     runs-on: ubuntu-latest
