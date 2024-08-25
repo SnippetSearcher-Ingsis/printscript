@@ -96,6 +96,7 @@ publishing {
 
     publications {
         create<MavenPublication>("maven") {
+            artifactId = "ing-sis-printscreen"
             from(components["java"])
         }
     }
