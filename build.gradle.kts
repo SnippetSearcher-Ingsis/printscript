@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "org.example"
-version = "1.0"
+version = "1.1"
 
 repositories {
     mavenCentral()
@@ -21,6 +21,7 @@ dependencies {
 }
 
 allprojects {
+    apply(plugin = "java")
     apply(plugin = "kotlin")
     apply(plugin = "com.diffplug.spotless")
     apply(plugin = "org.jetbrains.kotlinx.kover")
@@ -82,22 +83,26 @@ kotlin {
     }
 }
 
-publishing {
-    repositories {
-        maven {
-            name = "GithubPackages"
-            url = uri("https://maven.pkg.github.com/xoaquinsanchezvarsallona/ing-sis-printscreen")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
+subprojects {
+    apply(plugin = "maven-publish")
+
+    publishing {
+        publications {
+            create<MavenPublication>("mavenJava") {
+                artifactId = project.name.lowercase()
+                from(components["java"])
             }
         }
-    }
 
-    publications {
-        create<MavenPublication>("maven") {
-            artifactId = "ing-sis-printscreen"
-            from(components["java"])
+        repositories {
+            maven {
+                name = "GithubPackages"
+                url = uri("https://maven.pkg.github.com/xoaquinsanchezvarsallona/ing-sis-printscreen")
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
         }
     }
 }
