@@ -43,6 +43,7 @@ local.properties
 **/*.xml
 *.gif
 *.js
+*.json
 
 # Gradle wrapper
 !gradle/wrapper
