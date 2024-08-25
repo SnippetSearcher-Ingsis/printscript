@@ -4,6 +4,7 @@ plugins {
     id("com.diffplug.spotless") version "6.7.1"
     id("org.jetbrains.kotlinx.kover") version "0.7.6"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    `maven-publish`
 }
 
 group = "org.example"
@@ -81,3 +82,15 @@ kotlin {
     }
 }
 
+publishing {
+    repositories {
+        maven {
+            name = "GithubPackages"
+            url = uri("https://maven.pkg.github.com/xoaquinsanchezvarsallona/ing-sis-printscreen")
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+}
