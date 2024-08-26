@@ -12,6 +12,7 @@ class CatchableTracingInterpreter : IInterpreter, ILog, ICatchable {
 
   override fun interpret(nodes: List<ASTNode>) {
     try {
+      exception = null
       interpreter.interpret(nodes)
     } catch (e: Exception) {
       exception = e
