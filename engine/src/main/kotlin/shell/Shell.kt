@@ -8,6 +8,7 @@ fun main() {
   val interpreter = CatchableTracingInterpreter()
   while (true) {
     val input = readln()
+    if (input == "exit()" || input == "exit();") break
     val lexer = Lexer(input)
     try {
       val tokens = lexer.tokenize()
