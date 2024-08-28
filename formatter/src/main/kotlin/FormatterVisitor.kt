@@ -5,9 +5,8 @@ import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
-import rule.RuleSet
 
-class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: StringBuilder) : ASTVisitor {
+class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
     handleExpression(node.left)
     append(" ${node.operator} ")
@@ -19,7 +18,7 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
   }
 
   override fun visit(node: PrintStatementNode) {
-    append(ruleSet.lineBreaksBeforePrints.apply())
+    append(config.lineBreaksBeforePrintsRule.apply())
     append("println(")
     node.expression.accept(this)
     append(")")
@@ -28,20 +27,20 @@ class FormatterVisitor(private val ruleSet: RuleSet, private val outputCode: Str
 
   override fun visit(node: VariableDeclarationNode) {
     append("let ${node.variable}")
-    append(ruleSet.spaceAroundColons.apply())
+    append(config.spaceAroundColonsRule.apply())
     append(node.variableType)
-    append(ruleSet.spaceAroundEquals.apply())
+    append(config.spaceAroundEqualsRule.apply())
     node.expression.accept(this)
     endStatement()
   }
   override fun visit(node: AssignationNode) {
     append("${node.variable}")
-    append(ruleSet.spaceAroundEquals.apply())
+    append(config.spaceAroundEqualsRule.apply())
     node.expression.accept(this)
     endStatement()
   }
 
-// utility functions
+  // utility functions
   private fun append(string: String) {
     outputCode.append(string)
   }
