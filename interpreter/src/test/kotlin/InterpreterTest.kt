@@ -1,7 +1,4 @@
-import exception.AssignationException
-import exception.DeclarationException
-import exception.OperationException
-import exception.ReferenceException
+
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode

@@ -1,7 +1,7 @@
 package util
 
-import exception.OperationException
-import exception.ReferenceException
+import OperationException
+import ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
@@ -18,7 +18,7 @@ internal object Solver {
             (node.value as String).replace("'", "")
 
           node.value is String -> (context get node.value as String)
-            ?: throw ReferenceException(node.value as String)
+            ?: throw ReferenceException("Variable ${node.value} not declared.")
 
           else -> node.value!!
         }
@@ -32,11 +32,11 @@ internal object Solver {
           "-" -> subtract(a, b)
           "*" -> multiply(a, b)
           "/" -> divide(a, b)
-          else -> throw OperationException("$a ${node.operator} $b")
+          else -> throw OperationException("Operator ${node.operator} not supported.")
         }
       }
 
-      else -> throw OperationException(node.toString())
+      else -> throw OperationException("Operation not supported.")
     }
   }
 
@@ -53,28 +53,28 @@ internal object Solver {
       a is Number && b is String -> a.toString() + b
       a is String && b is Number -> a + b.toString()
       a is String && b is String -> a + b
-      else -> throw OperationException("$a + $b")
+      else -> throw OperationException("Operation $a + $b not supported.")
     }
   }
 
   private fun subtract(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() - b.toDouble())
-      else -> throw OperationException("$a - $b")
+      else -> throw OperationException("Operation $a - $b not supported.")
     }
   }
 
   private fun multiply(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() * b.toDouble())
-      else -> throw OperationException("$a * $b")
+      else -> throw OperationException("Operation $a * $b not supported.")
     }
   }
 
   private fun divide(a: Any, b: Any): Any {
     return when {
       a is Number && b is Number -> round(a.toDouble() / b.toDouble())
-      else -> throw OperationException("$a / $b")
+      else -> throw OperationException("Operation $a / $b not supported.")
     }
   }
 }

@@ -4,10 +4,11 @@ plugins {
     id("com.diffplug.spotless") version "6.7.1"
     id("org.jetbrains.kotlinx.kover") version "0.7.6"
     id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    `maven-publish`
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
+version = "1.1"
 
 repositories {
     mavenCentral()
@@ -20,6 +21,7 @@ dependencies {
 }
 
 allprojects {
+    apply(plugin = "java")
     apply(plugin = "kotlin")
     apply(plugin = "com.diffplug.spotless")
     apply(plugin = "org.jetbrains.kotlinx.kover")
@@ -81,3 +83,26 @@ kotlin {
     }
 }
 
+subprojects {
+    apply(plugin = "maven-publish")
+
+    publishing {
+        publications {
+            create<MavenPublication>("mavenJava") {
+                artifactId = project.name.lowercase()
+                from(components["java"])
+            }
+        }
+
+        repositories {
+            maven {
+                name = "GithubPackages"
+                url = uri("https://maven.pkg.github.com/xoaquinsanchezvarsallona/ing-sis-printscreen")
+                credentials {
+                    username = System.getenv("GITHUB_ACTOR")
+                    password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+        }
+    }
+}
