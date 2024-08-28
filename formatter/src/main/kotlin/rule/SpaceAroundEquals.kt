@@ -1,7 +1,7 @@
 package rule
 
 class SpaceAroundEquals(private val active: Boolean) : ConfigurableRule {
-  fun apply(): String {
+  override fun apply(): String {
     val result = StringBuilder()
     if (active) {
       result.append(" ")

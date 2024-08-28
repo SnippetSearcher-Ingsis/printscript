@@ -1,7 +1,7 @@
 import com.google.gson.Gson
 import node.ASTNode
 import rule.Casing
-import rule.NoExpressionsInsidePrint
+import rule.NoExpressionsInsidePrints
 import violation.Violation
 import java.io.File
 
@@ -11,7 +11,7 @@ object Linter {
     val result: MutableList<Violation> = mutableListOf()
     val rules = listOf(
       Casing(config.casing),
-      NoExpressionsInsidePrint(config.noExpressionInsidePrint)
+      NoExpressionsInsidePrints(config.noExpressionsInsidePrints)
     )
     val evaluator = Evaluator(rules, result)
     for (node in nodes) {

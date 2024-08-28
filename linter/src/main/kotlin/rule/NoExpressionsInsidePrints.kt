@@ -6,7 +6,7 @@ import node.PrintStatementNode
 import violation.ExpressionInsidePrintViolation
 import violation.Violation
 
-class NoExpressionsInsidePrint(private val active: Boolean) : Rule {
+class NoExpressionsInsidePrints(private val active: Boolean) : Rule {
   override fun check(node: ASTNode): Violation? {
     if (!active || node !is PrintStatementNode) {
       return null

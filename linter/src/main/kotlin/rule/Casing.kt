@@ -27,7 +27,7 @@ class Casing(private val caseType: String) : Rule {
         }
       }
       else -> {
-        throw Exception("Case type $caseType is not supported")
+        throw Exception("Case type \"$caseType\" is not supported")
       }
     }
     return if (violation) {
