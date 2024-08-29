@@ -11,7 +11,7 @@ import rule.caseTypes.ScreamingSnakeCase
 import rule.caseTypes.SnakeCase
 import violation.CasingViolation
 
-data class Casing(private val caseType: String) : Rule {
+data class Casing(private val caseType: String) : LintRule {
   private val case: Case = when (caseType) {
     "camel" -> CamelCase
     "pascal" -> PascalCase

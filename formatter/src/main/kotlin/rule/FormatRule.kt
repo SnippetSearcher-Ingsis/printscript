@@ -1,5 +1,5 @@
 package rule
 
-sealed interface ConfigurableRule {
+sealed interface FormatRule {
   fun apply(): String
 }

@@ -3,6 +3,6 @@ package rule
 import node.ASTNode
 import violation.Violation
 
-sealed interface Rule {
+sealed interface LintRule {
   fun check(node: ASTNode): Violation?
 }

@@ -1,6 +1,6 @@
 package rule
 
-data class SpaceAroundEquals(private val active: Boolean) : ConfigurableRule {
+data class SpaceAroundEquals(private val active: Boolean) : FormatRule {
   override fun apply(): String {
     val result = StringBuilder()
     if (active) {
