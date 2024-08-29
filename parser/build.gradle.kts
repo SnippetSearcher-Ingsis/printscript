@@ -24,6 +24,6 @@ tasks.test {
 
 kotlin {
     jvmToolchain {
-        (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(19)) // Especifica la versión de Java
+        this.languageVersion.set(JavaLanguageVersion.of(19)) // Especifica la versión de Java
     }
 }
