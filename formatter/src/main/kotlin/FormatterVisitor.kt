@@ -6,7 +6,7 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 
-class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : ASTVisitor {
+data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
     handleExpression(node.left)
     append(" ${node.operator} ")
