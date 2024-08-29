@@ -1,6 +1,6 @@
 package node
 
-class LiteralNode<T>(val value: T) : ASTNode {
+data class LiteralNode<T>(val value: T) : ASTNode {
 
   override fun accept(visitor: ASTVisitor) {
     return visitor.visit(this)
