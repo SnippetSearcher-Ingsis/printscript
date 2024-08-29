@@ -28,9 +28,9 @@ internal object Handler {
     val key = node.variable!!
     val value = Solver.getValue(context, node.expression)
     when {
-      context has key && (context get key)!! hasSameTypeAs value -> context.add(key, value)
-      context has key -> throw AssignationException(key)
-      else -> throw AssignationException(key)
+      !(context has key) -> throw AssignationException("$key is not declared.")
+      !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
+      else -> context.add(key, value)
     }
   }
 

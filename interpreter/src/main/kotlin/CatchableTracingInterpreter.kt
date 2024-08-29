@@ -4,9 +4,10 @@ import node.ASTNode
 
 /**
  * Interpreter that catches errors and logs them, without throwing them.
+ * @param print If true, the interpreter will print the execution of the program to the standard output.
  */
-class CatchableTracingInterpreter : IInterpreter, ILog, ICatchable {
-  private val interpreter = TracingInterpreter()
+class CatchableTracingInterpreter(private val print: Boolean = true) : IInterpreter, ILog, ICatchable {
+  private val interpreter = TracingInterpreter(print = print)
 
   private var exception: Exception? = null
 
