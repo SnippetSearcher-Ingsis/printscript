@@ -15,9 +15,7 @@ data object Formatter {
     }
     val result = StringBuilder()
     val visitor = FormatterVisitor(config, result)
-    for (node in nodes) {
-      visitor.evaluate(node)
-    }
+    nodes.forEach { visitor.evaluate(it) }
     return result.toString()
   }
 }
