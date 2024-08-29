@@ -5,8 +5,15 @@ import node.DoubleExpressionNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import tool.Tool
 
-data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : ASTVisitor {
+data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) :
+  ASTVisitor,
+  Tool {
+  override fun evaluate(node: ASTNode) {
+    node.accept(this)
+  }
+
   override fun visit(node: DoubleExpressionNode) {
     handleExpression(node.left)
     append(" ${node.operator} ")

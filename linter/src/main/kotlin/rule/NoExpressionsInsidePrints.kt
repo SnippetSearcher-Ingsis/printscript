@@ -4,10 +4,9 @@ import node.ASTNode
 import node.LiteralNode
 import node.PrintStatementNode
 import violation.ExpressionInsidePrintViolation
-import violation.Violation
 
 data class NoExpressionsInsidePrints(private val active: Boolean) : Rule {
-  override fun check(node: ASTNode): Violation? {
+  override fun check(node: ASTNode): ExpressionInsidePrintViolation? {
     if (!active || node !is PrintStatementNode) {
       return null
     }
