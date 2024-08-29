@@ -2,11 +2,27 @@ package rule
 
 import node.ASTNode
 import node.VariableDeclarationNode
+import rule.caseTypes.CamelCase
+import rule.caseTypes.Case
+import rule.caseTypes.KebabCase
+import rule.caseTypes.PascalCase
+import rule.caseTypes.ScreamingKebabCase
+import rule.caseTypes.ScreamingSnakeCase
+import rule.caseTypes.SnakeCase
 import violation.CasingViolation
-import violation.Violation
 
-class Casing(private val caseType: String) : Rule {
-  override fun check(node: ASTNode): Violation? {
+data class Casing(private val caseType: String) : Rule {
+  private val case: Case = when (caseType) {
+    "camel" -> CamelCase
+    "pascal" -> PascalCase
+    "snake" -> SnakeCase
+    "screaming_snake" -> ScreamingSnakeCase
+    "kebab" -> KebabCase
+    "screaming_kebab" -> ScreamingKebabCase
+    else -> throw IllegalArgumentException("Case type \"$caseType\" is not supported")
+  }
+
+  override fun check(node: ASTNode): CasingViolation? {
     if (node !is VariableDeclarationNode) {
       return null
     }
@@ -14,39 +30,6 @@ class Casing(private val caseType: String) : Rule {
   }
 
   private fun check(node: VariableDeclarationNode): CasingViolation? {
-    var violation = false
-    when (caseType) {
-      "camel" -> {
-        if (!isCamelCase(node.variable)) {
-          violation = true
-        }
-      }
-      "snake" -> {
-        if (!isSnakeCase(node.variable)) {
-          violation = true
-        }
-      }
-      else -> {
-        throw Exception("Case type \"$caseType\" is not supported")
-      }
-    }
-    return if (violation) {
-      CasingViolation(node.position, caseType)
-    } else {
-      null
-    }
-  }
-
-  private fun isCamelCase(input: String): Boolean {
-    return input[0].isLowerCase() && !input.contains("_")
-  }
-
-  private fun isSnakeCase(input: String): Boolean {
-    for (c in input) {
-      if (c.isUpperCase()) {
-        return false
-      }
-    }
-    return true
+    return if (!case.check(node.variable)) CasingViolation(node.position, caseType) else null
   }
 }

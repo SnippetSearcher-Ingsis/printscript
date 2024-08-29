@@ -1,15 +1,34 @@
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import printScreen.lexer.Lexer
 import printScreen.parser.Parser
 import java.io.File
 
-fun main() {
-  val lexer = Lexer(
-    "println(1+1); \n" +
-      "let a_a: number = 1 + (2 * 3);"
-  )
-  val tokens = lexer.tokenize()
-  val parser = Parser()
-  val ast = parser.parse(tokens)
-  val violations = Linter.lint(ast, File("linter/src/main/resources/linterConfig.json"))
-  print(violations)
+class LinterTest {
+  private val style1: File = File(this::class.java.getResource("/style1.json")!!.file)
+  private val style2: File = File(this::class.java.getResource("/style2.json")!!.file)
+
+  @Test
+  fun testStyle1() {
+    val code = "let myNumber: number = \"1\";\nlet my_int: number = \"2\";\n println(myNumber + my_int);"
+    val tokens = Lexer(code).tokenize()
+    val astList = Parser().parse(tokens)
+    val result = Linter.lint(astList, style1)
+    val expectedAt1 = "Casing violation at 2:5, camel case expected"
+    val expectedAt2 = "Expression inside print statement at 3:2"
+    assert(result.size == 2)
+    assertEquals(expectedAt1, result[0].toString())
+    assertEquals(expectedAt2, result[1].toString())
+  }
+
+  @Test
+  fun testStyle2() {
+    val code = "let myNumber: number = \"1\";\nlet my_int : number = \"2\";\n println(myNumber + my_int);"
+    val tokens = Lexer(code).tokenize()
+    val astList = Parser().parse(tokens)
+    val result = Linter.lint(astList, style2)
+    val expectedAt1 = "Casing violation at 1:5, snake case expected"
+    assert(result.size == 1)
+    assertEquals(expectedAt1, result[0].toString())
+  }
 }

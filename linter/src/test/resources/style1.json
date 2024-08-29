@@ -1,0 +1,4 @@
+{
+  "casing" : "camel",
+  "noExpressionsInsidePrints" : true
+}

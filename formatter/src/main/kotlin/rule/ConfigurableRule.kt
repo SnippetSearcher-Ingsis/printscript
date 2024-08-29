@@ -1,5 +1,5 @@
 package rule
 
-interface ConfigurableRule {
+sealed interface ConfigurableRule {
   fun apply(): String
 }
