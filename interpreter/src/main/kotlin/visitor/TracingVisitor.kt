@@ -13,7 +13,12 @@ import util.Solver
 /**
  * Visitor that logs print statements
  */
-internal class TracingVisitor(private val context: Context, private val visitor: ASTVisitor, private val logger: ILogger) : ASTVisitor {
+internal class TracingVisitor(
+  private val context: Context,
+  private val visitor: ASTVisitor,
+  private val logger: ILogger,
+  private val print: Boolean,
+) : ASTVisitor {
   override fun visit(node: DoubleExpressionNode) {
     visitor.visit(node)
   }
@@ -25,7 +30,7 @@ internal class TracingVisitor(private val context: Context, private val visitor:
   override fun visit(node: PrintStatementNode) {
     val result = Solver.getValue(context, node.expression)
     logger.log(result.toString())
-    visitor.visit(node)
+    if (print) visitor.visit(node)
   }
 
   override fun visit(node: VariableDeclarationNode) {
