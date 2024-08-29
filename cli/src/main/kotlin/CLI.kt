@@ -20,16 +20,24 @@ class CLI {
     }
     val commands = splitLine(commandsSource)
     commands.forEach { command ->
-      val commandPair = command.split(" ")
-      val result = sendCommand(commandPair)
       println("COMMAND: ${command.uppercase()}")
-      when {
-        result == null -> println("Can't do action ${commandPair[0]}")
-        result.error == "" -> result.output.forEach { println(it) }
-        else -> println("Error: " + result.error)
-      }
-      println("\n")
+      runCommand(command)
     }
+  }
+
+  fun singleCommand(command: String) {
+    runCommand(command)
+  }
+
+  private fun runCommand(command: String) {
+    val commandPair = command.split(" ")
+    val result = sendCommand(commandPair)
+    when {
+      result == null -> println("Can't do action ${commandPair[0]}")
+      result.error == "" -> result.output.forEach { println(it) }
+      else -> println("Error: " + result.error)
+    }
+    println("\n")
   }
 
   private fun splitLine(fileToString: String): List<String> {
