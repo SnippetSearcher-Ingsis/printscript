@@ -5,7 +5,7 @@ import node.LiteralNode
 import node.PrintStatementNode
 import violation.ExpressionInsidePrintViolation
 
-data class NoExpressionsInsidePrints(private val active: Boolean) : Rule {
+data class NoExpressionsInsidePrints(private val active: Boolean) : LintRule {
   override fun check(node: ASTNode): ExpressionInsidePrintViolation? {
     if (!active || node !is PrintStatementNode) {
       return null

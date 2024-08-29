@@ -1,0 +1,4 @@
+{
+  "casing" : "pascal",
+  "noExpressionsInsidePrints" : true
+}

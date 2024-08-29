@@ -14,7 +14,7 @@ class Lexer(private val sourceCode: String) {
     "\\bprintln\\b" to TokenType.PRINTLN,
     "\\bstring\\b" to TokenType.TYPE,
     "\\bnumber\\b" to TokenType.TYPE,
-    "[a-zA-Z_][a-zA-Z_0-9]*" to TokenType.IDENTIFIER,
+    "[a-zA-Z_][a-zA-Z_0-9-]*" to TokenType.IDENTIFIER,
     "[=]" to TokenType.EQUAL,
     "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
     "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
