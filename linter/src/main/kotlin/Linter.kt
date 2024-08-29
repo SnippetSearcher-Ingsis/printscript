@@ -8,9 +8,7 @@ data object Linter {
     val config = Gson().fromJson(json.readText(Charsets.UTF_8), LinterConfig::class.java)
     val result: MutableList<Violation> = mutableListOf()
     val evaluator = Evaluator(config, result)
-    for (node in nodes) {
-      evaluator.evaluate(node)
-    }
+    nodes.forEach { evaluator.evaluate(it) }
     return result
   }
 }
