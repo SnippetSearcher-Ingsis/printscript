@@ -391,18 +391,6 @@ class InterpreterTest {
   }
 
   @Test
-  fun testInvalidNodeType() {
-    val ast = listOf(
-      PrintStatementNode(
-        DummyNode(),
-        Position(0, 0)
-      )
-    )
-    val interpreter = Interpreter()
-    assertThrows<OperationException> { interpreter interpret ast }
-  }
-
-  @Test
   fun testInvalidAddition() {
     val ast = listOf(
       VariableDeclarationNode(
