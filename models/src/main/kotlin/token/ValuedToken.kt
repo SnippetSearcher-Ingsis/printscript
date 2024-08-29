@@ -1,8 +1,12 @@
 package token
 
-class ValuedToken(
+data class ValuedToken(
   override val type: TokenType,
   override val value: String,
   override val line: Int,
   override val column: Int
-) : Token
+) : Token {
+  override fun toString(): String {
+    return value
+  }
+}

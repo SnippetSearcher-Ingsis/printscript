@@ -1,5 +1,5 @@
 package node
 
-interface ASTNode {
+sealed interface ASTNode {
   fun accept(visitor: ASTVisitor)
 }

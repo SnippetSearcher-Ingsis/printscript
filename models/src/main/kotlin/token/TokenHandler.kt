@@ -1,6 +1,6 @@
 package token
 
-class TokenHandler(val line: List<Token>) {
+data class TokenHandler(val line: List<Token>) {
   private var currentTokenIndex = 0
 
   fun collectExpressionTokens(): List<Token> {

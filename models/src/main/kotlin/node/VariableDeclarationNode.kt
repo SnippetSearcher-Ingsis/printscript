@@ -1,6 +1,6 @@
 package node
 
-class VariableDeclarationNode(
+data class VariableDeclarationNode(
   val variable: String,
   val variableType: String,
   val expression: ASTNode,
