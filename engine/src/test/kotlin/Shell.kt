@@ -1,6 +1,3 @@
-package shell
-
-import CatchableTracingInterpreter
 import printScreen.lexer.Lexer
 import printScreen.parser.CatchableParser
 

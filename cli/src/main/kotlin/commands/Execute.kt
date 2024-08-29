@@ -14,7 +14,7 @@ class Execute : CommandExecute {
     val parser = CatchableParser()
     val ast = parser.parse(tokens)
     return if (parser.hasException()) Result(parser.getException()!!.message!!, listOf()) else {
-      val interpreter = CatchableTracingInterpreter()
+      val interpreter = CatchableTracingInterpreter(print = false)
       interpreter.interpret(ast)
       if (interpreter.hasException()) Result(interpreter.getException()!!.message!!, listOf()) else Result(
         "",
