@@ -2,8 +2,8 @@ import logger.ILog
 import logger.Logger
 import node.ASTNode
 import util.Context
-import visitor.EvaluationVisitor
-import visitor.TracingVisitor
+import visitor.TracingStrategy
+import visitor.Visitor
 
 /**
  * Interpreter that logs the execution of the program.
@@ -14,7 +14,9 @@ class TracingInterpreter(private val print: Boolean = true) : IInterpreter, ILog
 
   private val context = Context()
 
-  private val visitor = TracingVisitor(context, EvaluationVisitor(context), logger, print)
+  private val strategy = TracingStrategy(logger, print = print)
+
+  private val visitor = Visitor(context, strategy)
 
   override fun interpret(nodes: List<ASTNode>) {
     nodes.forEach { it.accept(visitor) }
