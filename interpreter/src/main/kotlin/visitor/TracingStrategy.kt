@@ -3,6 +3,7 @@ package visitor
 import logger.ILogger
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
@@ -37,6 +38,10 @@ internal class TracingStrategy(
   }
 
   override fun visit(context: Context, node: AssignationNode) {
+    strategy.visit(context, node)
+  }
+
+  override fun visit(context: Context, node: IfElseNode) {
     strategy.visit(context, node)
   }
 }

@@ -2,6 +2,7 @@ package visitor
 
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
@@ -17,4 +18,6 @@ internal interface VisitorStrategy {
   fun visit(context: Context, node: VariableDeclarationNode)
 
   fun visit(context: Context, node: AssignationNode)
+
+  fun visit(context: Context, node: IfElseNode)
 }

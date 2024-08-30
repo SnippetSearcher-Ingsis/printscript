@@ -10,7 +10,7 @@ class ContextTest {
   @Test
   fun contextClearTest() {
     val context = Context()
-    context.add("hello", "world")
+    context.addOrUpdate("hello", "world")
     context.clear()
     assert(!(context has "hello"))
   }
