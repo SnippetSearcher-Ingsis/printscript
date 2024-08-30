@@ -3,6 +3,8 @@ package token
 enum class TokenType {
   LET,
   CONST,
+  IF,
+  ELSE,
   PRINTLN,
   TYPE,
   IDENTIFIER,

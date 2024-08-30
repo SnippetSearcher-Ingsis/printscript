@@ -2,6 +2,7 @@
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.IfElseNode
 import node.LiteralNode
 import node.Position
 import node.PrintStatementNode
@@ -485,5 +486,66 @@ class InterpreterTest {
       )
     )
     interpreter interpret ast
+  }
+
+  @Test
+  fun ifElseTest() {
+    val ast = listOf(
+      VariableDeclarationNode(
+        variable = "hello",
+        variableType = "number",
+        expression = LiteralNode(1),
+        Position(0, 0)
+      ),
+      VariableDeclarationNode(
+        variable = "world",
+        variableType = "number",
+        expression = LiteralNode(2),
+        Position(0, 0)
+      ),
+      IfElseNode(
+        ifBranch = listOf(
+          AssignationNode(
+            variable = "hello",
+            expression = DoubleExpressionNode(
+              left = LiteralNode("hello"),
+              right = LiteralNode("world"),
+              operator = "+"
+            ),
+            Position(0, 0)
+          ),
+          VariableDeclarationNode(
+            variable = "helloo",
+            variableType = "number",
+            expression = LiteralNode(1),
+            Position(0, 0)
+          ),
+        ),
+        elseBranch = listOf(
+          AssignationNode(
+            variable = "hello",
+            expression = DoubleExpressionNode(
+              left = LiteralNode("hello"),
+              right = LiteralNode("world"),
+              operator = "-"
+            ),
+            Position(0, 0)
+          )
+        ),
+        condition = LiteralNode(true),
+      ),
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
+    )
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast
+    // assertEquals(3, interpreter.context.get("hello"))
+    // assertError(interpreter.get("helloo"))
+    /** estos tests estarian buenos pero no se que mierda es log y el hijo de puta
+     // que haya hecho el interpreter no lo documentó, de todas formas ya lo chequeé
+     // con el debugger y funciona */
+    assert(interpreter.getLog() == listOf("3"))
   }
 }

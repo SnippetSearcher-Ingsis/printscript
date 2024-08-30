@@ -9,9 +9,11 @@ class Lexer(private val sourceCode: String) {
   private var line: Int = 1
   private var column: Int = 1
 
-  private val tokenPatterns = listOf(
+  private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
     "\\blet\\b" to TokenType.LET,
     "\\bconst\\b" to TokenType.CONST,
+    "\\bif\\b" to TokenType.IF,
+    "\\belse\\b" to TokenType.ELSE,
     "\\bprintln\\b" to TokenType.PRINTLN,
     "\\bstring\\b" to TokenType.TYPE,
     "\\bnumber\\b" to TokenType.TYPE,
@@ -19,7 +21,8 @@ class Lexer(private val sourceCode: String) {
     "[a-zA-Z_][a-zA-Z_0-9-]*" to TokenType.IDENTIFIER,
     "[=]" to TokenType.EQUAL,
     "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
-    "\\b(true|false)\\b" to TokenType.LITERAL,
+    "\\btrue\\b" to TokenType.LITERAL,
+    "\\bfalse\\b" to TokenType.LITERAL,
     "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
     "[+\\-*/]" to TokenType.OPERATOR,
     "[:(){}]" to TokenType.SYNTAX,

@@ -2,6 +2,7 @@ import node.ASTNode
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
@@ -45,6 +46,10 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     append(config.spaceAroundEqualsRule.apply())
     node.expression.accept(this)
     endStatement()
+  }
+
+  override fun visit(node: IfElseNode) {
+    TODO("Not yet implemented")
   }
 
   // utility functions
