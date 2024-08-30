@@ -4,16 +4,15 @@ import generator.ASTGenerator
 import node.ASTNode
 import token.Token
 
-class Parser : IParser {
-  override fun parse(tokens: List<Token>?): List<ASTNode> {
-    return when {
-      tokens == null -> emptyList()
-      else -> checkTokens(tokens)
-    }
+class Parser(private val tokens: Iterator<List<Token>>) : Iterator<ASTNode> {
+  private val astGenerator = ASTGenerator()
+
+  override fun hasNext(): Boolean {
+    return tokens.hasNext()
   }
 
-  private fun checkTokens(tokens: List<Token>): List<ASTNode> {
-    val astNodes: List<ASTNode> = ASTGenerator().tokensToAST(tokens)
-    return astNodes
+  override fun next(): ASTNode {
+    if (!tokens.hasNext()) throw NoSuchElementException("No more AST nodes to parse.")
+    return astGenerator.tokensToAST(tokens.next())
   }
 }
