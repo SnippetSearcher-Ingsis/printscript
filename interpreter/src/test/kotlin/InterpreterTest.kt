@@ -540,7 +540,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     // assertEquals(3, interpreter.context.get("hello"))
     // assertError(interpreter.get("helloo"))
     /** estos tests estarian buenos pero no se que mierda es log y el hijo de puta

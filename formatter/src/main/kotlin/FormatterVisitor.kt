@@ -17,11 +17,11 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   }
 
   override fun visit(node: ErrorNode) {}
-    override fun visit(node: IfElseNode) {
-        TODO("Not yet implemented")
-    }
+  override fun visit(node: IfElseNode) {
+    TODO("Not yet implemented")
+  }
 
-    override fun visit(node: DoubleExpressionNode) {
+  override fun visit(node: DoubleExpressionNode) {
     handleExpression(node.left)
     append(" ${node.operator} ")
     handleExpression(node.right)

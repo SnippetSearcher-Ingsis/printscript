@@ -4,6 +4,7 @@ import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
+import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
@@ -32,6 +33,7 @@ class TracingInterpreter(private val print: Boolean = true) : IInterpreter, ILog
         is LiteralNode<*> -> visitor.visit(node)
         is PrintStatementNode -> visitor.visit(node)
         is VariableDeclarationNode -> visitor.visit(node)
+        is IfElseNode -> visitor.visit(node)
         is ErrorNode -> throw IllegalArgumentException(node.error)
         else -> throw IllegalArgumentException("Unknown node type")
       }
