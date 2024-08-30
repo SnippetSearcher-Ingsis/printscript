@@ -1,5 +1,3 @@
-
-
 import org.junit.jupiter.api.Test
 import printScreen.lexer.Lexer
 import java.io.File
@@ -7,10 +5,10 @@ import java.io.File
 class LexerTest {
   @Test
   fun simpleLexerTest() {
-    val test = Lexer(File("src/test/resources/newLexer.txt").reader())
-    while (test.hasNext()) {
-      val tokens = test.next()
-      println(tokens)
+    val lexer = Lexer()
+    val iterator = lexer.lex(File("src/test/resources/test.txt").reader())
+    while (iterator.hasNext()) {
+      println(iterator.next())
     }
   }
 }

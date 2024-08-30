@@ -1,4 +1,10 @@
 import node.ASTNode
+import node.AssignationNode
+import node.DoubleExpressionNode
+import node.ErrorNode
+import node.LiteralNode
+import node.PrintStatementNode
+import node.VariableDeclarationNode
 import util.Context
 import visitor.EvaluationStrategy
 import visitor.Visitor
@@ -13,7 +19,17 @@ class Interpreter : IInterpreter {
 
   private val visitor = Visitor(context, strategy)
 
-  override fun interpret(nodes: List<ASTNode>) {
-    nodes.forEach { it.accept(visitor) }
+  override fun interpret(nodes: Iterator<ASTNode>) {
+    while (nodes.hasNext()) {
+      when (val node = nodes.next()) {
+        is AssignationNode -> visitor.visit(node)
+        is DoubleExpressionNode -> visitor.visit(node)
+        is LiteralNode<*> -> visitor.visit(node)
+        is PrintStatementNode -> visitor.visit(node)
+        is VariableDeclarationNode -> visitor.visit(node)
+        is ErrorNode -> throw IllegalArgumentException(node.error)
+        else -> throw IllegalArgumentException("Unknown node type")
+      }
+    }
   }
 }

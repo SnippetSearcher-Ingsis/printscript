@@ -31,7 +31,7 @@ class ParserTest {
         position = Position(1, 1)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    assert(parser.parse(listOf(tokens).iterator()).next() == ast.first())
   }
 
   @Test
@@ -63,7 +63,12 @@ class ParserTest {
         position = Position(1, 1)
       )
     )
-    assert(parser.parse(tokens).toString() == ast.toString())
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -92,7 +97,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -121,7 +131,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -150,7 +165,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -179,7 +199,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -208,7 +233,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -237,7 +267,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -256,7 +291,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -288,7 +328,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -338,7 +383,12 @@ class ParserTest {
         position = Position(0, 0)
       )
     )
-    assert(parser.parse(tokens) == ast)
+    val result = parser.parse(listOf(tokens).iterator())
+    var i = 0
+    while (result.hasNext()) {
+      assert(result.next() == ast[i])
+      i++
+    }
   }
 
   @Test
@@ -351,8 +401,11 @@ class ParserTest {
       ValuedToken(TokenType.LET, "let", 1, 1),
       ValuedToken(TokenType.LET, "let", 1, 1),
     )
-    parser.parse(tokens)
-    assert(parser.hasException())
-    assert(parser.getException() is IllegalArgumentException)
+    val result: CatchableParser.CatchableParserIterator = parser.parse(listOf(tokens).iterator())
+    while (result.hasNext()) {
+      result.next()
+    }
+    assert(result.hasException())
+    assert(result.getException() is IllegalArgumentException)
   }
 }

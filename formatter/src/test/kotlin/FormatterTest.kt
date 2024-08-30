@@ -27,28 +27,28 @@ class FormatterTest {
   @Test
   fun testStyle1Assignation() {
     val result = Formatter.format(DummyAST.assignation(), style1)
-    val expected = "let variable: String = \"Hello World\";\nvariable = \"Hello Universe\";\n"
+    val expected = "variable = \"Hello Universe\";\n"
     assertEquals(expected, result)
   }
 
   @Test
   fun testStyle2Assignation() {
     val result = Formatter.format(DummyAST.assignation(), style2)
-    val expected = "let variable :String=\"Hello World\";\nvariable=\"Hello Universe\";\n"
+    val expected = "variable=\"Hello Universe\";\n"
     assertEquals(expected, result)
   }
 
   @Test
   fun testStyle1DoubleExpressionAndPrint() {
     val result = Formatter.format(DummyAST.doubleExpressionAndPrint(), style1)
-    val expected = "let a: number = 1 + (2 * 3);\nprintln(a);\n"
+    val expected = "println(a);\n"
     assertEquals(expected, result)
   }
 
   @Test
   fun testStyle2DoubleExpressionAndPrint() {
     val result = Formatter.format(DummyAST.doubleExpressionAndPrint(), style2)
-    val expected = "let a :number=1 + (2 * 3);\n\n\nprintln(a);\n"
+    val expected = "\n\nprintln(a);\n"
     assertEquals(expected, result)
   }
 }

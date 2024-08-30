@@ -1,9 +1,9 @@
 package util
 
 internal class Context {
-  private val context = mutableMapOf<String, Any>()
+  val context = mutableMapOf<String, Any>()
 
-  fun add(key: String, value: Any) {
+  fun addOrUpdate(key: String, value: Any) {
     context[key] = value
   }
 
@@ -17,5 +17,19 @@ internal class Context {
 
   fun clear() {
     context.clear()
+  }
+
+  fun clone(): Context {
+    val newContext = Context()
+    newContext.context.putAll(context)
+    return newContext
+  }
+
+  fun merge(newContext: Context) {
+    newContext.context.forEach { (key, value) ->
+      if (has(key)) {
+        addOrUpdate(key, value)
+      }
+    }
   }
 }

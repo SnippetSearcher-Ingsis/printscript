@@ -14,10 +14,14 @@ class LinterTest {
 
   @Test
   fun testStyle1() {
-    val code = "let myNumber: number = 5;\nlet my_int: number = 1;\nprintln(myNumber + my_int);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style1)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style1.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style1).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 2:5, camel case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
@@ -27,10 +31,15 @@ class LinterTest {
 
   @Test
   fun testStyle2() {
-    val code = "let myNumber: number = 2;\nlet my_int: number = 2;\nprintln(myNumber + my_int);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style2)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style2.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      result.forEach({ println(it) })
+      Linter.lint(astList.next(), style2).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 1:5, snake case expected"
     assert(result.size == 1)
     assertEquals(expectedAt0, result[0].toString())
@@ -38,10 +47,14 @@ class LinterTest {
 
   @Test
   fun testStyle3() {
-    val code = "let myNumber: number = 1;\nlet MyInt: number = 2;\nprintln(myNumber + MyInt);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style3)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style3.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style3).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 1:5, pascal case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
@@ -51,10 +64,14 @@ class LinterTest {
 
   @Test
   fun testStyle4() {
-    val code = "let myNumber: number = 1;\nlet my-int: number = 5;\nprintln(my-number + my_int);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style4)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style4.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style4).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 1:5, kebab case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
@@ -64,10 +81,14 @@ class LinterTest {
 
   @Test
   fun testStyle5() {
-    val code = "let MY_NUMBER: number = 7;\nlet my_int: number = 1;\n\nprintln(MY_NUMBER + my_int);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style5)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style5.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style5).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 2:5, screaming_snake case expected"
     val expectedAt1 = "Expression inside print statement at 4:1"
     assert(result.size == 2)
@@ -77,10 +98,14 @@ class LinterTest {
 
   @Test
   fun testStyle6() {
-    val code = "let MY-NUMBER: number = 1;\nlet my_int: number = 2;\n\n\nprintln(MY-NUMBER + my_int);"
-    val tokens = Lexer(code).tokenize()
-    val astList = Parser().parse(tokens)
-    val result = Linter.lint(astList, style6)
+    val lexer = Lexer()
+    val astList = Parser().parse(lexer.lex(File("src/test/resources/style6.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style6).forEach({ violation ->
+        result.add(violation.toString())
+      })
+    }
     val expectedAt0 = "Casing violation at 2:5, screaming_kebab case expected"
     val expectedAt1 = "Expression inside print statement at 5:1"
     assert(result.size == 2)

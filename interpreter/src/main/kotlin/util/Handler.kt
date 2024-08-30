@@ -18,9 +18,10 @@ internal object Handler {
     val value = Solver.getValue(context, node.expression)
     when {
       context has key -> throw DeclarationException("$key is already declared.")
+      value is Boolean && type != "boolean" -> throw DeclarationException("$value is not a boolean.")
       value is Number && type.lowercase() != "number" -> throw DeclarationException("$value is not a number.")
       value is String && type.lowercase() != "string" -> throw DeclarationException("$value is not a string.")
-      else -> context.add(key, value)
+      else -> context.addOrUpdate(key, value)
     }
   }
 
@@ -30,7 +31,7 @@ internal object Handler {
     when {
       !(context has key) -> throw AssignationException("$key is not declared.")
       !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
-      else -> context.add(key, value)
+      else -> context.addOrUpdate(key, value)
     }
   }
 

@@ -17,6 +17,9 @@ internal object Solver {
           node.value is String && (node.value as String).startsWith("'") ->
             (node.value as String).replace("'", "")
 
+          node.value is String && (node.value as String == "true" || node.value as String == "false") ->
+            (node.value as String).toBoolean()
+
           node.value is String -> (context get node.value as String)
             ?: throw ReferenceException("Variable ${node.value} not declared.")
 

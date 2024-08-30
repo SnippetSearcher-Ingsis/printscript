@@ -25,7 +25,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("world"))
   }
 
@@ -49,7 +49,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("universe"))
   }
 
@@ -69,7 +69,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationException> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -91,7 +91,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("3"))
   }
 
@@ -114,7 +114,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("-1"))
   }
 
@@ -137,7 +137,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("2"))
   }
 
@@ -161,7 +161,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("0.5"))
   }
 
@@ -184,7 +184,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("hello world"))
   }
 
@@ -207,7 +207,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("hello1"))
   }
 
@@ -220,7 +220,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == listOf("HOLA XOACO"))
   }
 
@@ -239,7 +239,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == listOf("world"))
   }
 
@@ -249,7 +249,7 @@ class InterpreterTest {
       LiteralNode(1),
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -259,7 +259,7 @@ class InterpreterTest {
       LiteralNode("xoaco"),
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -273,7 +273,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -289,7 +289,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -309,7 +309,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -329,7 +329,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -347,7 +347,7 @@ class InterpreterTest {
       ),
     )
     val interpreter = Interpreter()
-    assertThrows<OperationException> { interpreter.interpret(ast) }
+    assertThrows<OperationException> { interpreter.interpret(ast.iterator()) }
   }
 
   @Test
@@ -361,7 +361,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationException> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -375,7 +375,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationException> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -387,7 +387,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<ReferenceException> { interpreter interpret ast }
+    assertThrows<ReferenceException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -406,7 +406,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<OperationException> { interpreter interpret ast }
+    assertThrows<OperationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -426,7 +426,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationException> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -445,7 +445,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
   }
 
   @Test
@@ -468,7 +468,7 @@ class InterpreterTest {
       )
     )
     val interpreter = CatchableTracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.hasException())
     assert(interpreter.getException() is AssignationException)
     assert(interpreter.getLog() == emptyList<String>())
@@ -484,6 +484,6 @@ class InterpreterTest {
         operator = "+"
       )
     )
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
   }
 }
