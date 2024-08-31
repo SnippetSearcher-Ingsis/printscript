@@ -3,7 +3,7 @@ import node.ASTNode
 import java.io.File
 
 data object Formatter {
-  fun format(nodes: List<ASTNode>, json: File): String {
+  fun format(node: ASTNode, json: File): String {
     val config = Gson().fromJson(json.readText(Charsets.UTF_8), FormatterConfig::class.java)
     if (config.lineBreaksBeforePrints < 0 || config.lineBreaksBeforePrints > 2) {
       throw IllegalArgumentException(
@@ -15,7 +15,7 @@ data object Formatter {
     }
     val result = StringBuilder()
     val visitor = FormatterVisitor(config, result)
-    nodes.forEach { visitor.evaluate(it) }
+    visitor.evaluate(node)
     return result.toString()
   }
 }

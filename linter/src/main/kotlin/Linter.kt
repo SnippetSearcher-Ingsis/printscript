@@ -4,11 +4,11 @@ import violation.Violation
 import java.io.File
 
 data object Linter {
-  fun lint(nodes: List<ASTNode>, json: File): List<Violation> {
+  fun lint(node: ASTNode, json: File): List<Violation> {
     val config = Gson().fromJson(json.readText(Charsets.UTF_8), LinterConfig::class.java)
     val result: MutableList<Violation> = mutableListOf()
     val evaluator = Evaluator(config, result)
-    nodes.forEach { evaluator.evaluate(it) }
+    evaluator.evaluate(node)
     return result
   }
 }

@@ -14,14 +14,16 @@ class CLI {
 
   fun executeFile(filePath: String) {
     val commandsSource = TXTHandler.content("/commands/$filePath")
-    if (commandsSource == "") {
+    if (commandsSource == null) {
       println("File $filePath not found")
       return
     }
-    val commands = splitLine(commandsSource)
-    commands.forEach { command ->
-      println("COMMAND: ${command.uppercase()}")
-      runCommand(command)
+    val commands = commandsSource.buffered()
+    var currentLine = commands.readLine()
+    while (currentLine != null) {
+      println("COMMAND: ${currentLine.uppercase()}")
+      runCommand(currentLine)
+      currentLine = commands.readLine()
     }
   }
 
@@ -38,10 +40,6 @@ class CLI {
       else -> println("Error: " + result.error)
     }
     println("\n")
-  }
-
-  private fun splitLine(fileToString: String): List<String> {
-    return fileToString.split("\n").filter { it != "" }
   }
 
   private fun sendCommand(parameter: List<String>): Result? {

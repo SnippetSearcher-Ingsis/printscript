@@ -5,15 +5,21 @@ import node.ASTNode
 import token.Token
 
 class Parser : IParser {
-  override fun parse(tokens: List<Token>?): List<ASTNode> {
-    return when {
-      tokens == null -> emptyList()
-      else -> checkTokens(tokens)
-    }
+
+  override fun parse(tokens: Iterator<List<Token>>): Iterator<ASTNode> {
+    return ParserIterator(tokens)
   }
 
-  private fun checkTokens(tokens: List<Token>): List<ASTNode> {
-    val astNodes: List<ASTNode> = ASTGenerator().tokensToAST(tokens)
-    return astNodes
+  inner class ParserIterator(private val tokens: Iterator<List<Token>>) : Iterator<ASTNode> {
+    private val astGenerator = ASTGenerator()
+
+    override fun hasNext(): Boolean {
+      return tokens.hasNext()
+    }
+
+    override fun next(): ASTNode {
+      if (!tokens.hasNext()) throw NoSuchElementException("No more AST nodes to parse.")
+      return astGenerator.tokensToAST(tokens.next())
+    }
   }
 }

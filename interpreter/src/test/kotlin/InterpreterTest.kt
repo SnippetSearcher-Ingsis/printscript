@@ -1,7 +1,7 @@
-
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.ErrorNode
 import node.IfElseNode
 import node.LiteralNode
 import node.Position
@@ -26,7 +26,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("world"))
   }
 
@@ -50,7 +50,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("universe"))
   }
 
@@ -70,7 +70,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationException> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -92,7 +92,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("3"))
   }
 
@@ -115,7 +115,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("-1"))
   }
 
@@ -138,7 +138,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("2"))
   }
 
@@ -162,7 +162,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("0.5"))
   }
 
@@ -185,13 +185,13 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("hello world"))
   }
 
   @Test
   fun testAdditionWithDifferentType() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -208,7 +208,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("hello1"))
   }
 
@@ -221,7 +221,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == listOf("HOLA XOACO"))
   }
 
@@ -240,7 +240,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == listOf("world"))
   }
 
@@ -250,7 +250,7 @@ class InterpreterTest {
       LiteralNode(1),
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -260,7 +260,7 @@ class InterpreterTest {
       LiteralNode("xoaco"),
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -274,7 +274,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter.interpret(ast)
+    interpreter.interpret(ast.iterator())
     assert(interpreter.getLog() == emptyList<String>())
   }
 
@@ -290,7 +290,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -310,7 +310,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -330,7 +330,7 @@ class InterpreterTest {
         ),
       )
       val interpreter = Interpreter()
-      interpreter.interpret(ast)
+      interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
     }.onFailure {
@@ -348,7 +348,7 @@ class InterpreterTest {
       ),
     )
     val interpreter = Interpreter()
-    assertThrows<OperationException> { interpreter.interpret(ast) }
+    assertThrows<OperationException> { interpreter.interpret(ast.iterator()) }
   }
 
   @Test
@@ -362,7 +362,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<AssignationException> { interpreter interpret ast }
+    assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -376,7 +376,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationException> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -388,7 +388,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<ReferenceException> { interpreter interpret ast }
+    assertThrows<ReferenceException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -407,7 +407,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<OperationException> { interpreter interpret ast }
+    assertThrows<OperationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -427,7 +427,7 @@ class InterpreterTest {
       )
     )
     val interpreter = Interpreter()
-    assertThrows<DeclarationException> { interpreter interpret ast }
+    assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
   @Test
@@ -446,7 +446,7 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
   }
 
   @Test
@@ -469,7 +469,7 @@ class InterpreterTest {
       )
     )
     val interpreter = CatchableTracingInterpreter()
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
     assert(interpreter.hasException())
     assert(interpreter.getException() is AssignationException)
     assert(interpreter.getLog() == emptyList<String>())
@@ -485,7 +485,7 @@ class InterpreterTest {
         operator = "+"
       )
     )
-    interpreter interpret ast
+    interpreter interpret ast.iterator()
   }
 
   @Test
@@ -497,41 +497,19 @@ class InterpreterTest {
         expression = LiteralNode(1),
         Position(0, 0)
       ),
-      VariableDeclarationNode(
-        variable = "world",
-        variableType = "number",
-        expression = LiteralNode(2),
-        Position(0, 0)
-      ),
       IfElseNode(
         ifBranch = listOf(
           AssignationNode(
             variable = "hello",
             expression = DoubleExpressionNode(
-              left = LiteralNode("hello"),
-              right = LiteralNode("world"),
+              left = LiteralNode(1),
+              right = LiteralNode(2),
               operator = "+"
             ),
             Position(0, 0)
           ),
-          VariableDeclarationNode(
-            variable = "helloo",
-            variableType = "number",
-            expression = LiteralNode(1),
-            Position(0, 0)
-          ),
         ),
-        elseBranch = listOf(
-          AssignationNode(
-            variable = "hello",
-            expression = DoubleExpressionNode(
-              left = LiteralNode("hello"),
-              right = LiteralNode("world"),
-              operator = "-"
-            ),
-            Position(0, 0)
-          )
-        ),
+        elseBranch = emptyList(),
         condition = LiteralNode(true),
       ),
       PrintStatementNode(
@@ -540,12 +518,62 @@ class InterpreterTest {
       )
     )
     val interpreter = TracingInterpreter()
-    interpreter interpret ast
-    // assertEquals(3, interpreter.context.get("hello"))
-    // assertError(interpreter.get("helloo"))
-    /** estos tests estarian buenos pero no se que mierda es log y el hijo de puta
-     // que haya hecho el interpreter no lo documentó, de todas formas ya lo chequeé
-     // con el debugger y funciona */
+    interpreter interpret ast.iterator()
     assert(interpreter.getLog() == listOf("3"))
+  }
+
+  @Test
+  fun testErrorNode() {
+    val ast = listOf(ErrorNode("Error"))
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast.iterator()
+  }
+
+  @Test
+  fun printTrueFalse() {
+    val ast = listOf(
+      PrintStatementNode(
+        expression = LiteralNode("true"),
+        position = Position(0, 0)
+      ),
+      PrintStatementNode(
+        expression = LiteralNode("false"),
+        position = Position(0, 0)
+      ),
+    )
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getLog() == listOf("true", "false"))
+  }
+
+  @Test
+  fun testUnsupportedOperation() {
+    val ast = listOf(
+      DoubleExpressionNode(
+        left = LiteralNode(1),
+        right = LiteralNode(2),
+        operator = "?",
+      )
+    )
+    val interpreter = CatchableTracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getException() is OperationException)
+  }
+
+  @Test
+  fun testOperationError() {
+    val ast = listOf(
+      DoubleExpressionNode(
+        left = ErrorNode("Error"),
+        right = PrintStatementNode(
+          expression = LiteralNode("Hello"),
+          position = Position(0, 0),
+        ),
+        operator = "+"
+      )
+    )
+    val interpreter = CatchableTracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getException() is OperationException)
   }
 }

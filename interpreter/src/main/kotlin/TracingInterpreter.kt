@@ -18,8 +18,11 @@ class TracingInterpreter(private val print: Boolean = true) : IInterpreter, ILog
 
   private val visitor = Visitor(context, strategy)
 
-  override fun interpret(nodes: List<ASTNode>) {
-    nodes.forEach { it.accept(visitor) }
+  override fun interpret(iterator: Iterator<ASTNode>) {
+    while (iterator.hasNext()) {
+      val node = iterator.next()
+      node.accept(visitor)
+    }
   }
 
   override fun getLog(): List<String> = logger.getLog()

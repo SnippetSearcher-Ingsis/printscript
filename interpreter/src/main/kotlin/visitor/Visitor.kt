@@ -3,6 +3,7 @@ package visitor
 import node.ASTVisitor
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.ErrorNode
 import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
@@ -30,6 +31,9 @@ internal class Visitor(private val context: Context, private val strategy: Visit
     strategy.visit(context, node)
   }
 
+  override fun visit(node: ErrorNode) {
+    strategy.visit(context, node)
+  }
   override fun visit(node: IfElseNode) {
     strategy.visit(context, node)
   }

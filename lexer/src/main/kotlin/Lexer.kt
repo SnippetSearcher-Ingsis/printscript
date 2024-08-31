@@ -3,11 +3,10 @@ package printScreen.lexer
 import token.Token
 import token.TokenType
 import token.ValuedToken
+import java.io.BufferedReader
+import java.io.Reader
 
-class Lexer(private val sourceCode: String) {
-  private var position: Int = 0
-  private var line: Int = 1
-  private var column: Int = 1
+class Lexer {
 
   private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
     "\\blet\\b" to TokenType.LET,
@@ -29,39 +28,79 @@ class Lexer(private val sourceCode: String) {
     "[;]" to TokenType.SEMICOLON
   )
 
-  fun tokenize(): List<Token> {
-    val tokens = mutableListOf<Token>()
-    while (position < sourceCode.length) {
-      val (token, newPos) = getNextToken()
-      if (token != null) tokens.add(token)
-      position = newPos
-    }
-    return tokens
+  fun lex(reader: Reader): Iterator<List<Token>> {
+    return LexerIterator(reader)
   }
 
-  private fun getNextToken(): Pair<Token?, Int> {
+  inner class LexerIterator(reader: Reader) : Iterator<List<Token>> {
+    private val bufferedReader: BufferedReader = reader.buffered()
+    private var currentLine: String? = null
+    private var lineNumber: Int = 0
+    private var column: Int = 1
 
-    while (position < sourceCode.length && sourceCode[position].isWhitespace()) {
-      if (sourceCode[position] == '\n') {
-        line++
-        column = 0
-      }
-      column++
-      position++
+    init {
+      advanceLine()
     }
 
-    if (position >= sourceCode.length) return null to position
+    private fun advanceLine() {
+      currentLine = bufferedReader.readLine()
+      lineNumber++
+      column = 1
+    }
 
-    for ((pattern, tokenType) in tokenPatterns) {
-      val regex = Regex(pattern)
-      val matchResult = regex.find(sourceCode, position)
-      if (matchResult != null && matchResult.range.first == position) {
-        val value = matchResult.value
-        val token = ValuedToken(tokenType, value, line, column)
-        column += value.length
-        return token to position + value.length
+    private fun tokenizeLine(line: String): List<Token> {
+      val tokens = mutableListOf<Token>()
+      var position = 0
+
+      while (position < line.length) {
+
+        while (position < line.length && line[position].isWhitespace()) {
+          position++
+          column++
+        }
+
+        if (position >= line.length) break
+
+        var matched = false
+        for ((pattern, tokenType) in tokenPatterns) {
+          val regex = Regex(pattern)
+          val matchResult = regex.find(line, position)
+          if (matchResult != null && matchResult.range.first == position) {
+            val value = matchResult.value
+            val token = ValuedToken(tokenType, value, lineNumber, column)
+            tokens.add(token)
+            position += value.length
+            column += value.length
+            matched = true
+            break
+          }
+        }
+
+        if (!matched) {
+          throw IllegalArgumentException("Unexpected character at line $lineNumber, column $column")
+        }
+      }
+
+      return tokens
+    }
+
+    private fun skipEmptyLines() {
+      while (currentLine != null && currentLine!!.trim().isEmpty()) {
+        advanceLine()
       }
     }
-    throw IllegalArgumentException("Unexpected character at position $position")
+
+    override fun hasNext(): Boolean {
+      skipEmptyLines()
+      return currentLine != null
+    }
+
+    override fun next(): List<Token> {
+      if (!hasNext()) throw NoSuchElementException("No more lines to read")
+
+      val lineTokens = tokenizeLine(currentLine!!)
+      advanceLine()
+      return lineTokens
+    }
   }
 }

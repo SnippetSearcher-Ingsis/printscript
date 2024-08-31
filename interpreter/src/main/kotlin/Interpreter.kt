@@ -1,4 +1,5 @@
 import node.ASTNode
+import node.ASTVisitor
 import util.Context
 import visitor.EvaluationStrategy
 import visitor.Visitor
@@ -9,11 +10,14 @@ import visitor.Visitor
 class Interpreter : IInterpreter {
   private val context = Context()
 
-  private val strategy = EvaluationStrategy()
+  private val strategy = EvaluationStrategy
 
-  private val visitor = Visitor(context, strategy)
+  private val visitor: ASTVisitor = Visitor(context, strategy)
 
-  override fun interpret(nodes: List<ASTNode>) {
-    nodes.forEach { it.accept(visitor) }
+  override fun interpret(iterator: Iterator<ASTNode>) {
+    while (iterator.hasNext()) {
+      val node = iterator.next()
+      node.accept(visitor)
+    }
   }
 }

@@ -3,6 +3,7 @@ package visitor
 import logger.ILogger
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.ErrorNode
 import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
@@ -17,7 +18,7 @@ internal class TracingStrategy(
   private val logger: ILogger,
   private val print: Boolean,
 ) : VisitorStrategy {
-  private val strategy = EvaluationStrategy()
+  private val strategy = EvaluationStrategy
 
   override fun visit(context: Context, node: DoubleExpressionNode) {
     strategy.visit(context, node)
@@ -38,6 +39,10 @@ internal class TracingStrategy(
   }
 
   override fun visit(context: Context, node: AssignationNode) {
+    strategy.visit(context, node)
+  }
+
+  override fun visit(context: Context, node: ErrorNode) {
     strategy.visit(context, node)
   }
 

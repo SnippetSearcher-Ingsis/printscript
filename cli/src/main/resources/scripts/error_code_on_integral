@@ -1,2 +1,0 @@
-let result: number = (x + y) * (b / 10) - d;
-println(result);

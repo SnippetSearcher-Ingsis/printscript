@@ -2,23 +2,36 @@ package printScreen.parser
 
 import catchable.ICatchable
 import node.ASTNode
+import node.ErrorNode
 import token.Token
 
-class CatchableParser : IParser, ICatchable {
-  private val parser = Parser()
+class CatchableParser : IParser {
 
-  private var exception: Exception? = null
-
-  override fun parse(tokens: List<Token>?): List<ASTNode> {
-    return try {
-      parser.parse(tokens)
-    } catch (e: Exception) {
-      exception = e
-      emptyList()
-    }
+  override fun parse(tokens: Iterator<List<Token>>): CatchableParserIterator {
+    return CatchableParserIterator(tokens)
   }
 
-  override fun hasException(): Boolean = exception != null
+  inner class CatchableParserIterator(tokens: Iterator<List<Token>>) : Iterator<ASTNode>, ICatchable {
 
-  override fun getException(): Exception? = exception
+    private val parser = Parser().parse(tokens)
+
+    private var exception: Exception? = null
+
+    override fun hasNext(): Boolean {
+      return exception == null && parser.hasNext()
+    }
+
+    override fun next(): ASTNode {
+      return try {
+        parser.next()
+      } catch (e: Exception) {
+        exception = e
+        ErrorNode(e.message.toString())
+      }
+    }
+
+    override fun hasException(): Boolean = exception != null
+
+    override fun getException(): Exception? = exception
+  }
 }

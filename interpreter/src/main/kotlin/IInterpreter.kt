@@ -5,5 +5,5 @@ import node.ASTNode
  * No se ni que escribo, es solo para commitear.
  */
 sealed interface IInterpreter {
-  infix fun interpret(nodes: List<ASTNode>)
+  infix fun interpret(iterator: Iterator<ASTNode>)
 }
