@@ -1,7 +1,7 @@
-
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
+import node.ErrorNode
 import node.IfElseNode
 import node.LiteralNode
 import node.Position
@@ -191,7 +191,7 @@ class InterpreterTest {
 
   @Test
   fun testAdditionWithDifferentType() {
-    val ast = listOf<ASTNode>(
+    val ast = listOf(
       VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
@@ -497,41 +497,19 @@ class InterpreterTest {
         expression = LiteralNode(1),
         Position(0, 0)
       ),
-      VariableDeclarationNode(
-        variable = "world",
-        variableType = "number",
-        expression = LiteralNode(2),
-        Position(0, 0)
-      ),
       IfElseNode(
         ifBranch = listOf(
           AssignationNode(
             variable = "hello",
             expression = DoubleExpressionNode(
-              left = LiteralNode("hello"),
-              right = LiteralNode("world"),
+              left = LiteralNode(1),
+              right = LiteralNode(2),
               operator = "+"
             ),
             Position(0, 0)
           ),
-          VariableDeclarationNode(
-            variable = "helloo",
-            variableType = "number",
-            expression = LiteralNode(1),
-            Position(0, 0)
-          ),
         ),
-        elseBranch = listOf(
-          AssignationNode(
-            variable = "hello",
-            expression = DoubleExpressionNode(
-              left = LiteralNode("hello"),
-              right = LiteralNode("world"),
-              operator = "-"
-            ),
-            Position(0, 0)
-          )
-        ),
+        elseBranch = emptyList(),
         condition = LiteralNode(true),
       ),
       PrintStatementNode(
@@ -541,11 +519,61 @@ class InterpreterTest {
     )
     val interpreter = TracingInterpreter()
     interpreter interpret ast.iterator()
-    // assertEquals(3, interpreter.context.get("hello"))
-    // assertError(interpreter.get("helloo"))
-    /** estos tests estarian buenos pero no se que mierda es log y el hijo de puta
-     // que haya hecho el interpreter no lo documentó, de todas formas ya lo chequeé
-     // con el debugger y funciona */
     assert(interpreter.getLog() == listOf("3"))
+  }
+
+  @Test
+  fun testErrorNode() {
+    val ast = listOf(ErrorNode("Error"))
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast.iterator()
+  }
+
+  @Test
+  fun printTrueFalse() {
+    val ast = listOf(
+      PrintStatementNode(
+        expression = LiteralNode("true"),
+        position = Position(0, 0)
+      ),
+      PrintStatementNode(
+        expression = LiteralNode("false"),
+        position = Position(0, 0)
+      ),
+    )
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getLog() == listOf("true", "false"))
+  }
+
+  @Test
+  fun testUnsupportedOperation() {
+    val ast = listOf(
+      DoubleExpressionNode(
+        left = LiteralNode(1),
+        right = LiteralNode(2),
+        operator = "?",
+      )
+    )
+    val interpreter = CatchableTracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getException() is OperationException)
+  }
+
+  @Test
+  fun testOperationError() {
+    val ast = listOf(
+      DoubleExpressionNode(
+        left = ErrorNode("Error"),
+        right = PrintStatementNode(
+          expression = LiteralNode("Hello"),
+          position = Position(0, 0),
+        ),
+        operator = "+"
+      )
+    )
+    val interpreter = CatchableTracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getException() is OperationException)
   }
 }

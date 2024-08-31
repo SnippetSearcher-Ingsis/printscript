@@ -11,10 +11,10 @@ class CatchableTracingInterpreter(private val print: Boolean = true) : IInterpre
 
   private var exception: Exception? = null
 
-  override fun interpret(nodes: Iterator<ASTNode>) {
+  override fun interpret(iterator: Iterator<ASTNode>) {
     try {
       exception = null
-      interpreter.interpret(nodes)
+      interpreter.interpret(iterator)
     } catch (e: Exception) {
       exception = e
     }

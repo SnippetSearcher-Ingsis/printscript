@@ -18,7 +18,7 @@ internal class TracingStrategy(
   private val logger: ILogger,
   private val print: Boolean,
 ) : VisitorStrategy {
-  private val strategy = EvaluationStrategy()
+  private val strategy = EvaluationStrategy
 
   override fun visit(context: Context, node: DoubleExpressionNode) {
     strategy.visit(context, node)

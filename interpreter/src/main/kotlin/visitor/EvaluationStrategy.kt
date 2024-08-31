@@ -11,7 +11,7 @@ import util.Context
 import util.Handler
 import util.Solver
 
-internal class EvaluationStrategy : VisitorStrategy {
+internal object EvaluationStrategy : VisitorStrategy {
   override fun visit(context: Context, node: DoubleExpressionNode) {
     Solver.getValue(context, node)
   }
@@ -34,10 +34,11 @@ internal class EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: IfElseNode) {
-    val condition = node.condition.value.toString().toBoolean()
-    val branch = if (condition) node.ifBranch else node.elseBranch
-    val branchContext = context.clone()
-    branch.forEach { it.accept(Visitor(branchContext, this)) }
-    context.merge(branchContext)
+    val boolean = node.condition.value.toString().toBoolean()
+    val internalContext = Context()
+    context.forEach { internalContext.put(it.key, it.value) }
+    val branch = if (boolean) node.ifBranch else node.elseBranch
+    branch.forEach { it.accept(Visitor(internalContext, this)) }
+    internalContext.forEach { if (context has it.key) context.put(it.key, it.value) }
   }
 }

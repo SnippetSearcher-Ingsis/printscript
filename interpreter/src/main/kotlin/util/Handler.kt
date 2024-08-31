@@ -21,7 +21,7 @@ internal object Handler {
       value is Boolean && type != "boolean" -> throw DeclarationException("$value is not a boolean.")
       value is Number && type.lowercase() != "number" -> throw DeclarationException("$value is not a number.")
       value is String && type.lowercase() != "string" -> throw DeclarationException("$value is not a string.")
-      else -> context.addOrUpdate(key, value)
+      else -> context.put(key, value)
     }
   }
 
@@ -31,7 +31,7 @@ internal object Handler {
     when {
       !(context has key) -> throw AssignationException("$key is not declared.")
       !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
-      else -> context.addOrUpdate(key, value)
+      else -> context.put(key, value)
     }
   }
 
