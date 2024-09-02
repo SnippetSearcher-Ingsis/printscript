@@ -2,6 +2,7 @@ package generator
 
 import node.ASTNode
 import printScreen.parser.builder.AssignationBuilder
+import printScreen.parser.builder.ConditionalBuilder
 import printScreen.parser.builder.PrintStatementBuilder
 import printScreen.parser.builder.VariableDeclarationBuilder
 import token.Token
@@ -11,6 +12,8 @@ class ASTGenerator {
   private val dataToToken = mapOf(
     TokenType.IDENTIFIER to { tokens: List<Token> -> AssignationBuilder(tokens).build() },
     TokenType.LET to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
+    TokenType.CONST to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
+    TokenType.IF to { tokens: List<Token> -> ConditionalBuilder(tokens).build() },
     TokenType.PRINTLN to { tokens: List<Token> -> PrintStatementBuilder(tokens).build() }
   )
 

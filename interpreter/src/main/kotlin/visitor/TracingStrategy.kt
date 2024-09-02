@@ -2,11 +2,14 @@ package visitor
 
 import logger.ILogger
 import node.AssignationNode
+import node.ConstantDeclarationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
 import node.IfElseNode
 import node.LiteralNode
 import node.PrintStatementNode
+import node.ReadEnvNode
+import node.ReadInputNode
 import node.VariableDeclarationNode
 import util.Context
 import util.Solver
@@ -46,7 +49,19 @@ internal class TracingStrategy(
     strategy.visit(context, node)
   }
 
+  override fun visit(context: Context, node: ConstantDeclarationNode) {
+    strategy.visit(context, node)
+  }
+
   override fun visit(context: Context, node: IfElseNode) {
+    strategy.visit(context, node)
+  }
+
+  override fun visit(context: Context, node: ReadEnvNode) {
+    strategy.visit(context, node)
+  }
+
+  override fun visit(context: Context, node: ReadInputNode) {
     strategy.visit(context, node)
   }
 }

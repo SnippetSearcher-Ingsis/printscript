@@ -1,3 +1,5 @@
-let x: string = "hola";
-x = x + "hola";
-println(X);
+if (true) {
+    println("Hello, World!");
+} else {
+    println("Goodbye, World!");
+}
