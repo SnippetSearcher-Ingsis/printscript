@@ -4,6 +4,7 @@ import AssignationException
 import DeclarationException
 import node.ASTNode
 import node.AssignationNode
+import node.ConstantDeclarationNode
 import node.VariableDeclarationNode
 
 internal object Handler {
@@ -14,15 +15,14 @@ internal object Handler {
 
   fun declareValue(context: Context, node: VariableDeclarationNode) {
     val key = node.variable
-    val type = node.variableType
-    val value = Solver.getValue(context, node.expression)
-    when {
-      context has key -> throw DeclarationException("$key is already declared.")
-      value is Boolean && type != "boolean" -> throw DeclarationException("$value is not a boolean.")
-      value is Number && type.lowercase() != "number" -> throw DeclarationException("$value is not a number.")
-      value is String && type.lowercase() != "string" -> throw DeclarationException("$value is not a string.")
-      else -> context.put(key, value)
-    }
+    val value = getValue(context, key, node.variableType, node.expression)
+    context.put(key, value)
+  }
+
+  fun declareValue(context: Context, node: ConstantDeclarationNode) {
+    val key = node.variable
+    val value = getValue(context, key, node.variableType, node.expression)
+    context.putConstant(key, value)
   }
 
   fun assignValue(context: Context, node: AssignationNode) {
@@ -30,9 +30,21 @@ internal object Handler {
     val value = Solver.getValue(context, node.expression)
     when {
       !(context has key) -> throw AssignationException("$key is not declared.")
+      context isConstant key -> throw AssignationException("$key is a constant.")
       !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
       else -> context.put(key, value)
     }
+  }
+
+  private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
+    val value = Solver.getValue(context, expression)
+    when {
+      context has key -> throw DeclarationException("$key is already declared.")
+      value is Boolean && type.lowercase() != "boolean" -> throw DeclarationException("$value is not a ${type.lowercase()}.")
+      value is Number && type.lowercase() != "number" -> throw DeclarationException("$value is not a ${type.lowercase()}.")
+      value is String && type.lowercase() != "string" -> throw DeclarationException("$value is not a ${type.lowercase()}.")
+    }
+    return value
   }
 
   private infix fun Any.hasSameTypeAs(b: Any): Boolean {

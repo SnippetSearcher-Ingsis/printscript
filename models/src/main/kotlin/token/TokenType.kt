@@ -3,6 +3,8 @@ package token
 enum class TokenType {
   LET,
   CONST,
+  READ_ENV,
+  READ_INPUT,
   IF,
   ELSE,
   PRINTLN,
@@ -12,5 +14,7 @@ enum class TokenType {
   LITERAL,
   EQUAL,
   SEMICOLON,
-  SYNTAX
+  SYNTAX,
+  OPEN_BRACKET,
+  CLOSE_BRACKET,
 }

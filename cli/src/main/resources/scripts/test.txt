@@ -1,1 +1,10 @@
-let x: string = 3
+
+let x: boolean = true
+
+if (x) {
+    println("hola");
+} else {
+    println("adios");
+}
+
+println("hola");
