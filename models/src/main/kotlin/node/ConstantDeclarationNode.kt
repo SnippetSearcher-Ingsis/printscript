@@ -1,11 +1,11 @@
 package node
 
 data class ConstantDeclarationNode(
-  val variable: String,
-  val variableType: String,
-  val expression: ASTNode,
-  val position: Position
-) : ASTNode {
+  override val variable: String, // por que se llamaba variable si era una constante
+  override val variableType: String,
+  override val expression: ASTNode,
+  override val position: Position
+) : DeclarationNode {
   override fun accept(visitor: ASTVisitor) {
     visitor.visit(this)
   }

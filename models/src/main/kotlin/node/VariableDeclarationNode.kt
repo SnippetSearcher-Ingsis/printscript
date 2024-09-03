@@ -1,11 +1,11 @@
 package node
 
 data class VariableDeclarationNode(
-  val variable: String,
-  val variableType: String,
-  val expression: ASTNode,
-  val position: Position
-) : ASTNode {
+  override val variable: String,
+  override val variableType: String,
+  override val expression: ASTNode,
+  override val position: Position,
+) : DeclarationNode {
   override fun accept(visitor: ASTVisitor) {
     visitor.visit(this)
   }
