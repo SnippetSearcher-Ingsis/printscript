@@ -24,6 +24,21 @@ internal class Context : Iterable<Map.Entry<String, Any>> {
     return constants.containsKey(key)
   }
 
+  fun clone(): Context {
+    val newContext = Context()
+    newContext.variables.putAll(variables)
+    newContext.constants.putAll(constants)
+    return newContext
+  }
+
+  fun merge(oldContext: Context) {
+    oldContext.variables.forEach { (key, value) ->
+      if (has(key)) {
+        put(key, value)
+      }
+    }
+  }
+
   fun clear() {
     variables.clear()
     constants.clear()
@@ -33,3 +48,4 @@ internal class Context : Iterable<Map.Entry<String, Any>> {
     return (variables + constants).iterator()
   }
 }
+// hola
