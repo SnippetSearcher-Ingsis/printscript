@@ -1,6 +1,8 @@
 package rule
 
 import node.ASTNode
+import node.ConstantDeclarationNode
+import node.DeclarationNode
 import node.VariableDeclarationNode
 import rule.caseTypes.CamelCase
 import rule.caseTypes.Case
@@ -23,13 +25,17 @@ data class Casing(private val caseType: String) : LintRule {
   }
 
   override fun check(node: ASTNode): CasingViolation? {
-    if (node !is VariableDeclarationNode) {
+    if (!(
+      node is VariableDeclarationNode ||
+        node is ConstantDeclarationNode
+      )
+    ) {
       return null
     }
-    return check(node)
+    return check(node as DeclarationNode)
   }
 
-  private fun check(node: VariableDeclarationNode): CasingViolation? {
+  private fun check(node: DeclarationNode): CasingViolation? {
     return if (!case.check(node.variable)) CasingViolation(node.position, caseType) else null
   }
 }

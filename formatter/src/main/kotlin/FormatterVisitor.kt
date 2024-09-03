@@ -23,8 +23,15 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   }
 
   override fun visit(node: IfElseNode) {
+    append("if (")
+    evaluate(node.condition)
+    append(") { \n")
     node.ifBranch.forEach { evaluate(it) }
+    append("} \n")
+    if (node.elseBranch.isEmpty()) return
+    append("else { \n")
     node.elseBranch.forEach { evaluate(it) }
+    append("} \n")
   }
 
   override fun visit(node: DoubleExpressionNode) {
