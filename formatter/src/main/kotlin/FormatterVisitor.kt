@@ -19,10 +19,13 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     node.accept(this)
   }
 
-  override fun visit(node: ErrorNode) {}
+  override fun visit(node: ErrorNode) {
+
+  }
 
   override fun visit(node: IfElseNode) {
-    TODO("Not yet implemented")
+    node.ifBranch.forEach { evaluate(it) }
+    node.elseBranch.forEach { evaluate(it) }
   }
 
   override fun visit(node: DoubleExpressionNode) {
@@ -38,7 +41,7 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   override fun visit(node: PrintStatementNode) {
     append(config.lineBreaksBeforePrintsRule.apply())
     append("println(")
-    node.expression.accept(this)
+    evaluate(node.expression)
     append(")")
     endStatement()
   }
@@ -48,7 +51,7 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     append(config.spaceAroundColonsRule.apply())
     append(node.variableType)
     append(config.spaceAroundEqualsRule.apply())
-    node.expression.accept(this)
+    evaluate(node.expression)
     endStatement()
   }
 
@@ -57,14 +60,14 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     append(config.spaceAroundColonsRule.apply())
     append(node.variableType)
     append(config.spaceAroundEqualsRule.apply())
-    node.expression.accept(this)
+    evaluate(node.expression)
     endStatement()
   }
 
   override fun visit(node: AssignationNode) {
     append("${node.variable}")
     append(config.spaceAroundEqualsRule.apply())
-    node.expression.accept(this)
+    evaluate(node.expression)
     endStatement()
   }
 

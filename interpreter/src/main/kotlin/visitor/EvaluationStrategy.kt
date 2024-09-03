@@ -1,6 +1,5 @@
 package visitor
 
-import DeclarationException
 import node.AssignationNode
 import node.ConstantDeclarationNode
 import node.DoubleExpressionNode
@@ -48,20 +47,6 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: IfElseNode) {
-    val condition = node.condition.value
-    val bool: Boolean = when {
-      context.has(condition.toString()) -> {
-        val value = context.get(condition.toString())
-        if (value is Boolean) value
-        else throw DeclarationException("$condition is not a boolean.")
-      }
-      condition is Boolean -> condition
-      else -> throw DeclarationException("$condition is not a boolean or is not defined.")
-    }
-    val internalContext = Context()
-    context.forEach { internalContext.put(it.key, it.value) }
-    val branch = if (bool) node.ifBranch else node.elseBranch
-    branch.forEach { it.accept(Visitor(internalContext, this)) }
-    internalContext.forEach { if (context has it.key) context.put(it.key, it.value) }
+    Handler.runBranch(context, node)
   }
 }

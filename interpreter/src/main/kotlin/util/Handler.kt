@@ -2,10 +2,9 @@ package util
 
 import AssignationException
 import DeclarationException
-import node.ASTNode
-import node.AssignationNode
-import node.ConstantDeclarationNode
-import node.VariableDeclarationNode
+import node.*
+import visitor.EvaluationStrategy
+import visitor.Visitor
 
 internal object Handler {
   fun print(context: Context, node: ASTNode) {
@@ -34,6 +33,23 @@ internal object Handler {
       !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
       else -> context.put(key, value)
     }
+  }
+
+  fun runBranch(context: Context, node: IfElseNode) {
+    val condition = node.condition.value
+    val bool: Boolean = when {
+      context.has(condition.toString()) -> {
+        val value = context.get(condition.toString())
+        if (value is Boolean) value
+        else throw DeclarationException("$condition is not a boolean.")
+      }
+      condition is Boolean -> condition
+      else -> throw DeclarationException("$condition is not a boolean or is not defined.")
+    }
+    val branch = if (bool) node.ifBranch else node.elseBranch
+    val branchContext = context.clone()
+    branch.forEach { it.accept(Visitor(branchContext, EvaluationStrategy)) }
+    context.merge(branchContext)
   }
 
   private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
