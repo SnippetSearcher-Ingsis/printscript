@@ -5,9 +5,8 @@ import DeclarationException
 import node.ASTNode
 import node.AssignationNode
 import node.ConstantDeclarationNode
-import node.VariableDeclarationNode
 import node.IfElseNode
-
+import node.VariableDeclarationNode
 import visitor.EvaluationStrategy
 import visitor.Visitor
 

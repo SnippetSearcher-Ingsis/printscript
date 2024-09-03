@@ -32,8 +32,9 @@ internal class Context : Iterable<Map.Entry<String, Any>> {
   }
 
   fun merge(oldContext: Context) {
-    oldContext.variables.forEach { (key, value) -> if (has(key)) {
-      put(key, value)
+    oldContext.variables.forEach { (key, value) ->
+      if (has(key)) {
+        put(key, value)
       }
     }
   }
