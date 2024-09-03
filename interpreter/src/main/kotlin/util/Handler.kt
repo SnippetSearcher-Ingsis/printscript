@@ -2,7 +2,12 @@ package util
 
 import AssignationException
 import DeclarationException
-import node.*
+import node.ASTNode
+import node.AssignationNode
+import node.ConstantDeclarationNode
+import node.VariableDeclarationNode
+import node.IfElseNode
+
 import visitor.EvaluationStrategy
 import visitor.Visitor
 

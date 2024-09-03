@@ -20,7 +20,6 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   }
 
   override fun visit(node: ErrorNode) {
-
   }
 
   override fun visit(node: IfElseNode) {
