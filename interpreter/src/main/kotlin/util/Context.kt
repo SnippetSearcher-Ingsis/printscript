@@ -1,24 +1,36 @@
 package util
 
 internal class Context : Iterable<Map.Entry<String, Any>> {
-  val context = mutableMapOf<String, Any>()
+  private val variables = mutableMapOf<String, Any>()
+  private val constants = mutableMapOf<String, Any>()
 
   fun put(key: String, value: Any) {
-    context[key] = value
+    variables[key] = value
+  }
+
+  fun putConstant(key: String, value: Any) {
+    constants[key] = value
   }
 
   infix fun get(key: String): Any? {
-    return context[key]
+    return if (variables.containsKey(key)) variables[key] else constants[key]
   }
 
   infix fun has(key: String): Boolean {
-    return context.containsKey(key)
+    return variables.containsKey(key) || isConstant(key)
+  }
+
+  infix fun isConstant(key: String): Boolean {
+    return constants.containsKey(key)
   }
 
   fun clear() {
-    context.clear()
+    variables.clear()
+    constants.clear()
   }
 
-  override fun iterator(): Iterator<Map.Entry<String, Any>> = context.toMap().iterator()
+  override fun iterator(): Iterator<Map.Entry<String, Any>> {
+    return (variables + constants).iterator()
+  }
 }
 // hola

@@ -6,7 +6,7 @@ class IfElseNode(val ifBranch: List<ASTNode>, val elseBranch: List<ASTNode>, val
   }
 
   override fun toString(): String {
-    return "ConditionalNode()"
+    return "ConditionalNode(ifBranch=$ifBranch, elseBranch=$elseBranch, condition=$condition)"
   }
 
   override fun equals(other: Any?): Boolean {

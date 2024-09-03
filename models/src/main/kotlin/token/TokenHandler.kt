@@ -3,9 +3,12 @@ package token
 data class TokenHandler(val line: List<Token>) {
   private var currentTokenIndex = 0
 
-  fun collectExpressionTokens(): List<Token> {
+  fun collectExpressionTokens(with: Boolean): List<Token> {
     val tokens = mutableListOf<Token>()
     while (!isAtEnd() && peek().type != TokenType.SEMICOLON) {
+      tokens.add(advance())
+    }
+    if (with) {
       tokens.add(advance())
     }
     return tokens
@@ -24,16 +27,16 @@ data class TokenHandler(val line: List<Token>) {
     return !isAtEnd() && peek().type == type
   }
 
-  private fun advance(): Token {
+  fun advance(): Token {
     if (!isAtEnd()) currentTokenIndex++
     return previous()
   }
 
-  private fun isAtEnd(): Boolean {
+  fun isAtEnd(): Boolean {
     return currentTokenIndex >= line.size
   }
 
-  private fun peek(): Token {
+  fun peek(): Token {
     return if (currentTokenIndex < line.size) {
       line[currentTokenIndex]
     } else {
