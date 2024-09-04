@@ -2,11 +2,6 @@ package token
 
 enum class TokenType {
   LET,
-  CONST,
-  READ_ENV,
-  READ_INPUT,
-  IF,
-  ELSE,
   PRINTLN,
   TYPE,
   IDENTIFIER,

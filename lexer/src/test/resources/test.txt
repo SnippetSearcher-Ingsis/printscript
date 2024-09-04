@@ -1,5 +1,4 @@
-if (true) {
-    println("Hello, World!");
-} else {
-    println("Goodbye, World!");
-}
+let x: number = 1;
+let y: number = 10;
+
+println(x + y);

@@ -10,12 +10,7 @@ class Lexer {
 
   private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
     "\\blet\\b" to TokenType.LET,
-    "\\bconst\\b" to TokenType.CONST,
-    "\\bif\\b" to TokenType.IF,
-    "\\belse\\b" to TokenType.ELSE,
     "\\bprintln\\b" to TokenType.PRINTLN,
-    "\\breadInput\\b" to TokenType.READ_INPUT,
-    "\\breadEnv\\b" to TokenType.READ_ENV,
     "\\bstring\\b" to TokenType.TYPE,
     "\\bnumber\\b" to TokenType.TYPE,
     "\\bboolean\\b" to TokenType.TYPE,

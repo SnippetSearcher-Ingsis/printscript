@@ -2,7 +2,6 @@ import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
-import node.IfElseNode
 import node.LiteralNode
 import node.Position
 import node.PrintStatementNode
@@ -489,61 +488,10 @@ class InterpreterTest {
   }
 
   @Test
-  fun ifElseTest() {
-    val ast = listOf(
-      VariableDeclarationNode(
-        variable = "hello",
-        variableType = "number",
-        expression = LiteralNode(1),
-        Position(0, 0)
-      ),
-      IfElseNode(
-        ifBranch = listOf(
-          AssignationNode(
-            variable = "hello",
-            expression = DoubleExpressionNode(
-              left = LiteralNode(1),
-              right = LiteralNode(2),
-              operator = "+"
-            ),
-            Position(0, 0)
-          ),
-        ),
-        elseBranch = emptyList(),
-        condition = LiteralNode(true),
-      ),
-      PrintStatementNode(
-        LiteralNode("hello"),
-        Position(0, 0)
-      )
-    )
-    val interpreter = TracingInterpreter()
-    interpreter interpret ast.iterator()
-    assert(interpreter.getLog() == listOf("3"))
-  }
-
-  @Test
   fun testErrorNode() {
     val ast = listOf(ErrorNode("Error"))
     val interpreter = TracingInterpreter()
     interpreter interpret ast.iterator()
-  }
-
-  @Test
-  fun printTrueFalse() {
-    val ast = listOf(
-      PrintStatementNode(
-        expression = LiteralNode("true"),
-        position = Position(0, 0)
-      ),
-      PrintStatementNode(
-        expression = LiteralNode("false"),
-        position = Position(0, 0)
-      ),
-    )
-    val interpreter = TracingInterpreter()
-    interpreter interpret ast.iterator()
-    assert(interpreter.getLog() == listOf("true", "false"))
   }
 
   @Test

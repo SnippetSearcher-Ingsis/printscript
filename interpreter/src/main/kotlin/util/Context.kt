@@ -2,50 +2,24 @@ package util
 
 internal class Context : Iterable<Map.Entry<String, Any>> {
   private val variables = mutableMapOf<String, Any>()
-  private val constants = mutableMapOf<String, Any>()
 
   fun put(key: String, value: Any) {
     variables[key] = value
   }
 
-  fun putConstant(key: String, value: Any) {
-    constants[key] = value
-  }
-
   infix fun get(key: String): Any? {
-    return if (variables.containsKey(key)) variables[key] else constants[key]
+    return variables[key]
   }
 
   infix fun has(key: String): Boolean {
-    return variables.containsKey(key) || isConstant(key)
-  }
-
-  infix fun isConstant(key: String): Boolean {
-    return constants.containsKey(key)
-  }
-
-  fun clone(): Context {
-    val newContext = Context()
-    newContext.variables.putAll(variables)
-    newContext.constants.putAll(constants)
-    return newContext
-  }
-
-  fun merge(oldContext: Context) {
-    oldContext.variables.forEach { (key, value) ->
-      if (has(key)) {
-        put(key, value)
-      }
-    }
+    return variables.containsKey(key)
   }
 
   fun clear() {
     variables.clear()
-    constants.clear()
   }
 
   override fun iterator(): Iterator<Map.Entry<String, Any>> {
-    return (variables + constants).iterator()
+    return variables.iterator()
   }
 }
-// hola
