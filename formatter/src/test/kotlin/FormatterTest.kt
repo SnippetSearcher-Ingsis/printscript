@@ -51,5 +51,14 @@ class FormatterTest {
     val expected = "\n\nprintln(a);\n"
     assertEquals(expected, result)
   }
+
+  @Test
+  fun testStyle1IfElse() {
+    val result = Formatter.format(DummyAST.ifElse(), style1)
+    val expected =
+      "if (true) { \n  let variable: String = \"Hello World\";\n} \n" +
+        "else { \n  let variable: String = \"Hello World\";\n} \n"
+    assertEquals(expected, result)
+  }
 }
 // holi
