@@ -3,9 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "2.0.0"// Especifica la versión del plugin de Kotlin
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
-
 repositories {
     mavenCentral()
 }
