@@ -7,9 +7,6 @@ plugins {
     `maven-publish`
 }
 
-group = "org.example"
-version = "1.1"
-
 repositories {
     mavenCentral()
 }
@@ -21,6 +18,9 @@ dependencies {
 }
 
 allprojects {
+    group = "org.example"
+    version = "1.0"
+
     apply(plugin = "java")
     apply(plugin = "kotlin")
     apply(plugin = "com.diffplug.spotless")
