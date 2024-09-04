@@ -6,6 +6,7 @@ import node.ErrorNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.VariableNode
 import tool.Tool
 
 data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) :
@@ -50,6 +51,10 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     append(config.spaceAroundEqualsRule.apply())
     evaluate(node.expression)
     endStatement()
+  }
+
+  override fun visit(node: VariableNode) {
+    append(node.name)
   }
 
   // utility functions

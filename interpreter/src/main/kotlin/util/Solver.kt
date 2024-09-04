@@ -5,8 +5,10 @@ import ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
+import kotlin.jvm.Throws
 
 internal object Solver {
+  @Throws(Exception::class)
   fun getValue(context: Context, node: ASTNode): Any {
     return when (node) {
       is LiteralNode<*> -> {
@@ -17,10 +19,7 @@ internal object Solver {
           node.value is String && (node.value as String).startsWith("'") ->
             (node.value as String).replace("'", "")
 
-          node.value is String && (node.value as String == "true" || node.value as String == "false") ->
-            (node.value as String).toBoolean()
-
-          node.value is String -> (context get node.value as String)
+          node.value is String -> (context get node.value as String)?.getValue()
             ?: throw ReferenceException("Variable ${node.value} not declared.")
 
           else -> node.value!!

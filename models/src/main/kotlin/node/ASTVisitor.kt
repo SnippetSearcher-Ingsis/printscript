@@ -12,4 +12,6 @@ interface ASTVisitor {
   fun visit(node: AssignationNode)
 
   fun visit(node: ErrorNode)
+
+  fun visit(node: VariableNode)
 }

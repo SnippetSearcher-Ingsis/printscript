@@ -2,9 +2,11 @@ package util
 
 import AssignationException
 import DeclarationException
+import modifier.Variable
 import node.ASTNode
 import node.AssignationNode
 import node.VariableDeclarationNode
+import node.VariableNode
 
 internal object Handler {
   fun print(context: Context, node: ASTNode) {
@@ -15,17 +17,21 @@ internal object Handler {
   fun declareValue(context: Context, node: VariableDeclarationNode) {
     val key = node.variable
     val value = getValue(context, key, node.variableType, node.expression)
-    context.put(key, value)
+    context.put(key, Variable(node.variableType, value))
   }
 
   fun assignValue(context: Context, node: AssignationNode) {
     val key = node.variable!!
     val value = Solver.getValue(context, node.expression)
+    val type = getType(value)
     when {
       !(context has key) -> throw AssignationException("$key is not declared.")
-      !((context get key)!! hasSameTypeAs value) -> throw AssignationException("Type mismatch. Cannot assign $value to $key.")
-      else -> context.put(key, value)
+      else -> context.put(key, Variable(type, value))
     }
+  }
+
+  fun declareVariable(context: Context, node: VariableNode) {
+    context.put(node.name, Variable(node.type, null))
   }
 
   private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
@@ -39,7 +45,12 @@ internal object Handler {
     return value
   }
 
-  private infix fun Any.hasSameTypeAs(b: Any): Boolean {
-    return this::class == b::class || this is Number && b is Number
+  private fun getType(value: Any): String {
+    return when (value) {
+      is Boolean -> "boolean"
+      is Number -> "number"
+      is String -> "string"
+      else -> throw AssignationException("Cannot assign $value.")
+    }
   }
 }

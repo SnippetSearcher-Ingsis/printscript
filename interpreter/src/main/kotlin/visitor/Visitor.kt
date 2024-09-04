@@ -33,4 +33,8 @@ internal class Visitor(private val context: Context, private val strategy: Visit
   override fun visit(node: ErrorNode) {
     strategy.visit(context, node)
   }
+
+  override fun visit(node: node.VariableNode) {
+    strategy.visit(context, node)
+  }
 }

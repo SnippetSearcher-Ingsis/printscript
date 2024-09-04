@@ -7,6 +7,7 @@ import node.ErrorNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.VariableNode
 import util.Context
 import util.Solver
 
@@ -42,6 +43,10 @@ internal class TracingStrategy(
   }
 
   override fun visit(context: Context, node: ErrorNode) {
+    strategy.visit(context, node)
+  }
+
+  override fun visit(context: Context, node: VariableNode) {
     strategy.visit(context, node)
   }
 }

@@ -6,11 +6,12 @@ import node.ErrorNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.VariableNode
 import util.Context
 import util.Handler
 import util.Solver
 
-internal object EvaluationStrategy : VisitorStrategy {
+internal data object EvaluationStrategy : VisitorStrategy {
   override fun visit(context: Context, node: DoubleExpressionNode) {
     Solver.getValue(context, node)
   }
@@ -30,5 +31,9 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: ErrorNode) {
+  }
+
+  override fun visit(context: Context, node: VariableNode) {
+    Handler.declareVariable(context, node)
   }
 }

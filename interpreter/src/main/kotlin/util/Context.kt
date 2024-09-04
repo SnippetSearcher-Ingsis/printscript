@@ -1,13 +1,22 @@
 package util
 
-internal class Context : Iterable<Map.Entry<String, Any>> {
-  private val variables = mutableMapOf<String, Any>()
+import AssignationException
+import modifier.Modifier
+import modifier.Variable
+import kotlin.jvm.Throws
 
-  fun put(key: String, value: Any) {
-    variables[key] = value
+internal class Context {
+  private val variables = mutableMapOf<String, Modifier>()
+
+  @Throws(Exception::class)
+  fun put(key: String, modifier: Modifier) {
+    when {
+      !(this has key) -> variables[key] = modifier
+      variables[key] is Variable -> handleVariable(key, modifier as Variable)
+    }
   }
 
-  infix fun get(key: String): Any? {
+  infix fun get(key: String): Modifier? {
     return variables[key]
   }
 
@@ -19,7 +28,10 @@ internal class Context : Iterable<Map.Entry<String, Any>> {
     variables.clear()
   }
 
-  override fun iterator(): Iterator<Map.Entry<String, Any>> {
-    return variables.iterator()
+  private fun handleVariable(key: String, variable: Variable) {
+    when {
+      variables[key]?.getType() != variable.getType() -> throw AssignationException("Type mismatch. Cannot assign ${variable.getType()} to $key.")
+      else -> variables[key] = variable
+    }
   }
 }

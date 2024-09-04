@@ -6,6 +6,7 @@ import node.LiteralNode
 import node.Position
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.VariableNode
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -523,5 +524,61 @@ class InterpreterTest {
     val interpreter = CatchableTracingInterpreter()
     interpreter interpret ast.iterator()
     assert(interpreter.getException() is OperationException)
+  }
+
+  @Test
+  fun testDeclarationWithoutAssignation() {
+    val ast = listOf(
+      VariableNode(
+        name = "hello",
+        type = "string",
+      ),
+      AssignationNode(
+        variable = "hello",
+        expression = LiteralNode("\"world\""),
+        Position(0, 0)
+      ),
+
+      PrintStatementNode(
+        LiteralNode("hello"),
+        Position(0, 0)
+      )
+    )
+    val interpreter = TracingInterpreter()
+    interpreter interpret ast.iterator()
+    assert(interpreter.getLog() == listOf("world"))
+  }
+
+  @Test
+  fun testInvalidDeclarationType() {
+    val ast = listOf(
+      VariableDeclarationNode(
+        variable = "hello",
+        variableType = "invalid",
+        expression = LiteralNode(1),
+        Position(0, 0)
+      )
+    )
+    val interpreter = Interpreter()
+    assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
+  }
+
+  @Test
+  fun testInvalidAssignation() {
+    val ast = listOf(
+      VariableDeclarationNode(
+        variable = "hello",
+        variableType = "string",
+        expression = LiteralNode("\"world\""),
+        Position(0, 0)
+      ),
+      AssignationNode(
+        variable = "hello",
+        expression = LiteralNode(Position(0, 0)),
+        Position(0, 0)
+      )
+    )
+    val interpreter = Interpreter()
+    assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 }

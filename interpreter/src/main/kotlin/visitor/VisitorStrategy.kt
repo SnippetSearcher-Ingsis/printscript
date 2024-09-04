@@ -6,9 +6,10 @@ import node.ErrorNode
 import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
+import node.VariableNode
 import util.Context
 
-internal interface VisitorStrategy {
+internal sealed interface VisitorStrategy {
   fun visit(context: Context, node: DoubleExpressionNode)
 
   fun visit(context: Context, node: LiteralNode<*>)
@@ -20,4 +21,6 @@ internal interface VisitorStrategy {
   fun visit(context: Context, node: AssignationNode)
 
   fun visit(context: Context, node: ErrorNode)
+
+  fun visit(context: Context, node: VariableNode)
 }
