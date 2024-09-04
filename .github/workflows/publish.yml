@@ -12,7 +12,7 @@ on:
   release:
     types: [created]
   push:
-    branches: [ "main" ]
+    branches: [ "main", "PrintScript-1.0" ]
 jobs:
   publish:
     runs-on: ubuntu-latest
