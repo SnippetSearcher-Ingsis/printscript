@@ -7,6 +7,9 @@ repositories {
     mavenCentral()
 }
 
+group = "org.example"
+version = "1.0"
+
 dependencies {
     // add gson dependency
     implementation("com.google.code.gson:gson:2.11.0")
