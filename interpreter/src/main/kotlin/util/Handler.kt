@@ -2,6 +2,7 @@ package util
 
 import AssignationException
 import DeclarationException
+import OperationException
 import modifier.Constant
 import modifier.Variable
 import node.ASTNode
@@ -9,6 +10,7 @@ import node.AssignationNode
 import node.ConstantDeclarationNode
 import node.ConstantNode
 import node.DeclarationNode
+import node.ErrorNode
 import node.IfElseNode
 import node.VariableDeclarationNode
 import node.VariableNode
@@ -61,6 +63,12 @@ internal object Handler {
     val branchContext = context.clone()
     branch.forEach { it.accept(Visitor(branchContext, EvaluationStrategy)) }
     context.merge(branchContext)
+  }
+
+  fun error(node: ErrorNode) {
+    when {
+      node.error != "NODE_ERROR_BACKDOOR" -> throw OperationException(node.error)
+    }
   }
 
   private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
