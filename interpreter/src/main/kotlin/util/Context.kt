@@ -34,7 +34,7 @@ internal class Context {
 
   infix fun merge(oldContext: Context) {
     oldContext.context.forEach { (key, value) ->
-      if (has(key)) {
+      if (has(key) && get(key) is Variable) {
         put(key, value)
       }
     }
