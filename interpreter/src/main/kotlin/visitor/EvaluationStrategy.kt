@@ -1,7 +1,7 @@
 package visitor
 
 import node.AssignationNode
-import node.ConstantDeclarationNode
+import node.DeclarationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
 import node.IfElseNode
@@ -9,7 +9,6 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.ReadEnvNode
 import node.ReadInputNode
-import node.VariableDeclarationNode
 import util.Context
 import util.Handler
 import util.Solver
@@ -25,7 +24,7 @@ internal object EvaluationStrategy : VisitorStrategy {
     Handler.print(context, node.expression)
   }
 
-  override fun visit(context: Context, node: VariableDeclarationNode) {
+  override fun visit(context: Context, node: DeclarationNode) {
     Handler.declareValue(context, node)
   }
 
@@ -34,16 +33,13 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: ErrorNode) {
+    throw Exception(node.error)
   }
 
   override fun visit(context: Context, node: ReadEnvNode) {
   }
 
   override fun visit(context: Context, node: ReadInputNode) {
-  }
-
-  override fun visit(context: Context, node: ConstantDeclarationNode) {
-    Handler.declareValue(context, node)
   }
 
   override fun visit(context: Context, node: IfElseNode) {

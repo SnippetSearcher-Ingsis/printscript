@@ -20,7 +20,7 @@ internal object Solver {
           node.value is String && (node.value as String == "true" || node.value as String == "false") ->
             (node.value as String).toBoolean()
 
-          node.value is String -> (context get node.value as String)
+          node.value is String -> (context get node.value as String)?.value
             ?: throw ReferenceException("Variable ${node.value} not declared.")
 
           else -> node.value!!

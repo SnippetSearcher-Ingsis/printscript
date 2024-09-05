@@ -2,7 +2,7 @@ package visitor
 
 import node.ASTVisitor
 import node.AssignationNode
-import node.ConstantDeclarationNode
+import node.DeclarationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
 import node.IfElseNode
@@ -10,7 +10,6 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.ReadEnvNode
 import node.ReadInputNode
-import node.VariableDeclarationNode
 import util.Context
 
 internal class Visitor(private val context: Context, private val strategy: VisitorStrategy) : ASTVisitor {
@@ -26,7 +25,7 @@ internal class Visitor(private val context: Context, private val strategy: Visit
     strategy.visit(context, node)
   }
 
-  override fun visit(node: VariableDeclarationNode) {
+  override fun visit(node: DeclarationNode) {
     strategy.visit(context, node)
   }
 
@@ -35,10 +34,6 @@ internal class Visitor(private val context: Context, private val strategy: Visit
   }
 
   override fun visit(node: ErrorNode) {
-    strategy.visit(context, node)
-  }
-
-  override fun visit(node: ConstantDeclarationNode) {
     strategy.visit(context, node)
   }
 

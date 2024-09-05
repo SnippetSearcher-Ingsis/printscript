@@ -1,38 +1,39 @@
 package util
 
-internal class Context : Iterable<Map.Entry<String, Any>> {
-  private val variables = mutableMapOf<String, Any>()
-  private val constants = mutableMapOf<String, Any>()
+import AssignationException
+import modifier.Constant
+import modifier.Modifier
+import modifier.Variable
+import kotlin.jvm.Throws
 
-  fun put(key: String, value: Any) {
-    variables[key] = value
+internal class Context {
+  private val context = mutableMapOf<String, Modifier>()
+
+  @Throws(Exception::class)
+  fun put(key: String, modifier: Modifier) {
+    when {
+      !(this has key) -> context[key] = modifier
+      context[key] is Variable -> handleVariable(key, Variable(modifier.type, modifier.value))
+      context[key] is Constant -> handleConstant(key, Constant(modifier.type, modifier.value))
+    }
   }
 
-  fun putConstant(key: String, value: Any) {
-    constants[key] = value
-  }
-
-  infix fun get(key: String): Any? {
-    return if (variables.containsKey(key)) variables[key] else constants[key]
+  infix fun get(key: String): Modifier? {
+    return context[key]
   }
 
   infix fun has(key: String): Boolean {
-    return variables.containsKey(key) || isConstant(key)
-  }
-
-  infix fun isConstant(key: String): Boolean {
-    return constants.containsKey(key)
+    return context.containsKey(key)
   }
 
   fun clone(): Context {
     val newContext = Context()
-    newContext.variables.putAll(variables)
-    newContext.constants.putAll(constants)
+    newContext.context.putAll(context)
     return newContext
   }
 
-  fun merge(oldContext: Context) {
-    oldContext.variables.forEach { (key, value) ->
+  infix fun merge(oldContext: Context) {
+    oldContext.context.forEach { (key, value) ->
       if (has(key)) {
         put(key, value)
       }
@@ -40,12 +41,21 @@ internal class Context : Iterable<Map.Entry<String, Any>> {
   }
 
   fun clear() {
-    variables.clear()
-    constants.clear()
+    context.clear()
   }
 
-  override fun iterator(): Iterator<Map.Entry<String, Any>> {
-    return (variables + constants).iterator()
+  private fun handleConstant(key: String, constant: Constant) {
+    when {
+      context[key]?.value != null -> throw AssignationException("Cannot reassign $key.")
+      context[key]?.type != constant.type -> throw AssignationException("Type mismatch. Cannot assign ${constant.type} to $key.")
+      else -> context[key] = constant
+    }
+  }
+
+  private fun handleVariable(key: String, variable: Variable) {
+    when {
+      context[key]?.type != variable.type -> throw AssignationException("Type mismatch. Cannot assign ${variable.type} to $key.")
+      else -> context[key] = variable
+    }
   }
 }
-// hola
