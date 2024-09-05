@@ -31,7 +31,7 @@ internal data object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: ErrorNode) {
-    throw Exception(node.error)
+    Handler.error(node)
   }
 
   override fun visit(context: Context, node: VariableNode) {

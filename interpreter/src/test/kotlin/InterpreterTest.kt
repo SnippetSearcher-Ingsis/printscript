@@ -507,9 +507,16 @@ class InterpreterTest {
   fun testErrorNode() {
     val ast = listOf(ErrorNode("Error"))
     val tracer = ReadableTracer()
-    val interpreter = CatchableInterpreter(TracingInterpreter(tracer))
+    val interpreter = TracingInterpreter(tracer)
+    assertThrows<OperationException> { interpreter interpret ast.iterator() }
+  }
+
+  @Test
+  fun testErrorNodeBackdoor() {
+    val ast = listOf(ErrorNode("NODE_ERROR_BACKDOOR"))
+    val tracer = ReadableTracer()
+    val interpreter = TracingInterpreter(tracer)
     interpreter interpret ast.iterator()
-    assert(interpreter.hasException())
   }
 
   @Test

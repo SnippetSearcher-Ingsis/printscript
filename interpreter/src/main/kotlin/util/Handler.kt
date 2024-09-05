@@ -2,9 +2,11 @@ package util
 
 import AssignationException
 import DeclarationException
+import OperationException
 import modifier.Variable
 import node.ASTNode
 import node.AssignationNode
+import node.ErrorNode
 import node.VariableDeclarationNode
 import node.VariableNode
 
@@ -32,6 +34,12 @@ internal object Handler {
 
   fun declareVariable(context: Context, node: VariableNode) {
     context.put(node.name, Variable(node.type, null))
+  }
+
+  fun error(node: ErrorNode) {
+    when {
+      node.error != "NODE_ERROR_BACKDOOR" -> throw OperationException(node.error)
+    }
   }
 
   private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
