@@ -41,8 +41,10 @@ class LinterTest {
       }
     }
     val expectedAt0 = "Casing violation at 1:5, snake case expected"
+    val expectedAt1 = "Expression inside read input statement at 4:1"
     assert(result.size == 1)
     assertEquals(expectedAt0, result[0])
+    // assertEquals(expectedAt1, result[1])
   }
 
   @Test

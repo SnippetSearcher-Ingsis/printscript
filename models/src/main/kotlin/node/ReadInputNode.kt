@@ -1,11 +1,11 @@
 package node
 
-class ReadInputNode(val value: String) : ASTNode {
+class ReadInputNode(val expression: ASTNode, val position: Position) : ASTNode {
   override fun accept(visitor: ASTVisitor) {
     visitor.visit(this)
   }
 
   override fun toString(): String {
-    return "ReadInputNode(value='$value')"
+    return "ReadInputNode(value='$expression')"
   }
 }

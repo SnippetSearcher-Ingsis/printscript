@@ -1,4 +1,5 @@
 {
   "casing" : "camel",
-  "noExpressionsInsidePrints" : true
+  "noExpressionsInsidePrints" : true,
+  "noExpressionsInsideReadInputs" : false
 }
