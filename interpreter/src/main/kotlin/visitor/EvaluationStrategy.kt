@@ -40,6 +40,7 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: ReadInputNode) {
+    Handler.waitForAnswer(context, node)
   }
 
   override fun visit(context: Context, node: IfElseNode) {

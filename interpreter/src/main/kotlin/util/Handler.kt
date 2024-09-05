@@ -4,14 +4,7 @@ import AssignationException
 import DeclarationException
 import modifier.Constant
 import modifier.Variable
-import node.ASTNode
-import node.AssignationNode
-import node.ConstantDeclarationNode
-import node.ConstantNode
-import node.DeclarationNode
-import node.IfElseNode
-import node.VariableDeclarationNode
-import node.VariableNode
+import node.*
 import visitor.EvaluationStrategy
 import visitor.Visitor
 
@@ -82,4 +75,12 @@ internal object Handler {
       else -> throw AssignationException("Cannot assign $value.")
     }
   }
+
+  fun waitForAnswer(context: Context, node: ReadInputNode) {
+    val middle = Solver.getValue(context, node)
+    print(middle)
+    val inputResult = readlnOrNull()
+    // a terminar para asignar el valor de inputResult a un Modifier en el Context
+  }
+
 }
