@@ -18,8 +18,8 @@ dependencies {
 }
 
 allprojects {
-    group = "org.example"
-    version = "1.1"
+    group = "com.print-script"
+    version = "1.1-SNAPSHOT"
 
     apply(plugin = "java")
     apply(plugin = "kotlin")
