@@ -1,7 +1,0 @@
-let x: boolean = false;
-
-if (x) {
-    println("Hello, World!");
-} else {
-    println("Goodbye, World!");
-}
