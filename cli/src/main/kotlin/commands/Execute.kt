@@ -2,8 +2,10 @@ package commands
 
 import CatchableTracingInterpreter
 import Result
+import TracingInterpreter
 import printScreen.lexer.Lexer
 import printScreen.parser.CatchableParser
+import tracer.ReadableTracer
 
 class Execute : CommandExecute {
   override fun execute(vararg file: String): Result {
@@ -12,12 +14,13 @@ class Execute : CommandExecute {
     val lexer = Lexer()
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
-    val interpreter = CatchableTracingInterpreter(print = false)
+    val tracer = ReadableTracer()
+    val interpreter = CatchableTracingInterpreter(TracingInterpreter(print = false, tracer = tracer))
     interpreter.interpret(ast)
     return if (interpreter.hasException()) {
       Result(interpreter.getException()!!.message!!, listOf())
     } else {
-      Result("", interpreter.getLog())
+      Result("", tracer.getOutput())
     }
   }
 }
