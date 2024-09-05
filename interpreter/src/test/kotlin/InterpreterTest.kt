@@ -491,8 +491,9 @@ class InterpreterTest {
   @Test
   fun testErrorNode() {
     val ast = listOf(ErrorNode("Error"))
-    val interpreter = TracingInterpreter()
+    val interpreter = CatchableTracingInterpreter()
     interpreter interpret ast.iterator()
+    assert(interpreter.hasException())
   }
 
   @Test
