@@ -78,7 +78,7 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   }
 
   override fun visit(node: ReadInputNode) {
-    append("readInput(${node.value})")
+    append("readInput(${node.expression})")
   }
 
   override fun visit(node: ReadEnvNode) {
