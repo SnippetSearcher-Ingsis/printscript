@@ -1,4 +1,5 @@
 {
   "casing" : "screaming_kebab",
-  "noExpressionsInsidePrints" : true
+  "noExpressionsInsidePrints" : true,
+    "noExpressionsInsideReadInputs" : true
 }

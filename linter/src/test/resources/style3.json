@@ -1,4 +1,5 @@
 {
   "casing" : "pascal",
-  "noExpressionsInsidePrints" : true
+  "noExpressionsInsidePrints" : true,
+    "noExpressionsInsideReadInputs" : true
 }

@@ -1,4 +1,5 @@
 {
   "casing" : "screaming_snake",
-  "noExpressionsInsidePrints" : true
+  "noExpressionsInsidePrints" : true,
+    "noExpressionsInsideReadInputs" : true
 }
