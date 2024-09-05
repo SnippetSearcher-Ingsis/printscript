@@ -1,6 +1,6 @@
 package commands
 
-import CatchableTracingInterpreter
+import CatchableInterpreter
 import Result
 import TracingInterpreter
 import printScreen.lexer.Lexer
@@ -15,7 +15,7 @@ class Execute : CommandExecute {
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
     val tracer = ReadableTracer()
-    val interpreter = CatchableTracingInterpreter(TracingInterpreter(print = false, tracer = tracer))
+    val interpreter = CatchableInterpreter(TracingInterpreter(print = false, tracer = tracer))
     interpreter.interpret(ast)
     return if (interpreter.hasException()) {
       Result(interpreter.getException()!!.message!!, listOf())

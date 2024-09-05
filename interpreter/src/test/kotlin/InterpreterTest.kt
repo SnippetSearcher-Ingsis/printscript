@@ -483,7 +483,7 @@ class InterpreterTest {
       )
     )
     val tracer = ReadableTracer()
-    val interpreter = CatchableTracingInterpreter(TracingInterpreter(tracer))
+    val interpreter = CatchableInterpreter(TracingInterpreter(tracer))
     interpreter interpret ast.iterator()
     assert(interpreter.hasException())
     assert(interpreter.getException() is AssignationException)
@@ -506,8 +506,10 @@ class InterpreterTest {
   @Test
   fun testErrorNode() {
     val ast = listOf(ErrorNode("Error"))
-    val interpreter = Interpreter()
+    val tracer = ReadableTracer()
+    val interpreter = CatchableInterpreter(TracingInterpreter(tracer))
     interpreter interpret ast.iterator()
+    assert(interpreter.hasException())
   }
 
   @Test
@@ -520,7 +522,7 @@ class InterpreterTest {
       )
     )
     val tracer = ReadableTracer()
-    val interpreter = CatchableTracingInterpreter(TracingInterpreter((tracer)))
+    val interpreter = CatchableInterpreter(TracingInterpreter((tracer)))
     interpreter interpret ast.iterator()
     assert(interpreter.getException() is OperationException)
   }
@@ -538,7 +540,7 @@ class InterpreterTest {
       )
     )
     val tracer = ReadableTracer()
-    val interpreter = CatchableTracingInterpreter(TracingInterpreter(tracer))
+    val interpreter = CatchableInterpreter(TracingInterpreter(tracer))
     interpreter interpret ast.iterator()
     assert(interpreter.getException() is OperationException)
   }
