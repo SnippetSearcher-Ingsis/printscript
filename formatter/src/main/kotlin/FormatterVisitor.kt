@@ -2,6 +2,7 @@ import node.ASTNode
 import node.ASTVisitor
 import node.AssignationNode
 import node.ConstantDeclarationNode
+import node.DeclarationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
 import node.IfElseNode
@@ -9,7 +10,6 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.ReadEnvNode
 import node.ReadInputNode
-import node.VariableDeclarationNode
 import tool.Tool
 
 data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) :
@@ -52,17 +52,12 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     endStatement()
   }
 
-  override fun visit(node: VariableDeclarationNode) {
-    append("let ${node.variable}")
-    append(config.spaceAroundColonsRule.apply())
-    append(node.variableType)
-    append(config.spaceAroundEqualsRule.apply())
-    evaluate(node.expression)
-    endStatement()
-  }
-
-  override fun visit(node: ConstantDeclarationNode) {
-    append("const ${node.variable}")
+  override fun visit(node: DeclarationNode) {
+    if (node is ConstantDeclarationNode) {
+      append("const ${node.variable}")
+    } else {
+      append("let ${node.variable}")
+    }
     append(config.spaceAroundColonsRule.apply())
     append(node.variableType)
     append(config.spaceAroundEqualsRule.apply())

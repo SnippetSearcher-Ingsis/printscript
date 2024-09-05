@@ -14,17 +14,12 @@ data class TokenHandler(val line: List<Token>) {
     return tokens
   }
 
-  // temporal hasta encontrar una solucion mejor
   fun collectExpressionTokensInParenthesis(): List<Token> {
     val tokens = mutableListOf<Token>()
     while (!isAtEnd() && peek().type != TokenType.SYNTAX && peek().value != ")") {
       tokens.add(advance())
     }
     return tokens
-  }
-
-  private fun check(type: TokenType): Boolean {
-    return !isAtEnd() && peek().type == type
   }
 
   fun advance(): Token {
@@ -44,16 +39,20 @@ data class TokenHandler(val line: List<Token>) {
     }
   }
 
+  fun consume(type: TokenType, message: String): Token {
+    if (check(type)) return advance()
+    throw IllegalArgumentException(message)
+  }
+
+  private fun check(type: TokenType): Boolean {
+    return !isAtEnd() && peek().type == type
+  }
+
   private fun previous(): Token {
     if (currentTokenIndex > 0) {
       return line[currentTokenIndex - 1]
     } else {
       throw IllegalStateException("No previous token.")
     }
-  }
-
-  fun consume(type: TokenType, message: String): Token {
-    if (check(type)) return advance()
-    throw IllegalArgumentException(message)
   }
 }
