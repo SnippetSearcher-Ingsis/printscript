@@ -33,6 +33,7 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: ErrorNode) {
+    throw Exception(node.error)
   }
 
   override fun visit(context: Context, node: ReadEnvNode) {
