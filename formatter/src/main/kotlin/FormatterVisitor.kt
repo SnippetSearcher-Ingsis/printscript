@@ -26,11 +26,11 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     append("if (")
     evaluate(node.condition)
     append(") { \n")
-    node.ifBranch.forEach { evaluate(it) }
+    node.ifBranch.forEach { indent(); evaluate(it) }
     append("} \n")
     if (node.elseBranch.isEmpty()) return
     append("else { \n")
-    node.elseBranch.forEach { evaluate(it) }
+    node.elseBranch.forEach { indent(); evaluate(it) }
     append("} \n")
   }
 
@@ -83,6 +83,10 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   // utility functions
   private fun append(string: String) {
     outputCode.append(string)
+  }
+
+  private fun indent() {
+    outputCode.append(config.indentRule.apply())
   }
 
   private fun endStatement() {
