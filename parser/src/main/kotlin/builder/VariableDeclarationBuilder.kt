@@ -27,7 +27,7 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
       else VariableNode(identifier.value, type, LiteralNode("empty"), position)
     } else {
       handler.consume(TokenType.EQUAL, "Se esperaba '=' después del nombre de la variable.")
-      val expression = ExpressionBuilder(handler.collectExpressionTokens(false)).build()
+      val expression = generateExpression(handler)
       handler.consume(TokenType.SEMICOLON, "Se esperaba ';' después de la declaración.")
 
       if (isConst) ConstantDeclarationNode(identifier.value, type, expression, position)
@@ -35,5 +35,15 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
     }
 
     return node
+  }
+
+  private fun generateExpression(handler: TokenHandler): ASTNode  {
+    val expression: ASTNode
+    if (handler.peek().type == TokenType.READ_ENV) {
+      expression = ReadEnvBuilder(handler.collectExpressionTokens(false)).build()
+    } else {
+      expression = ExpressionBuilder(handler.collectExpressionTokens(false)).build()
+    }
+    return expression
   }
 }
