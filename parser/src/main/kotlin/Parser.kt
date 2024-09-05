@@ -8,7 +8,6 @@ import token.TokenType
 class Parser : IParser {
 
   override fun parse(tokens: Iterator<List<Token>>): Iterator<ASTNode> {
-    println("Hello, World!")
     return ParserIterator(tokens)
   }
 

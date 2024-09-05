@@ -1,3 +1,4 @@
+import modifier.Variable
 import org.junit.jupiter.api.Test
 import util.Context
 
@@ -10,7 +11,7 @@ class ContextTest {
   @Test
   fun contextClearTest() {
     val context = Context()
-    context.put("hello", "world")
+    context.put("hello", Variable("string", "world"))
     context.clear()
     assert(!(context has "hello"))
   }

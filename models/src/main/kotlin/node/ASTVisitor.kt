@@ -7,13 +7,11 @@ interface ASTVisitor {
 
   fun visit(node: PrintStatementNode)
 
-  fun visit(node: VariableDeclarationNode)
+  fun visit(node: DeclarationNode)
 
   fun visit(node: AssignationNode)
 
   fun visit(node: ErrorNode)
-
-  fun visit(node: ConstantDeclarationNode)
 
   fun visit(node: IfElseNode)
 

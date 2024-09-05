@@ -1,10 +1,7 @@
+let x: boolean = false;
 
-let x: boolean = true
-
-if (x) {
-    println("hola");
+if (true) {
+    println("Hello, World!");
 } else {
-    println("adios");
+    println("Goodbye, World!");
 }
-
-println("hola");
