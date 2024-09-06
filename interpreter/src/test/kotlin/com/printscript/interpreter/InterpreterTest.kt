@@ -65,7 +65,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
@@ -296,7 +296,7 @@ class InterpreterTest {
 
         ),
       )
-      val interpreter = Interpreter()
+      val interpreter = PrintInterpreter()
       interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
@@ -316,7 +316,7 @@ class InterpreterTest {
 
         ),
       )
-      val interpreter = Interpreter()
+      val interpreter = PrintInterpreter()
       interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
@@ -336,7 +336,7 @@ class InterpreterTest {
 
         ),
       )
-      val interpreter = Interpreter()
+      val interpreter = PrintInterpreter()
       interpreter.interpret(ast.iterator())
     }.onSuccess {
       assert(false)
@@ -354,7 +354,7 @@ class InterpreterTest {
         operator = "yes",
       ),
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<OperationException> { interpreter.interpret(ast.iterator()) }
   }
 
@@ -368,7 +368,7 @@ class InterpreterTest {
 
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 
@@ -382,7 +382,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
@@ -394,7 +394,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<ReferenceException> { interpreter interpret ast.iterator() }
   }
 
@@ -413,7 +413,7 @@ class InterpreterTest {
         operator = "+"
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<OperationException> { interpreter interpret ast.iterator() }
   }
 
@@ -433,7 +433,7 @@ class InterpreterTest {
         position = com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
@@ -452,7 +452,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     interpreter interpret ast.iterator()
   }
 
@@ -485,7 +485,7 @@ class InterpreterTest {
 
   @Test
   fun testInterpreter() {
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     val ast = listOf(
       com.printscript.models.node.DoubleExpressionNode(
         left = com.printscript.models.node.LiteralNode(1),
@@ -579,7 +579,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<DeclarationException> { interpreter interpret ast.iterator() }
   }
 
@@ -598,7 +598,7 @@ class InterpreterTest {
         com.printscript.models.node.Position(0, 0)
       )
     )
-    val interpreter = Interpreter()
+    val interpreter = PrintInterpreter()
     assertThrows<AssignationException> { interpreter interpret ast.iterator() }
   }
 }
