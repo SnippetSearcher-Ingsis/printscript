@@ -1,9 +1,9 @@
 package com.printscript.linter
 
+import com.printscript.lexer.Lexer
+import com.printscript.parser.Parser
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import printScreen.lexer.com.printscript.lexer.Lexer
-import printScreen.parser.com.printscript.parser.Parser
 import java.io.File
 
 class LinterTest {

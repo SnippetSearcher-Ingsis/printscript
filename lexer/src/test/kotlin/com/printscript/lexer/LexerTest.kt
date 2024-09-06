@@ -1,7 +1,6 @@
 package com.printscript.lexer
 
 import org.junit.jupiter.api.Test
-import printScreen.lexer.com.printscript.lexer.Lexer
 import java.io.File
 
 class LexerTest {

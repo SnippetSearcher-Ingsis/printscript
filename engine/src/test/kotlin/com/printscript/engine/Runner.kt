@@ -1,8 +1,8 @@
 package com.printscript.engine
 
 import com.printscript.interpreter.PrintInterpreter
-import printScreen.lexer.com.printscript.lexer.Lexer
-import printScreen.parser.com.printscript.parser.Parser
+import com.printscript.lexer.Lexer
+import com.printscript.parser.Parser
 import java.io.File
 
 fun main() {

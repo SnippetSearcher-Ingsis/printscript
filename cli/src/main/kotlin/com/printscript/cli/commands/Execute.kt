@@ -5,8 +5,8 @@ import com.printscript.cli.TXTHandler
 import com.printscript.interpreter.CatchableInterpreter
 import com.printscript.interpreter.TracingInterpreter
 import com.printscript.interpreter.tracer.ReadableTracer
-import printScreen.lexer.com.printscript.lexer.Lexer
-import printScreen.parser.com.printscript.parser.CatchableParser
+import com.printscript.lexer.Lexer
+import com.printscript.parser.CatchableParser
 
 class Execute : CommandExecute {
   override fun execute(vararg file: String): Result {
