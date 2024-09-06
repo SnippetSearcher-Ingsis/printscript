@@ -1,8 +1,8 @@
-package util
+package com.printscript.interpreter.util
 
-import AssignationException
-import modifier.Modifier
-import modifier.Variable
+import com.printscript.interpreter.AssignationException
+import com.printscript.interpreter.modifier.Modifier
+import com.printscript.interpreter.modifier.Variable
 import kotlin.jvm.Throws
 
 internal class Context {

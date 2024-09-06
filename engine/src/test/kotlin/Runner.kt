@@ -1,3 +1,4 @@
+import com.printscript.interpreter.Interpreter
 import printScreen.lexer.Lexer
 import printScreen.parser.Parser
 import java.io.File

@@ -1,8 +1,10 @@
+package com.printscript.interpreter
+
+import com.printscript.interpreter.util.Context
+import com.printscript.interpreter.visitor.EvaluationStrategy
+import com.printscript.interpreter.visitor.Visitor
 import node.ASTNode
 import node.ASTVisitor
-import util.Context
-import visitor.EvaluationStrategy
-import visitor.Visitor
 
 /**
  * Interpreter that evaluates the AST.

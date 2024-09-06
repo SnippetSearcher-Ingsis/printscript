@@ -1,5 +1,8 @@
-package visitor
+package com.printscript.interpreter.visitor
 
+import com.printscript.interpreter.tracer.Tracer
+import com.printscript.interpreter.util.Context
+import com.printscript.interpreter.util.Solver
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
@@ -7,9 +10,6 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 import node.VariableNode
-import tracer.Tracer
-import util.Context
-import util.Solver
 
 /**
  * Visitor that logs print statements

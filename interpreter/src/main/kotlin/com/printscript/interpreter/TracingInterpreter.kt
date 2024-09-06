@@ -1,8 +1,10 @@
+package com.printscript.interpreter
+
+import com.printscript.interpreter.tracer.Tracer
+import com.printscript.interpreter.util.Context
+import com.printscript.interpreter.visitor.TracingStrategy
+import com.printscript.interpreter.visitor.Visitor
 import node.ASTNode
-import tracer.Tracer
-import util.Context
-import visitor.TracingStrategy
-import visitor.Visitor
 
 /**
  * Interpreter that logs the execution of the program.

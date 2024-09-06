@@ -1,7 +1,7 @@
-package util
+package com.printscript.interpreter.util
 
-import OperationException
-import ReferenceException
+import com.printscript.interpreter.OperationException
+import com.printscript.interpreter.ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode

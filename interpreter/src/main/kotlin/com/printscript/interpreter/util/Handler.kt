@@ -1,9 +1,9 @@
-package util
+package com.printscript.interpreter.util
 
-import AssignationException
-import DeclarationException
-import OperationException
-import modifier.Variable
+import com.printscript.interpreter.AssignationException
+import com.printscript.interpreter.DeclarationException
+import com.printscript.interpreter.OperationException
+import com.printscript.interpreter.modifier.Variable
 import node.ASTNode
 import node.AssignationNode
 import node.ErrorNode
