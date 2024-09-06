@@ -1,40 +1,34 @@
 package com.printscript.interpreter.visitor
 
 import com.printscript.interpreter.util.Context
-import node.ASTVisitor
-import node.AssignationNode
-import node.DoubleExpressionNode
-import node.ErrorNode
-import node.LiteralNode
-import node.PrintStatementNode
-import node.VariableDeclarationNode
 
-internal class Visitor(private val context: Context, private val strategy: VisitorStrategy) : ASTVisitor {
-  override fun visit(node: DoubleExpressionNode) {
+internal class Visitor(private val context: Context, private val strategy: VisitorStrategy) :
+  com.printscript.models.node.ASTVisitor {
+  override fun visit(node: com.printscript.models.node.DoubleExpressionNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: LiteralNode<*>) {
+  override fun visit(node: com.printscript.models.node.LiteralNode<*>) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: PrintStatementNode) {
+  override fun visit(node: com.printscript.models.node.PrintStatementNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: VariableDeclarationNode) {
+  override fun visit(node: com.printscript.models.node.VariableDeclarationNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: AssignationNode) {
+  override fun visit(node: com.printscript.models.node.AssignationNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: ErrorNode) {
+  override fun visit(node: com.printscript.models.node.ErrorNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(node: node.VariableNode) {
+  override fun visit(node: com.printscript.models.node.VariableNode) {
     strategy.visit(context, node)
   }
 }

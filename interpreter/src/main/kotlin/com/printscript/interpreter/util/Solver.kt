@@ -2,16 +2,12 @@ package com.printscript.interpreter.util
 
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.ReferenceException
-import node.ASTNode
-import node.DoubleExpressionNode
-import node.LiteralNode
-import kotlin.jvm.Throws
 
 internal object Solver {
   @Throws(Exception::class)
-  fun getValue(context: Context, node: ASTNode): Any {
+  fun getValue(context: Context, node: com.printscript.models.node.ASTNode): Any {
     return when (node) {
-      is LiteralNode<*> -> {
+      is com.printscript.models.node.LiteralNode<*> -> {
         when {
           node.value is String && (node.value as String).startsWith("\"") ->
             (node.value as String).replace("\"", "")
@@ -26,7 +22,7 @@ internal object Solver {
         }
       }
 
-      is DoubleExpressionNode -> {
+      is com.printscript.models.node.DoubleExpressionNode -> {
         val a = getValue(context, node.left)
         val b = getValue(context, node.right)
         when (node.operator) {

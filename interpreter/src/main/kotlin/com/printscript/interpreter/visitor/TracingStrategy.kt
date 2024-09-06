@@ -3,13 +3,6 @@ package com.printscript.interpreter.visitor
 import com.printscript.interpreter.tracer.Tracer
 import com.printscript.interpreter.util.Context
 import com.printscript.interpreter.util.Solver
-import node.AssignationNode
-import node.DoubleExpressionNode
-import node.ErrorNode
-import node.LiteralNode
-import node.PrintStatementNode
-import node.VariableDeclarationNode
-import node.VariableNode
 
 /**
  * Visitor that logs print statements
@@ -20,33 +13,33 @@ internal class TracingStrategy(
 ) : VisitorStrategy {
   private val strategy = EvaluationStrategy
 
-  override fun visit(context: Context, node: DoubleExpressionNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.DoubleExpressionNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: LiteralNode<*>) {
+  override fun visit(context: Context, node: com.printscript.models.node.LiteralNode<*>) {
     strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: PrintStatementNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.PrintStatementNode) {
     val result = Solver.getValue(context, node.expression)
     tracer.print(result.toString())
     if (print) strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: VariableDeclarationNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.VariableDeclarationNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: AssignationNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.AssignationNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: ErrorNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.ErrorNode) {
     strategy.visit(context, node)
   }
 
-  override fun visit(context: Context, node: VariableNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.VariableNode) {
     strategy.visit(context, node)
   }
 }
