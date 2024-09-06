@@ -1,4 +1,4 @@
-package printScreen.parser.com.printscript.parser
+package com.printscript.parser
 
 class CatchableParser : IParser {
 

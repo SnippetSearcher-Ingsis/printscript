@@ -1,8 +1,6 @@
 package com.printscript.parser
 
 import org.junit.jupiter.api.Test
-import printScreen.parser.com.printscript.parser.CatchableParser
-import printScreen.parser.com.printscript.parser.Parser
 
 class ParserTest {
   @Test

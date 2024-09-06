@@ -1,4 +1,4 @@
-package printScreen.parser.com.printscript.parser
+package com.printscript.parser
 
 import com.printscript.parser.generator.ASTGenerator
 

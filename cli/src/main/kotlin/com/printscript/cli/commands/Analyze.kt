@@ -2,9 +2,9 @@ package com.printscript.cli.commands
 
 import com.printscript.cli.Result
 import com.printscript.cli.TXTHandler
+import com.printscript.lexer.Lexer
 import com.printscript.linter.Linter
-import printScreen.lexer.com.printscript.lexer.Lexer
-import printScreen.parser.com.printscript.parser.CatchableParser
+import com.printscript.parser.CatchableParser
 import java.io.File
 
 class Analyze : CommandExecute {
