@@ -1,5 +1,6 @@
-package visitor
+package com.printscript.interpreter.visitor
 
+import com.printscript.interpreter.util.Context
 import node.AssignationNode
 import node.DoubleExpressionNode
 import node.ErrorNode
@@ -7,7 +8,6 @@ import node.LiteralNode
 import node.PrintStatementNode
 import node.VariableDeclarationNode
 import node.VariableNode
-import util.Context
 
 internal sealed interface VisitorStrategy {
   fun visit(context: Context, node: DoubleExpressionNode)

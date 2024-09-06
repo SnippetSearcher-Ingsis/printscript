@@ -1,3 +1,5 @@
+package com.printscript.interpreter
+
 import catchable.ICatchable
 import node.ASTNode
 

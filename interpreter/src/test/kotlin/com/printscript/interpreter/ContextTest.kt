@@ -1,6 +1,8 @@
-import modifier.Variable
+package com.printscript.interpreter
+
+import com.printscript.interpreter.modifier.Variable
+import com.printscript.interpreter.util.Context
 import org.junit.jupiter.api.Test
-import util.Context
 
 class ContextTest {
   @Test

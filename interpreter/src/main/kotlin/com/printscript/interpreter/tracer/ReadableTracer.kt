@@ -1,4 +1,4 @@
-package tracer
+package com.printscript.interpreter.tracer
 
 class ReadableTracer : Tracer {
   private val output = mutableListOf<String>()

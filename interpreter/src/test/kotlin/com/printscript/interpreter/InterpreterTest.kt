@@ -1,3 +1,6 @@
+package com.printscript.interpreter
+
+import com.printscript.interpreter.tracer.ReadableTracer
 import node.ASTNode
 import node.AssignationNode
 import node.DoubleExpressionNode
@@ -9,7 +12,6 @@ import node.VariableDeclarationNode
 import node.VariableNode
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import tracer.ReadableTracer
 
 class InterpreterTest {
   @Test

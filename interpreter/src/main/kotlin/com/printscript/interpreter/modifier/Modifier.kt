@@ -1,4 +1,4 @@
-package modifier
+package com.printscript.interpreter.modifier
 
 internal sealed interface Modifier {
   fun getValue(): Any?
