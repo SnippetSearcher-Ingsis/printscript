@@ -1,7 +1,7 @@
 package com.printscript.linter
 
 import com.printscript.lexer.Lexer
-import com.printscript.parser.Parser
+import com.printscript.parser.PrintParser
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
@@ -17,7 +17,7 @@ class LinterTest {
   @Test
   fun testStyle1() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style1.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style1.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       Linter.lint(astList.next(), style1).forEach { violation ->
@@ -34,7 +34,7 @@ class LinterTest {
   @Test
   fun testStyle2() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style2.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style2.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       result.forEach { println(it) }
@@ -43,16 +43,14 @@ class LinterTest {
       }
     }
     val expectedAt0 = "Casing violation at 1:5, snake case expected"
-    val expectedAt1 = "Expression inside read input statement at 4:1"
     assert(result.size == 1)
     assertEquals(expectedAt0, result[0])
-    // assertEquals(expectedAt1, result[1])
   }
 
   @Test
   fun testStyle3() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style3.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style3.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       Linter.lint(astList.next(), style3).forEach { violation ->
@@ -69,7 +67,7 @@ class LinterTest {
   @Test
   fun testStyle4() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style4.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style4.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       Linter.lint(astList.next(), style4).forEach { violation ->
@@ -86,7 +84,7 @@ class LinterTest {
   @Test
   fun testStyle5() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style5.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style5.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       Linter.lint(astList.next(), style5).forEach { violation ->
@@ -103,7 +101,7 @@ class LinterTest {
   @Test
   fun testStyle6() {
     val lexer = Lexer()
-    val astList = Parser().parse(lexer.lex(File("src/test/resources/style6.txt").reader()))
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style6.txt").reader()))
     val result = mutableListOf<String>()
     while (astList.hasNext()) {
       Linter.lint(astList.next(), style6).forEach { violation ->

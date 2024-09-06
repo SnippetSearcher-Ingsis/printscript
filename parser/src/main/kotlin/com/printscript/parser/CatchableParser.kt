@@ -1,16 +1,19 @@
 package com.printscript.parser
 
-class CatchableParser : IParser {
+import com.printscript.models.catchable.ICatchable
+import com.printscript.models.node.ASTNode
+import com.printscript.models.node.ErrorNode
+import com.printscript.models.token.Token
 
-  override fun parse(tokens: Iterator<List<com.printscript.models.token.Token>>): CatchableParserIterator {
+class CatchableParser : Parser {
+
+  override fun parse(tokens: Iterator<List<Token>>): CatchableParserIterator {
     return CatchableParserIterator(tokens)
   }
 
-  inner class CatchableParserIterator(tokens: Iterator<List<com.printscript.models.token.Token>>) :
-    Iterator<com.printscript.models.node.ASTNode>,
-    com.printscript.models.catchable.ICatchable {
+  inner class CatchableParserIterator(tokens: Iterator<List<Token>>) : Iterator<ASTNode>, ICatchable {
 
-    private val parser = Parser().parse(tokens)
+    private val parser = PrintParser().parse(tokens)
 
     private var exception: Exception? = null
 
@@ -18,12 +21,12 @@ class CatchableParser : IParser {
       return exception == null && parser.hasNext()
     }
 
-    override fun next(): com.printscript.models.node.ASTNode {
+    override fun next(): ASTNode {
       return try {
         parser.next()
       } catch (e: Exception) {
         exception = e
-        com.printscript.models.node.ErrorNode(e.message.toString())
+        ErrorNode(e.message.toString())
       }
     }
 
