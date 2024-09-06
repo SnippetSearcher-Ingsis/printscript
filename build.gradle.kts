@@ -18,7 +18,7 @@ dependencies {
 }
 
 allprojects {
-    group = "com.print-script"
+    group = "com.printscript"
     version = "1.1-SNAPSHOT"
 
     apply(plugin = "java")
@@ -97,7 +97,7 @@ subprojects {
         repositories {
             maven {
                 name = "GithubPackages"
-                url = uri("https://maven.pkg.github.com/xoaquinsanchezvarsallona/ing-sis-printscreen")
+                url = uri("https://maven.pkg.github.com/pedroramirezneira/printscript")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
                     password = System.getenv("GITHUB_TOKEN")
