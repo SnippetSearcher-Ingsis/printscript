@@ -3,38 +3,31 @@ package com.printscript.interpreter.visitor
 import com.printscript.interpreter.util.Context
 import com.printscript.interpreter.util.Handler
 import com.printscript.interpreter.util.Solver
-import node.AssignationNode
-import node.DoubleExpressionNode
-import node.ErrorNode
-import node.LiteralNode
-import node.PrintStatementNode
-import node.VariableDeclarationNode
-import node.VariableNode
 
 internal data object EvaluationStrategy : VisitorStrategy {
-  override fun visit(context: Context, node: DoubleExpressionNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.DoubleExpressionNode) {
     Solver.getValue(context, node)
   }
 
-  override fun visit(context: Context, node: LiteralNode<*>) {}
+  override fun visit(context: Context, node: com.printscript.models.node.LiteralNode<*>) {}
 
-  override fun visit(context: Context, node: PrintStatementNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.PrintStatementNode) {
     Handler.print(context, node.expression)
   }
 
-  override fun visit(context: Context, node: VariableDeclarationNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.VariableDeclarationNode) {
     Handler.declareValue(context, node)
   }
 
-  override fun visit(context: Context, node: AssignationNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.AssignationNode) {
     Handler.assignValue(context, node)
   }
 
-  override fun visit(context: Context, node: ErrorNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.ErrorNode) {
     Handler.error(node)
   }
 
-  override fun visit(context: Context, node: VariableNode) {
+  override fun visit(context: Context, node: com.printscript.models.node.VariableNode) {
     Handler.declareVariable(context, node)
   }
 }

@@ -4,25 +4,20 @@ import com.printscript.interpreter.AssignationException
 import com.printscript.interpreter.DeclarationException
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.modifier.Variable
-import node.ASTNode
-import node.AssignationNode
-import node.ErrorNode
-import node.VariableDeclarationNode
-import node.VariableNode
 
 internal object Handler {
-  fun print(context: Context, node: ASTNode) {
+  fun print(context: Context, node: com.printscript.models.node.ASTNode) {
     val value = Solver.getValue(context, node)
     println(value)
   }
 
-  fun declareValue(context: Context, node: VariableDeclarationNode) {
+  fun declareValue(context: Context, node: com.printscript.models.node.VariableDeclarationNode) {
     val key = node.variable
     val value = getValue(context, key, node.variableType, node.expression)
     context.put(key, Variable(node.variableType, value))
   }
 
-  fun assignValue(context: Context, node: AssignationNode) {
+  fun assignValue(context: Context, node: com.printscript.models.node.AssignationNode) {
     val key = node.variable!!
     val value = Solver.getValue(context, node.expression)
     val type = getType(value)
@@ -32,17 +27,17 @@ internal object Handler {
     }
   }
 
-  fun declareVariable(context: Context, node: VariableNode) {
+  fun declareVariable(context: Context, node: com.printscript.models.node.VariableNode) {
     context.put(node.name, Variable(node.type, null))
   }
 
-  fun error(node: ErrorNode) {
+  fun error(node: com.printscript.models.node.ErrorNode) {
     when {
       node.error != "NODE_ERROR_BACKDOOR" -> throw OperationException(node.error)
     }
   }
 
-  private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
+  private fun getValue(context: Context, key: String, type: String, expression: com.printscript.models.node.ASTNode): Any {
     val value = Solver.getValue(context, expression)
     when {
       context has key -> throw DeclarationException("$key is already declared.")

@@ -4,7 +4,6 @@ import com.printscript.interpreter.tracer.Tracer
 import com.printscript.interpreter.util.Context
 import com.printscript.interpreter.visitor.TracingStrategy
 import com.printscript.interpreter.visitor.Visitor
-import node.ASTNode
 
 /**
  * Interpreter that logs the execution of the program.
@@ -17,7 +16,7 @@ class TracingInterpreter(tracer: Tracer, private val print: Boolean = true) : II
 
   private val visitor = Visitor(context, strategy)
 
-  override fun interpret(iterator: Iterator<ASTNode>) {
+  override fun interpret(iterator: Iterator<com.printscript.models.node.ASTNode>) {
     while (iterator.hasNext()) {
       val node = iterator.next()
       node.accept(visitor)
