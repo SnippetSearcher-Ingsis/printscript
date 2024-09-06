@@ -2,10 +2,10 @@ package com.printscript.parser
 
 import org.junit.jupiter.api.Test
 
-class ParserTest {
+class PrintParserTest {
   @Test
   fun testDeclaration() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -33,7 +33,7 @@ class ParserTest {
 
   @Test
   fun testAssignation() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -80,7 +80,7 @@ class ParserTest {
 
   @Test
   fun testAddition() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -114,7 +114,7 @@ class ParserTest {
 
   @Test
   fun testSubtraction() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -148,7 +148,7 @@ class ParserTest {
 
   @Test
   fun testMultiplication() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -182,7 +182,7 @@ class ParserTest {
 
   @Test
   fun testDivision() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -216,7 +216,7 @@ class ParserTest {
 
   @Test
   fun testStringAddition() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -255,7 +255,7 @@ class ParserTest {
 
   @Test
   fun testAdditionWithDifferentType() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -294,7 +294,7 @@ class ParserTest {
 
   @Test
   fun testStringPrint() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.PRINTLN, "println", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 1),
@@ -323,7 +323,7 @@ class ParserTest {
 
   @Test
   fun testVariablePrint() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
@@ -365,7 +365,7 @@ class ParserTest {
 
   @Test
   fun epicTest() {
-    val parser = Parser()
+    val parser = PrintParser()
     val tokens = listOf(
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),

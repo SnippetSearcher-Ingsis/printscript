@@ -1,34 +1,42 @@
 package com.printscript.lexer
 
+import com.printscript.models.token.Token
+import com.printscript.models.token.TokenType
+import com.printscript.models.token.ValuedToken
 import java.io.BufferedReader
 import java.io.Reader
 
 class Lexer {
 
-  private val tokenPatterns: List<Pair<String, com.printscript.models.token.TokenType>> = listOf(
-    "\\blet\\b" to com.printscript.models.token.TokenType.LET,
-    "\\bprintln\\b" to com.printscript.models.token.TokenType.PRINTLN,
-    "\\bstring\\b" to com.printscript.models.token.TokenType.TYPE,
-    "\\bnumber\\b" to com.printscript.models.token.TokenType.TYPE,
-    "\\bboolean\\b" to com.printscript.models.token.TokenType.TYPE,
-    "\\btrue\\b" to com.printscript.models.token.TokenType.LITERAL,
-    "\\bfalse\\b" to com.printscript.models.token.TokenType.LITERAL,
-    "[a-zA-Z_][a-zA-Z_0-9-]*" to com.printscript.models.token.TokenType.IDENTIFIER,
-    "[=]" to com.printscript.models.token.TokenType.EQUAL,
-    "[0-9]+(\\.[0-9]+)?" to com.printscript.models.token.TokenType.LITERAL,
-    "\"[^\"]*\"|'[^']*'" to com.printscript.models.token.TokenType.LITERAL,
-    "[+\\-*/]" to com.printscript.models.token.TokenType.OPERATOR,
-    "[{]" to com.printscript.models.token.TokenType.OPEN_BRACKET,
-    "[}]" to com.printscript.models.token.TokenType.CLOSE_BRACKET,
-    "[:()]" to com.printscript.models.token.TokenType.SYNTAX,
-    "[;]" to com.printscript.models.token.TokenType.SEMICOLON
+  private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
+    "\\blet\\b" to TokenType.LET,
+    "\\bconst\\b" to TokenType.CONST,
+    "\\bif\\b" to TokenType.IF,
+    "\\belse\\b" to TokenType.ELSE,
+    "\\bprintln\\b" to TokenType.PRINTLN,
+    "\\breadInput\\b" to TokenType.READ_INPUT,
+    "\\breadEnv\\b" to TokenType.READ_ENV,
+    "\\bstring\\b" to TokenType.TYPE,
+    "\\bnumber\\b" to TokenType.TYPE,
+    "\\bboolean\\b" to TokenType.TYPE,
+    "\\btrue\\b" to TokenType.LITERAL,
+    "\\bfalse\\b" to TokenType.LITERAL,
+    "[a-zA-Z_][a-zA-Z_0-9-]*" to TokenType.IDENTIFIER,
+    "[=]" to TokenType.EQUAL,
+    "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
+    "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
+    "[+\\-*/]" to TokenType.OPERATOR,
+    "[{]" to TokenType.OPEN_BRACKET,
+    "[}]" to TokenType.CLOSE_BRACKET,
+    "[:()]" to TokenType.SYNTAX,
+    "[;]" to TokenType.SEMICOLON
   )
 
-  fun lex(reader: Reader): Iterator<List<com.printscript.models.token.Token>> {
+  fun lex(reader: Reader): Iterator<List<Token>> {
     return LexerIterator(reader)
   }
 
-  inner class LexerIterator(reader: Reader) : Iterator<List<com.printscript.models.token.Token>> {
+  inner class LexerIterator(reader: Reader) : Iterator<List<Token>> {
     private val bufferedReader: BufferedReader = reader.buffered()
     private var currentLine: String? = null
     private var lineNumber: Int = 0
@@ -44,8 +52,8 @@ class Lexer {
       column = 1
     }
 
-    private fun tokenizeLine(line: String): List<com.printscript.models.token.Token> {
-      val tokens = mutableListOf<com.printscript.models.token.Token>()
+    private fun tokenizeLine(line: String): List<Token> {
+      val tokens = mutableListOf<Token>()
       var position = 0
 
       while (position < line.length) {
@@ -63,7 +71,7 @@ class Lexer {
           val matchResult = regex.find(line, position)
           if (matchResult != null && matchResult.range.first == position) {
             val value = matchResult.value
-            val token = com.printscript.models.token.ValuedToken(tokenType, value, lineNumber, column)
+            val token = ValuedToken(tokenType, value, lineNumber, column)
             tokens.add(token)
             position += value.length
             column += value.length
@@ -91,7 +99,7 @@ class Lexer {
       return currentLine != null
     }
 
-    override fun next(): List<com.printscript.models.token.Token> {
+    override fun next(): List<Token> {
       if (!hasNext()) throw NoSuchElementException("No more lines to read")
 
       val lineTokens = tokenizeLine(currentLine!!)
