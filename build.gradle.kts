@@ -18,7 +18,7 @@ dependencies {
 }
 
 allprojects {
-    group = "com.print-script"
+    group = "com.printscript"
     version = "1.1-SNAPSHOT"
 
     apply(plugin = "java")
