@@ -97,7 +97,7 @@ subprojects {
         repositories {
             maven {
                 name = "GithubPackages"
-                url = uri("https://maven.pkg.github.com/pedroramirezneira/printscreen")
+                url = uri("https://maven.pkg.github.com/pedroramirezneira/printscript")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
                     password = System.getenv("GITHUB_TOKEN")
