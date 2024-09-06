@@ -1,29 +1,32 @@
 package com.printscript.parser.builder
 
+import com.printscript.models.node.ASTNode
+import com.printscript.models.node.DoubleExpressionNode
+import com.printscript.models.node.LiteralNode
 import com.printscript.models.token.Token
 
 class ExpressionBuilder(private val line: List<Token>) : Builder {
 
-  override fun build(): com.printscript.models.node.ASTNode {
+  override fun build(): ASTNode {
     val operators = mutableListOf<Pair<Token, Int>>()
     line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
     val root = addNodes(line)
     return root
   }
 
-  private fun addNodes(line: List<Token>): com.printscript.models.node.ASTNode {
+  private fun addNodes(line: List<Token>): ASTNode {
     val operators = mutableListOf<Pair<Token, Int>>()
     line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
 
     if (line.size == 1) {
       val value = line[0].value
       return try {
-        com.printscript.models.node.LiteralNode(value.toInt())
+        LiteralNode(value.toInt())
       } catch (e: NumberFormatException) {
         try {
-          com.printscript.models.node.LiteralNode(value.toDouble())
+          LiteralNode(value.toDouble())
         } catch (e: NumberFormatException) {
-          com.printscript.models.node.LiteralNode(value)
+          LiteralNode(value)
         }
       }
     }
@@ -41,7 +44,7 @@ class ExpressionBuilder(private val line: List<Token>) : Builder {
     val leftNode = addNodes(leftTokens)
     val rightNode = addNodes(rightTokens)
 
-    return com.printscript.models.node.DoubleExpressionNode(operator.value, leftNode, rightNode)
+    return DoubleExpressionNode(operator.value, leftNode, rightNode)
   }
 
   private fun findLowestPrecedenceOperator(operators: List<Pair<Token, Int>>): Pair<Token, Int> {
