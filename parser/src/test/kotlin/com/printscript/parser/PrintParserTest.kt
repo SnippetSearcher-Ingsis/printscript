@@ -1,5 +1,13 @@
 package com.printscript.parser
 
+import com.printscript.models.node.AssignationNode
+import com.printscript.models.node.DoubleExpressionNode
+import com.printscript.models.node.LiteralNode
+import com.printscript.models.node.Position
+import com.printscript.models.node.PrintStatementNode
+import com.printscript.models.node.VariableDeclarationNode
+import com.printscript.models.token.TokenType
+import com.printscript.models.token.ValuedToken
 import org.junit.jupiter.api.Test
 
 class PrintParserTest {
@@ -7,25 +15,25 @@ class PrintParserTest {
   fun testDeclaration() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31)
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "string",
-        expression = com.printscript.models.node.LiteralNode("\"Hello World\""),
-        position = com.printscript.models.node.Position(1, 1)
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(1, 1)
       )
     )
     assert(parser.parse(listOf(tokens).iterator()).next() == ast.first())
@@ -35,39 +43,39 @@ class PrintParserTest {
   fun testAssignation() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello Universe\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31)
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "string",
-        expression = com.printscript.models.node.LiteralNode("\"Hello World\""),
-        position = com.printscript.models.node.Position(1, 1)
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(1, 1)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "a",
-        expression = com.printscript.models.node.LiteralNode("\"Hello Universe\""),
-        position = com.printscript.models.node.Position(1, 1)
+        expression = LiteralNode("\"Hello Universe\""),
+        position = Position(1, 1)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -82,26 +90,26 @@ class PrintParserTest {
   fun testAddition() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "1", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "+", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "1", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "+", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode(1),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode(1),
+          right = LiteralNode(2),
           operator = "+",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -116,26 +124,26 @@ class PrintParserTest {
   fun testSubtraction() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "1", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "-", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "1", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "-", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode(1),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode(1),
+          right = LiteralNode(2),
           operator = "-",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -150,26 +158,26 @@ class PrintParserTest {
   fun testMultiplication() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "1", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "*", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "1", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "*", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode(1),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode(1),
+          right = LiteralNode(2),
           operator = "*",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -184,26 +192,26 @@ class PrintParserTest {
   fun testDivision() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "1", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "/", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "1", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "/", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode(1),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode(1),
+          right = LiteralNode(2),
           operator = "/",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -218,31 +226,31 @@ class PrintParserTest {
   fun testStringAddition() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.OPERATOR, "+", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.OPERATOR, "+", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "string",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode("\"Hello World\""),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode("\"Hello World\""),
+          right = LiteralNode(2),
           operator = "+",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -257,31 +265,31 @@ class PrintParserTest {
   fun testAdditionWithDifferentType() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 1),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.OPERATOR, "+", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.OPERATOR, "+", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "string",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode("\"Hello World\""),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode("\"Hello World\""),
+          right = LiteralNode(2),
           operator = "+",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -296,21 +304,21 @@ class PrintParserTest {
   fun testStringPrint() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.PRINTLN, "println", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 1),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.PRINTLN, "println", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 1),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         1
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.SYNTAX, ")", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.PrintStatementNode(
-        expression = com.printscript.models.node.LiteralNode("\"Hello World\""),
-        position = com.printscript.models.node.Position(0, 0)
+      PrintStatementNode(
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -325,34 +333,34 @@ class PrintParserTest {
   fun testVariablePrint() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.PRINTLN, "println", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1),
+      ValuedToken(TokenType.PRINTLN, "println", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 1),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "string",
-        expression = com.printscript.models.node.LiteralNode("\"Hello World\""),
-        position = com.printscript.models.node.Position(0, 0)
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(0, 0)
       ),
-      com.printscript.models.node.PrintStatementNode(
-        expression = com.printscript.models.node.LiteralNode("a"),
-        position = com.printscript.models.node.Position(0, 0)
+      PrintStatementNode(
+        expression = LiteralNode("a"),
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -367,47 +375,47 @@ class PrintParserTest {
   fun epicTest() {
     val parser = PrintParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "1", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.OPERATOR, "+", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.PRINTLN, "println", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.OPERATOR, "-", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.OPERATOR, "/", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "2", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 1)
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "1", 1, 1),
+      ValuedToken(TokenType.OPERATOR, "+", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1),
+      ValuedToken(TokenType.PRINTLN, "println", 1, 1),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 1),
+      ValuedToken(TokenType.OPERATOR, "-", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.OPERATOR, "/", 1, 1),
+      ValuedToken(TokenType.LITERAL, "2", 1, 1),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 1),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 1)
     )
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "a",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode(1),
-          right = com.printscript.models.node.LiteralNode(2),
+        expression = DoubleExpressionNode(
+          left = LiteralNode(1),
+          right = LiteralNode(2),
           operator = "+",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       ),
-      com.printscript.models.node.PrintStatementNode(
-        expression = com.printscript.models.node.DoubleExpressionNode(
-          left = com.printscript.models.node.LiteralNode("a"),
-          right = com.printscript.models.node.DoubleExpressionNode(
-            left = com.printscript.models.node.LiteralNode(2),
-            right = com.printscript.models.node.LiteralNode(2),
+      PrintStatementNode(
+        expression = DoubleExpressionNode(
+          left = LiteralNode("a"),
+          right = DoubleExpressionNode(
+            left = LiteralNode(2),
+            right = LiteralNode(2),
             operator = "/",
           ),
           operator = "-",
         ),
-        position = com.printscript.models.node.Position(0, 0)
+        position = Position(0, 0)
       )
     )
     val result = parser.parse(listOf(tokens).iterator())
@@ -422,11 +430,11 @@ class PrintParserTest {
   fun testCatchableParser() {
     val parser = CatchableParser()
     val tokens = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.LET, "let", 1, 1),
     )
     val result: CatchableParser.CatchableParserIterator = parser.parse(listOf(tokens).iterator())
     while (result.hasNext()) {

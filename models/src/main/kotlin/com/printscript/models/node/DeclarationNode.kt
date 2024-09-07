@@ -5,5 +5,4 @@ interface DeclarationNode : ASTNode {
   val variableType: String
   val expression: ASTNode
   val position: Position
-  override fun accept(visitor: ASTVisitor)
 }

@@ -1,6 +1,6 @@
 package com.printscript.parser
 
-import com.printscript.models.catchable.ICatchable
+import com.printscript.models.catchable.Catchable
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.ErrorNode
 import com.printscript.models.token.Token
@@ -11,7 +11,7 @@ class CatchableParser : Parser {
     return CatchableParserIterator(tokens)
   }
 
-  inner class CatchableParserIterator(tokens: Iterator<List<Token>>) : Iterator<ASTNode>, ICatchable {
+  inner class CatchableParserIterator(tokens: Iterator<List<Token>>) : Iterator<ASTNode>, Catchable {
 
     private val parser = PrintParser().parse(tokens)
 

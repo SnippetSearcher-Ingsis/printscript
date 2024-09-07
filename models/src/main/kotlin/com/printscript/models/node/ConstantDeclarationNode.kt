@@ -6,14 +6,6 @@ data class ConstantDeclarationNode(
   override val expression: ASTNode,
   override val position: Position
 ) : DeclarationNode {
-  override fun accept(visitor: ASTVisitor) {
-    visitor.visit(this)
-  }
-
-  override fun toString(): String {
-    return "ConstantDeclarationNode(variable=$variable, variableType=$variableType, expression=$expression)"
-  }
-
   override fun equals(other: Any?): Boolean {
     return when {
       other is VariableDeclarationNode -> {

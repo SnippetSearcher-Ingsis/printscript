@@ -5,8 +5,7 @@ import com.printscript.interpreter.DeclarationException
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.modifier.Constant
 import com.printscript.interpreter.modifier.Variable
-import com.printscript.interpreter.visitor.Visitor
-import com.printscript.interpreter.visitor.VisitorStrategy
+import com.printscript.interpreter.strategy.Strategy
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
@@ -18,11 +17,6 @@ import com.printscript.models.node.VariableDeclarationNode
 import com.printscript.models.node.VariableNode
 
 internal object Handler {
-  fun print(context: Context, node: ASTNode) {
-    val value = Solver.getValue(context, node)
-    println(value)
-  }
-
   fun declareValue(context: Context, node: DeclarationNode) {
     val key = node.variable
     val value = when (node) {
@@ -49,7 +43,7 @@ internal object Handler {
     }
   }
 
-  fun runBranch(context: Context, node: IfElseNode, strategy: VisitorStrategy) {
+  fun runBranch(context: Context, node: IfElseNode, strategy: Strategy) {
     val bool = when (val condition = node.condition.value.toString()) {
       "true" -> true
       "false" -> false
@@ -61,7 +55,7 @@ internal object Handler {
     }
     val branch = if (bool) node.ifBranch else node.elseBranch
     val branchContext = context.clone()
-    branch.forEach { it.accept(Visitor(branchContext, strategy)) }
+    branch.forEach { strategy.visit(branchContext, it) }
     context.merge(branchContext)
   }
 
