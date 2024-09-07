@@ -5,8 +5,8 @@ import com.printscript.interpreter.DeclarationException
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.modifier.Constant
 import com.printscript.interpreter.modifier.Variable
-import com.printscript.interpreter.visitor.EvaluationStrategy
 import com.printscript.interpreter.visitor.Visitor
+import com.printscript.interpreter.visitor.VisitorStrategy
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
@@ -49,7 +49,7 @@ internal object Handler {
     }
   }
 
-  fun runBranch(context: Context, node: IfElseNode) {
+  fun runBranch(context: Context, node: IfElseNode, strategy: VisitorStrategy) {
     val bool = when (val condition = node.condition.value.toString()) {
       "true" -> true
       "false" -> false
@@ -61,7 +61,7 @@ internal object Handler {
     }
     val branch = if (bool) node.ifBranch else node.elseBranch
     val branchContext = context.clone()
-    branch.forEach { it.accept(Visitor(branchContext, EvaluationStrategy)) }
+    branch.forEach { it.accept(Visitor(branchContext, strategy)) }
     context.merge(branchContext)
   }
 
