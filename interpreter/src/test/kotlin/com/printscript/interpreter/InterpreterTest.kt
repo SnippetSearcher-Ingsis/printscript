@@ -1,9 +1,14 @@
 package com.printscript.interpreter
 
 import com.printscript.interpreter.tracer.ReadableTracer
+import com.printscript.models.node.ASTNode
+import com.printscript.models.node.AssignationNode
+import com.printscript.models.node.DoubleExpressionNode
+import com.printscript.models.node.ErrorNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.Position
 import com.printscript.models.node.PrintStatementNode
+import com.printscript.models.node.VariableDeclarationNode
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -11,7 +16,7 @@ class InterpreterTest {
   @Test
   fun testDeclaration() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("'world'"),
@@ -31,13 +36,13 @@ class InterpreterTest {
   @Test
   fun testAssignation() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         Position(0, 0)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode("\"universe\""),
         Position(0, 0)
@@ -56,13 +61,13 @@ class InterpreterTest {
   @Test
   fun testAssignationWithDifferentType() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         Position(0, 0)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode(1),
         Position(0, 0)
@@ -75,10 +80,10 @@ class InterpreterTest {
   @Test
   fun testAddition() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
           operator = "+"
@@ -99,10 +104,10 @@ class InterpreterTest {
   @Test
   fun testSubtraction() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
           operator = "-"
@@ -123,10 +128,10 @@ class InterpreterTest {
   @Test
   fun testMultiplication() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
           operator = "*"
@@ -147,10 +152,10 @@ class InterpreterTest {
   @Test
   fun testDivision() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "number",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
           operator = "/"
@@ -172,10 +177,10 @@ class InterpreterTest {
   @Test
   fun testStringAddition() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode("\"hello\""),
           right = LiteralNode("\" world\""),
           operator = "+"
@@ -196,10 +201,10 @@ class InterpreterTest {
   @Test
   fun testAdditionWithDifferentType() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
-        expression = com.printscript.models.node.DoubleExpressionNode(
+        expression = DoubleExpressionNode(
           left = LiteralNode("\"hello\""),
           right = LiteralNode(1),
           operator = "+"
@@ -219,7 +224,7 @@ class InterpreterTest {
 
   @Test
   fun testStringPrint() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
+    val ast = listOf<ASTNode>(
       PrintStatementNode(
         LiteralNode("\"HOLA XOACO\""),
         Position(0, 0)
@@ -234,7 +239,7 @@ class InterpreterTest {
   @Test
   fun testVariablePrint() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
@@ -253,7 +258,7 @@ class InterpreterTest {
 
   @Test
   fun testNumber() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
+    val ast = listOf<ASTNode>(
       LiteralNode(1),
     )
     val tracer = ReadableTracer()
@@ -264,7 +269,7 @@ class InterpreterTest {
 
   @Test
   fun testString() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
+    val ast = listOf<ASTNode>(
       LiteralNode("xoaco"),
     )
     val tracer = ReadableTracer()
@@ -275,8 +280,8 @@ class InterpreterTest {
 
   @Test
   fun testDoubleExpression() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
-      com.printscript.models.node.DoubleExpressionNode(
+    val ast = listOf<ASTNode>(
+      DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode(1),
         operator = "-",
@@ -291,8 +296,8 @@ class InterpreterTest {
   @Test
   fun testStringSubtractionFailure() {
     kotlin.runCatching {
-      val ast = listOf<com.printscript.models.node.ASTNode>(
-        com.printscript.models.node.DoubleExpressionNode(
+      val ast = listOf<ASTNode>(
+        DoubleExpressionNode(
           left = LiteralNode("\"hello\""),
           right = LiteralNode("\" world\""),
           operator = "-",
@@ -311,8 +316,8 @@ class InterpreterTest {
   @Test
   fun testStringMultiplicationFailure() {
     kotlin.runCatching {
-      val ast = listOf<com.printscript.models.node.ASTNode>(
-        com.printscript.models.node.DoubleExpressionNode(
+      val ast = listOf<ASTNode>(
+        DoubleExpressionNode(
           left = LiteralNode("\"hello\""),
           right = LiteralNode("\" world\""),
           operator = "*",
@@ -331,8 +336,8 @@ class InterpreterTest {
   @Test
   fun testStringDivisionFailure() {
     kotlin.runCatching {
-      val ast = listOf<com.printscript.models.node.ASTNode>(
-        com.printscript.models.node.DoubleExpressionNode(
+      val ast = listOf<ASTNode>(
+        DoubleExpressionNode(
           left = LiteralNode("\"hello\""),
           right = LiteralNode("\" world\""),
           operator = "/",
@@ -350,8 +355,8 @@ class InterpreterTest {
 
   @Test
   fun testInvalidOperatorFailure() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
-      com.printscript.models.node.DoubleExpressionNode(
+    val ast = listOf<ASTNode>(
+      DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode(1),
         operator = "yes",
@@ -363,8 +368,8 @@ class InterpreterTest {
 
   @Test
   fun testAssignationFailure() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
-      com.printscript.models.node.AssignationNode(
+    val ast = listOf<ASTNode>(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode(1),
         Position(0, 0)
@@ -377,8 +382,8 @@ class InterpreterTest {
 
   @Test
   fun testDeclarationFailure() {
-    val ast = listOf<com.printscript.models.node.ASTNode>(
-      com.printscript.models.node.VariableDeclarationNode(
+    val ast = listOf<ASTNode>(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode(1),
@@ -404,13 +409,13 @@ class InterpreterTest {
   @Test
   fun testInvalidAddition() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode(listOf(1, 2)),
         Position(0, 0)
       ),
-      com.printscript.models.node.DoubleExpressionNode(
+      DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode("hello"),
         operator = "+"
@@ -423,13 +428,13 @@ class InterpreterTest {
   @Test
   fun testRedeclaration() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         position = Position(0, 0)
       ),
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"universe\""),
@@ -443,13 +448,13 @@ class InterpreterTest {
   @Test
   fun tracingInterpreterAssignationTest() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         Position(0, 0)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode("\"universe\""),
         Position(0, 0)
@@ -462,13 +467,13 @@ class InterpreterTest {
   @Test
   fun catchableTracingInterpreterTest() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         Position(0, 0)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode(1),
         Position(0, 0)
@@ -490,7 +495,7 @@ class InterpreterTest {
   fun testInterpreter() {
     val interpreter = PrintInterpreter()
     val ast = listOf(
-      com.printscript.models.node.DoubleExpressionNode(
+      DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode(2),
         operator = "+"
@@ -501,7 +506,7 @@ class InterpreterTest {
 
   @Test
   fun testErrorNode() {
-    val ast = listOf(com.printscript.models.node.ErrorNode("Error"))
+    val ast = listOf(ErrorNode("Error"))
     val tracer = ReadableTracer()
     val interpreter = TracingInterpreter(tracer)
     assertThrows<OperationException> { interpreter interpret ast.iterator() }
@@ -509,7 +514,7 @@ class InterpreterTest {
 
   @Test
   fun testErrorNodeBackdoor() {
-    val ast = listOf(com.printscript.models.node.ErrorNode("NODE_ERROR_BACKDOOR"))
+    val ast = listOf(ErrorNode("NODE_ERROR_BACKDOOR"))
     val tracer = ReadableTracer()
     val interpreter = TracingInterpreter(tracer)
     interpreter interpret ast.iterator()
@@ -518,7 +523,7 @@ class InterpreterTest {
   @Test
   fun testUnsupportedOperation() {
     val ast = listOf(
-      com.printscript.models.node.DoubleExpressionNode(
+      DoubleExpressionNode(
         left = LiteralNode(1),
         right = LiteralNode(2),
         operator = "?",
@@ -533,8 +538,8 @@ class InterpreterTest {
   @Test
   fun testOperationError() {
     val ast = listOf(
-      com.printscript.models.node.DoubleExpressionNode(
-        left = com.printscript.models.node.ErrorNode("Error"),
+      DoubleExpressionNode(
+        left = ErrorNode("Error"),
         right = PrintStatementNode(
           expression = LiteralNode("Hello"),
           position = Position(0, 0),
@@ -551,7 +556,7 @@ class InterpreterTest {
   @Test
   fun testInvalidDeclarationType() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "invalid",
         expression = LiteralNode(1),
@@ -565,13 +570,13 @@ class InterpreterTest {
   @Test
   fun testInvalidAssignation() {
     val ast = listOf(
-      com.printscript.models.node.VariableDeclarationNode(
+      VariableDeclarationNode(
         variable = "hello",
         variableType = "string",
         expression = LiteralNode("\"world\""),
         Position(0, 0)
       ),
-      com.printscript.models.node.AssignationNode(
+      AssignationNode(
         variable = "hello",
         expression = LiteralNode(Position(0, 0)),
         Position(0, 0)
