@@ -27,10 +27,9 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
       else VariableNode(identifier.value, type, LiteralNode("empty"), position)
     } else {
       handler.consume(TokenType.EQUAL, "Se esperaba '=' después del nombre de la variable.")
-        val expression = generateExpression(handler) // handler de marquiños para ver si tiene readEnv()
       val tokens = handler.collectExpressionTokens(false)
       handler.consume(TokenType.SEMICOLON, "Se esperaba ';' después de la declaración.")
-      val resolvedExpression : ASTNode =  resolveExpression(tokens[0], tokens)
+      val resolvedExpression: ASTNode = resolveExpression(tokens[0], tokens)
       if (isConst) ConstantDeclarationNode(identifier.value, type, resolvedExpression, position)
       else VariableDeclarationNode(identifier.value, type, resolvedExpression, position)
     }
@@ -38,27 +37,17 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
     return node
   }
 
-  private fun resolveExpression(firstToken : Token, tokens: List<Token>): ASTNode {
-    return when {
-      firstToken.type == TokenType.READ_INPUT -> {
-        ReadInputBuilder(tokens).build()
-      }
-        firstToken.type == TokenType.READ_ENV -> {
-            ReadEnvBuilder(handler.collectExpressionTokens(false)).build()
+  private fun resolveExpression(firstToken: Token, tokens: List<Token>): ASTNode {
+    return when (firstToken.type) {
+        TokenType.READ_INPUT -> {
+          ReadInputBuilder(tokens).build()
         }
-      else -> {
-        ExpressionBuilder(tokens).build()
-      }
+        TokenType.READ_ENV -> {
+          ReadEnvBuilder(tokens).build()
+        }
+        else -> {
+          ExpressionBuilder(tokens).build()
+        }
     }
-  }
-
-  private fun generateExpression(handler: TokenHandler): ASTNode  {
-    val expression: ASTNode
-    if (handler.peek().type == TokenType.READ_ENV) {
-      expression = ReadEnvBuilder(handler.collectExpressionTokens(false)).build()
-    } else {
-      expression = ExpressionBuilder(handler.collectExpressionTokens(false)).build()
-    }
-    return expression
   }
 }
