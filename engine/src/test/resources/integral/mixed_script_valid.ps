@@ -1,0 +1,54 @@
+let a: string;
+let b: number = 10 + 2 * 3 / 1;
+
+a = "hola";
+a = 'hola';
+b = b;
+
+const c: string = a + b;
+
+if (true) {
+    println(c);
+}
+
+if (false) {
+} else {
+    println(c);
+}
+
+const d: number = 10 + 2 * 3 / 1;
+let e: number;
+
+e = d;
+e = 100000;
+
+if (false) {
+    println(d);
+} else {
+    println(e);
+}
+
+const f: boolean = true;
+
+if (f) {
+    println(f);
+}
+
+let emptyString: string = "";
+let zeroValue: number = 0;
+
+println(emptyString);
+println(zeroValue);
+
+const g: boolean = false;
+const h: boolean = false;
+const i: boolean = true;
+
+println(h);
+println(i);
+
+const largeNumber: number = 10000 * 10000;
+println(largeNumber);
+
+const mixedConcat: string = a + b + f;
+println(mixedConcat);

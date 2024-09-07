@@ -5,7 +5,6 @@ import com.printscript.interpreter.DeclarationException
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.modifier.Constant
 import com.printscript.interpreter.modifier.Variable
-import com.printscript.interpreter.strategy.Strategy
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
@@ -28,7 +27,6 @@ internal object Handler {
       is VariableDeclarationNode -> context.put(key, Variable(node.variableType, value))
       is VariableNode -> context.put(key, Variable(node.variableType, null))
       is ConstantNode -> context.put(key, Constant(node.variableType, null))
-      else -> throw DeclarationException("Unknown $node type.")
     }
   }
 
@@ -43,19 +41,19 @@ internal object Handler {
     }
   }
 
-  fun runBranch(context: Context, node: IfElseNode, strategy: Strategy) {
+  fun branch(context: Context, node: IfElseNode, visit: (Context, node: ASTNode) -> Unit) {
     val bool = when (val condition = node.condition.value.toString()) {
       "true" -> true
       "false" -> false
       else -> {
         val stored = context.get(condition) ?: throw DeclarationException("$condition is not a boolean or is not defined.")
         if (stored.type.lowercase() == "boolean") stored.value as Boolean
-        else throw DeclarationException("$condition is not a boolean.")
+        else throw OperationException("$condition is not a boolean.")
       }
     }
     val branch = if (bool) node.ifBranch else node.elseBranch
     val branchContext = context.clone()
-    branch.forEach { strategy.visit(branchContext, it) }
+    branch.forEach { visit(branchContext, it) }
     context.merge(branchContext)
   }
 

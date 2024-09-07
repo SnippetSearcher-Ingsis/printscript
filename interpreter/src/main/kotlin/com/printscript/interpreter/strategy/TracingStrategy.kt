@@ -1,6 +1,5 @@
 package com.printscript.interpreter.strategy
 
-import com.printscript.interpreter.UnknownNodeException
 import com.printscript.interpreter.tracer.Tracer
 import com.printscript.interpreter.util.Context
 import com.printscript.interpreter.util.Handler
@@ -32,8 +31,7 @@ internal class TracingStrategy(
       is ErrorNode -> Handler.error(node)
       is ReadEnvNode -> {}
       is ReadInputNode -> {}
-      is IfElseNode -> Handler.runBranch(context, node, this)
-      else -> throw UnknownNodeException(node::class.simpleName ?: "Unknown")
+      is IfElseNode -> Handler.branch(context, node, this::visit)
     }
   }
 }

@@ -13,8 +13,8 @@ internal class Context {
   fun put(key: String, modifier: Modifier) {
     when {
       !(this has key) -> context[key] = modifier
-      context[key] is Variable -> handleVariable(key, Variable(modifier.type, modifier.value))
-      context[key] is Constant -> handleConstant(key, Constant(modifier.type, modifier.value))
+      context[key] is Variable -> handleVariable(key, modifier.type, modifier.value)
+      context[key] is Constant -> handleConstant(key, modifier.type, modifier.value)
     }
   }
 
@@ -27,13 +27,13 @@ internal class Context {
   }
 
   fun clone(): Context {
-    val newContext = Context()
-    newContext.context.putAll(context)
-    return newContext
+    val context = Context()
+    context.context.putAll(this.context)
+    return context
   }
 
-  infix fun merge(oldContext: Context) {
-    oldContext.context.forEach { (key, value) ->
+  infix fun merge(context: Context) {
+    context.context.forEach { (key, value) ->
       if (has(key) && get(key) is Variable) {
         put(key, value)
       }
@@ -44,18 +44,18 @@ internal class Context {
     context.clear()
   }
 
-  private fun handleConstant(key: String, constant: Constant) {
+  private fun handleConstant(key: String, type: String, value: Any?) {
     when {
       context[key]?.value != null -> throw AssignationException("Cannot reassign $key.")
-      context[key]?.type != constant.type -> throw AssignationException("Type mismatch. Cannot assign ${constant.type} to $key.")
-      else -> context[key] = constant
+      context[key]?.type != type -> throw AssignationException("Type mismatch. Cannot assign $type to $key.")
+      else -> context[key] = Constant(type, value)
     }
   }
 
-  private fun handleVariable(key: String, variable: Variable) {
+  private fun handleVariable(key: String, type: String, value: Any?) {
     when {
-      context[key]?.type != variable.type -> throw AssignationException("Type mismatch. Cannot assign ${variable.type} to $key.")
-      else -> context[key] = variable
+      context[key]?.type != type -> throw AssignationException("Type mismatch. Cannot assign $type to $key.")
+      else -> context[key] = Variable(type, value)
     }
   }
 }
