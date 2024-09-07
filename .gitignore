@@ -53,3 +53,4 @@ local.properties
 
 # Gradle properties
 gradle.properties
+!/engine/src/test/resources/integral/

@@ -26,7 +26,11 @@ class ExpressionBuilder(private val line: List<Token>) : Builder {
         try {
           LiteralNode(value.toDouble())
         } catch (e: NumberFormatException) {
-          LiteralNode(value)
+          try {
+            LiteralNode(value.toBooleanStrict())
+          } catch (e: Exception) {
+            LiteralNode(value)
+          }
         }
       }
     }
