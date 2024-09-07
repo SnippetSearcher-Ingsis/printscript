@@ -5,10 +5,30 @@ import ReferenceException
 import node.ASTNode
 import node.DoubleExpressionNode
 import node.LiteralNode
+import node.ReadInputNode
 
 internal object Solver {
   fun getValue(context: Context, node: ASTNode): Any {
     return when (node) {
+      is ReadInputNode -> {
+        print(getValue(context, node.expression))
+        val response : String = readln()
+        try {
+          response.toBooleanStrict()
+        } catch (e : IllegalArgumentException) {
+          try {
+              response.toInt()
+          } catch (e : NumberFormatException) {
+            try {
+                response.toDouble()
+            }
+            catch (e : NumberFormatException) {
+              response
+            }
+          }
+        }
+      }
+
       is LiteralNode<*> -> {
         when {
           node.value is String && (node.value as String).startsWith("\"") ->

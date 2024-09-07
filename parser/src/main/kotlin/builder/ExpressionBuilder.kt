@@ -8,9 +8,7 @@ import token.Token
 class ExpressionBuilder(private val line: List<Token>) : Builder {
 
   override fun build(): ASTNode {
-    val operators = mutableListOf<Pair<Token, Int>>()
-    line.forEachIndexed { index, token -> if (operatorsToCheck(token)) operators.add(Pair(token, index)) }
-    val root = addNodes(line)
+    val root =  if (line.isEmpty()) LiteralNode("\"\"") else addNodes(line)
     return root
   }
 
