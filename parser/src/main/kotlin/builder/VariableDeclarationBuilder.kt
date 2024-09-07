@@ -10,7 +10,6 @@ import node.VariableNode
 import token.Token
 import token.TokenHandler
 import token.TokenType
-import java.beans.Expression
 
 class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
 
@@ -28,6 +27,7 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
       else VariableNode(identifier.value, type, LiteralNode("empty"), position)
     } else {
       handler.consume(TokenType.EQUAL, "Se esperaba '=' después del nombre de la variable.")
+        val expression = generateExpression(handler) // handler de marquiños para ver si tiene readEnv()
       val tokens = handler.collectExpressionTokens(false)
       handler.consume(TokenType.SEMICOLON, "Se esperaba ';' después de la declaración.")
       val resolvedExpression : ASTNode =  resolveExpression(tokens[0], tokens)
@@ -43,9 +43,22 @@ class VariableDeclarationBuilder(private val line: List<Token>) : Builder {
       firstToken.type == TokenType.READ_INPUT -> {
         ReadInputBuilder(tokens).build()
       }
+        firstToken.type == TokenType.READ_ENV -> {
+            ReadEnvBuilder(handler.collectExpressionTokens(false)).build()
+        }
       else -> {
         ExpressionBuilder(tokens).build()
       }
     }
+  }
+
+  private fun generateExpression(handler: TokenHandler): ASTNode  {
+    val expression: ASTNode
+    if (handler.peek().type == TokenType.READ_ENV) {
+      expression = ReadEnvBuilder(handler.collectExpressionTokens(false)).build()
+    } else {
+      expression = ExpressionBuilder(handler.collectExpressionTokens(false)).build()
+    }
+    return expression
   }
 }

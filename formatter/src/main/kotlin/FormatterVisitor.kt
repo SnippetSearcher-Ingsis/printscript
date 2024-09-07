@@ -27,7 +27,7 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
     evaluate(node.condition)
     append(") { \n")
     node.ifBranch.forEach { indent(); evaluate(it) }
-    append("} \n")
+    append("} ")
     if (node.elseBranch.isEmpty()) return
     append("else { \n")
     node.elseBranch.forEach { indent(); evaluate(it) }
@@ -77,7 +77,7 @@ data class FormatterVisitor(private val config: FormatterConfig, private val out
   }
 
   override fun visit(node: ReadEnvNode) {
-    append("readEnv(${node.value})")
+    append("readEnv(${node.expression})")
   }
 
   // utility functions
