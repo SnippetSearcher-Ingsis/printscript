@@ -2,13 +2,14 @@ package com.printscript.interpreter.util
 
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.ReferenceException
+import com.printscript.models.node.ASTNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.ReadInputNode
 
 internal object Solver {
   @Throws(Exception::class)
-  fun getValue(context: Context, node: com.printscript.models.node.ASTNode): Any {
+  fun getValue(context: Context, node: ASTNode): Any {
     return when (node) {
       is ReadInputNode -> {
         print(getValue(context, node.expression))
@@ -30,18 +31,7 @@ internal object Solver {
 
       is LiteralNode<*> -> {
         when {
-          node.value is String && (node.value as String).startsWith("\"") ->
-            (node.value as String).replace("\"", "")
-
-          node.value is String && (node.value as String).startsWith("'") ->
-            (node.value as String).replace("'", "")
-
-          node.value is String && (node.value as String == "true" || node.value as String == "false") ->
-            (node.value as String).toBoolean()
-
-          node.value is String -> (context get node.value as String)?.value
-            ?: throw ReferenceException("Variable ${node.value} not declared.")
-
+          node.value is String -> getLiteral(context, node.value as String)
           else -> node.value!!
         }
       }
@@ -75,6 +65,7 @@ internal object Solver {
       a is Number && b is String -> a.toString() + b
       a is String && b is Number -> a + b.toString()
       a is String && b is String -> a + b
+      a is String && b is Boolean -> a + b.toString()
       else -> throw OperationException("Operation $a + $b not supported.")
     }
   }
@@ -97,6 +88,14 @@ internal object Solver {
     return when {
       a is Number && b is Number -> round(a.toDouble() / b.toDouble())
       else -> throw OperationException("Operation $a / $b not supported.")
+    }
+  }
+
+  private fun getLiteral(context: Context, string: String): Any {
+    return when {
+      string.startsWith("\"") -> string.replace("\"", "")
+      string.startsWith("'") -> string.replace("'", "")
+      else -> context.get(string)?.value ?: throw ReferenceException("Variable $string not declared.")
     }
   }
 }

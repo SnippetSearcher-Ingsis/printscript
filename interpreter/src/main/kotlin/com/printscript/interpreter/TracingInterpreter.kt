@@ -1,25 +1,20 @@
 package com.printscript.interpreter
 
+import com.printscript.interpreter.strategy.TracingStrategy
 import com.printscript.interpreter.tracer.Tracer
 import com.printscript.interpreter.util.Context
-import com.printscript.interpreter.visitor.TracingStrategy
-import com.printscript.interpreter.visitor.Visitor
+import com.printscript.models.node.ASTNode
 
 /**
  * Interpreter that logs the execution of the program.
- * @param print If true, the interpreter will print the execution of the program to the standard output.
+ * @param tracer the tracer to use.
  */
-class TracingInterpreter(tracer: Tracer, private val print: Boolean = true) : Interpreter {
+class TracingInterpreter(tracer: Tracer) : Interpreter {
   private val context = Context()
 
-  private val strategy = TracingStrategy(tracer, print = print)
+  private val strategy = TracingStrategy(tracer)
 
-  private val visitor = Visitor(context, strategy)
-
-  override fun interpret(iterator: Iterator<com.printscript.models.node.ASTNode>) {
-    while (iterator.hasNext()) {
-      val node = iterator.next()
-      node.accept(visitor)
-    }
+  override fun interpret(iterator: Iterator<ASTNode>) {
+    iterator.forEachRemaining { strategy.visit(context, it) }
   }
 }

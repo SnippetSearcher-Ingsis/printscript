@@ -1,15 +1,18 @@
 package com.printscript.interpreter
 
+import com.printscript.models.catchable.Catchable
+import com.printscript.models.node.ASTNode
+
 /**
  * Interpreter that catches errors and logs them, without throwing them.
  * @param interpreter The interpreter to wrap.
  */
 class CatchableInterpreter(private val interpreter: Interpreter) :
   Interpreter,
-  com.printscript.models.catchable.ICatchable {
+  Catchable {
   private var exception: Exception? = null
 
-  override fun interpret(iterator: Iterator<com.printscript.models.node.ASTNode>) {
+  override fun interpret(iterator: Iterator<ASTNode>) {
     try {
       exception = null
       interpreter.interpret(iterator)

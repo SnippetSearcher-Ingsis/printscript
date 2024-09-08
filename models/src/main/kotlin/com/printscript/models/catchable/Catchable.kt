@@ -1,6 +1,6 @@
 package com.printscript.models.catchable
 
-interface ICatchable {
+interface Catchable {
   fun hasException(): Boolean
 
   fun getException(): Exception?
