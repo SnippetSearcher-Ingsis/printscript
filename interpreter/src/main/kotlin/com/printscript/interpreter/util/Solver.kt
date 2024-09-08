@@ -4,11 +4,30 @@ import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.ReferenceException
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
+import com.printscript.models.node.ReadInputNode
 
 internal object Solver {
   @Throws(Exception::class)
   fun getValue(context: Context, node: com.printscript.models.node.ASTNode): Any {
     return when (node) {
+      is ReadInputNode -> {
+        print(getValue(context, node.expression))
+        val response: String = readln()
+        try {
+          response.toBooleanStrict()
+        } catch (e: IllegalArgumentException) {
+          try {
+            response.toInt()
+          } catch (e: NumberFormatException) {
+            try {
+              response.toDouble()
+            } catch (e: NumberFormatException) {
+              response
+            }
+          }
+        }
+      }
+
       is LiteralNode<*> -> {
         when {
           node.value is String && (node.value as String).startsWith("\"") ->

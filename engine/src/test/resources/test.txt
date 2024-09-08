@@ -1,4 +1,6 @@
-let x: number = 1;
-let y: number = 10;
-
-println(10 + 1);
+let a : string = readInput("string: ");
+let b : boolean =  readInput("bool: ");
+let c : number = readInput("number: ");
+println(a);
+println(b);
+println(c);

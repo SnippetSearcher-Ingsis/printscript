@@ -13,5 +13,8 @@ enum class TokenType {
   OPEN_BRACKET,
   CLOSE_BRACKET,
   CONST,
-  ELSE
+  ELSE,
+  READ_INPUT,
+  READ_ENV,
+  IF
 }

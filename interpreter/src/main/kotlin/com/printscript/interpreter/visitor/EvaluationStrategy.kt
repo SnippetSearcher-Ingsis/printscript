@@ -43,6 +43,6 @@ internal object EvaluationStrategy : VisitorStrategy {
   }
 
   override fun visit(context: Context, node: IfElseNode) {
-    Handler.runBranch(context, node)
+    Handler.runBranch(context, node, this)
   }
 }
