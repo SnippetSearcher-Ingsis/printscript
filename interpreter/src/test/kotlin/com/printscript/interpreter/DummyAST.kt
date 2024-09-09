@@ -6,6 +6,8 @@ import com.printscript.models.node.ErrorNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.Position
 import com.printscript.models.node.PrintStatementNode
+import com.printscript.models.node.ReadEnvNode
+import com.printscript.models.node.ReadInputNode
 import com.printscript.models.node.VariableDeclarationNode
 
 object DummyAST {
@@ -64,5 +66,23 @@ object DummyAST {
 
   val errorNodeBackdoor = listOf(
     ErrorNode("NODE_ERROR_BACKDOOR")
+  )
+
+  val readEnv = listOf(
+    VariableDeclarationNode(
+      "pi",
+      "number",
+      ReadEnvNode(LiteralNode("\"pi\""), Position(0, 0)),
+      Position(0, 0)
+    )
+  )
+
+  val readInput = listOf(
+    VariableDeclarationNode(
+      "hello",
+      "number",
+      ReadInputNode(LiteralNode("\"best football club = \""), Position(0, 0)),
+      Position(0, 0)
+    )
   )
 }

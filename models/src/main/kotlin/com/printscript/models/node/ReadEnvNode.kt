@@ -1,3 +1,3 @@
 package com.printscript.models.node
 
-class ReadEnvNode(val value: String) : ASTNode
+data class ReadEnvNode(val expression: ASTNode, val position: Position) : ASTNode

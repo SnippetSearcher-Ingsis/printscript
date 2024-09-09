@@ -1,4 +1,8 @@
-let x: number = 1;
-let y: number = 10;
-
-println(10 + 1);
+let a : number = readEnv("gravity");
+println(a);
+let b : number = readEnv("pi");
+println(b);
+let c : string = readEnv("BEST_FOOTBALL_CLUB");
+println(c);
+let d : string = readInput("What is the best football club? = ");
+println(d);

@@ -35,13 +35,13 @@ data class TokenHandler(val line: List<Token>) {
     return if (currentTokenIndex < line.size) {
       line[currentTokenIndex]
     } else {
-      throw IllegalStateException("No more tokens to peek.")
+      throw IllegalStateException("Expected token but reached end of line. At line ${line.last().line} column ${line.last().column}")
     }
   }
 
   fun consume(type: TokenType, message: String): Token {
     if (check(type)) return advance()
-    throw IllegalArgumentException(message)
+    throw IllegalArgumentException(message + " At line ${peek().line} column ${peek().column}")
   }
 
   private fun check(type: TokenType): Boolean {

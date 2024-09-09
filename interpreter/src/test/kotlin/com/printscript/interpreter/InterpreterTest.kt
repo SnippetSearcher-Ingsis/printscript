@@ -50,4 +50,10 @@ class InterpreterTest {
     val interpreter = PrintInterpreter()
     interpreter interpret DummyAST.errorNodeBackdoor.iterator()
   }
+
+  @Test
+  fun testReadEnv() {
+    val interpreter = PrintInterpreter()
+    interpreter interpret DummyAST.readEnv.iterator()
+  }
 }

@@ -14,7 +14,7 @@ class ASTGenerator {
     TokenType.LET to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
     TokenType.CONST to { tokens: List<Token> -> VariableDeclarationBuilder(tokens).build() },
     TokenType.IF to { tokens: List<Token> -> ConditionalBuilder(tokens).build() },
-    TokenType.PRINTLN to { tokens: List<Token> -> PrintStatementBuilder(tokens).build() }
+    TokenType.PRINTLN to { tokens: List<Token> -> PrintStatementBuilder(tokens).build() },
   )
 
   fun tokensToAST(tokens: List<Token>): ASTNode {

@@ -5,11 +5,39 @@ import com.printscript.interpreter.ReferenceException
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
+import com.printscript.models.node.ReadEnvNode
+import com.printscript.models.node.ReadInputNode
 
 internal object Solver {
   @Throws(Exception::class)
   fun getValue(context: Context, node: ASTNode): Any {
     return when (node) {
+      is ReadInputNode -> {
+        print(getValue(context, node.expression))
+        val response: String = readln()
+        try {
+          response.toBooleanStrict()
+        } catch (e: IllegalArgumentException) {
+          try {
+            response.toInt()
+          } catch (e: NumberFormatException) {
+            try {
+              response.toDouble()
+            } catch (e: NumberFormatException) {
+              response
+            }
+          }
+        }
+      }
+
+      is ReadEnvNode -> {
+        val env = getValue(context, node.expression)
+        when (Environment.hasGlobalVariable(env.toString())) {
+          true -> Environment.getGlobalVariable(env.toString())!!
+          false -> throw ReferenceException("Environment variable $env not found.")
+        }
+      }
+
       is LiteralNode<*> -> {
         when {
           node.value is String -> getLiteral(context, node.value as String)

@@ -14,6 +14,8 @@ dependencies {
     implementation(project(":parser"))
     implementation(project(":lexer"))
     implementation(project(":models"))
+    implementation(project(":formatter"))
+    implementation(project(":linter"))
     implementation(project(":interpreter"))
     implementation(project(":cli"))
 }
