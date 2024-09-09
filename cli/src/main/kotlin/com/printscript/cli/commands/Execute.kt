@@ -3,9 +3,9 @@ package com.printscript.cli.commands
 import com.printscript.cli.Result
 import com.printscript.cli.TXTHandler
 import com.printscript.interpreter.CatchableInterpreter
-import com.printscript.interpreter.TracingInterpreter
+import com.printscript.interpreter.GoatedInterpreter
 import com.printscript.interpreter.input.ConsoleInput
-import com.printscript.interpreter.tracer.ReadableTracer
+import com.printscript.interpreter.output.ReadableOutput
 import com.printscript.lexer.Lexer
 import com.printscript.parser.CatchableParser
 class Execute : CommandExecute {
@@ -15,14 +15,14 @@ class Execute : CommandExecute {
     val lexer = Lexer()
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
-    val tracer = ReadableTracer()
-    val input = ConsoleInput(tracer)
-    val interpreter = CatchableInterpreter(TracingInterpreter(tracer, input))
+    val output = ReadableOutput()
+    val input = ConsoleInput()
+    val interpreter = CatchableInterpreter(GoatedInterpreter(input, output))
     interpreter.interpret(ast)
     return if (interpreter.hasException()) {
       Result(interpreter.getException()!!.message!!, listOf())
     } else {
-      Result("", tracer.getOutput())
+      Result("", output.getOutput())
     }
   }
 }

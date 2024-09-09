@@ -56,11 +56,15 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
   }
 
   fun handleReadEnv(node: ReadEnvNode) {
-    append("readEnv(${node.expression})")
+    append("readEnv(")
+    evaluate(node.expression)
+    append(")")
   }
 
   fun handleReadInput(node: ReadInputNode) {
-    append("readInput(${node.expression})")
+    append("readInput(")
+    evaluate(node.expression)
+    append(")")
   }
 
   fun handleBranch(node: IfElseNode) {

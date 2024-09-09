@@ -1,9 +1,9 @@
-package com.printscript.interpreter.tracer
+package com.printscript.interpreter.output
 
-class ReadableTracer : Tracer {
+class ReadableOutput : Output {
   private val output = mutableListOf<String>()
 
-  override fun print(message: String) {
+  override fun write(message: String) {
     output.add(message)
   }
 

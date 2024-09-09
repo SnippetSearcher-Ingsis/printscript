@@ -1,21 +1,19 @@
 package com.printscript.interpreter
 
-import com.printscript.interpreter.input.ConsoleInput
-import com.printscript.interpreter.output.ConsoleOutput
+import com.printscript.interpreter.input.Input
+import com.printscript.interpreter.output.Output
 import com.printscript.interpreter.strategy.GoatedStrategy
 import com.printscript.interpreter.util.Context
 import com.printscript.interpreter.util.Services
 import com.printscript.models.node.ASTNode
 
 /**
- * Interpreter that evaluates the AST.
+ * Interpreter that logs the execution of the program.
+ * @param input the input to use.
+ * @param output the output to use.
  */
-class PrintInterpreter : Interpreter {
+class GoatedInterpreter(input: Input, output: Output) : Interpreter {
   private val context = Context()
-
-  private val input = ConsoleInput()
-
-  private val output = ConsoleOutput()
 
   private val services: Services = Services(context, input, output) { services: Services, node: ASTNode ->
     strategy.visit(
