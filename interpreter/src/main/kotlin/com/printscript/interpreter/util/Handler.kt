@@ -3,6 +3,7 @@ package com.printscript.interpreter.util
 import com.printscript.interpreter.AssignationException
 import com.printscript.interpreter.DeclarationException
 import com.printscript.interpreter.OperationException
+import com.printscript.interpreter.input.Input
 import com.printscript.interpreter.modifier.Constant
 import com.printscript.interpreter.modifier.Variable
 import com.printscript.models.node.ASTNode
@@ -16,11 +17,11 @@ import com.printscript.models.node.VariableDeclarationNode
 import com.printscript.models.node.VariableNode
 
 internal object Handler {
-  fun declareValue(context: Context, node: DeclarationNode) {
+  fun declareValue(context: Context, node: DeclarationNode, input: Input) {
     val key = node.variable
     val value = when (node) {
       is VariableNode, is ConstantNode -> null
-      else -> getValue(context, key, node.variableType, node.expression)
+      else -> getValue(context, key, node.variableType, node.expression, input)
     }
     when (node) {
       is ConstantDeclarationNode -> context.put(key, Constant(node.variableType, value))
@@ -30,9 +31,9 @@ internal object Handler {
     }
   }
 
-  fun assignValue(context: Context, node: AssignationNode) {
+  fun assignValue(context: Context, node: AssignationNode, input: Input) {
     val key = node.variable!!
-    val value = Solver.getValue(context, node.expression)
+    val value = Solver.getValue(context, node.expression, input)
     val type = getType(value)
     if (!context.has(key)) {
       throw AssignationException("$key is not declared.")
@@ -63,8 +64,8 @@ internal object Handler {
     }
   }
 
-  private fun getValue(context: Context, key: String, type: String, expression: ASTNode): Any {
-    val value = Solver.getValue(context, expression)
+  private fun getValue(context: Context, key: String, type: String, expression: ASTNode, input: Input): Any {
+    val value = Solver.getValue(context, expression, input)
     when {
       context has key -> throw DeclarationException("$key is already declared.")
       value is Boolean && type.lowercase() != "boolean" -> throw DeclarationException("$value is not a ${type.lowercase()}.")

@@ -1,6 +1,7 @@
 package com.printscript.engine.integral
 
 import com.printscript.interpreter.TracingInterpreter
+import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.tracer.ReadableTracer
 import com.printscript.lexer.Lexer
 import com.printscript.parser.PrintParser
@@ -15,7 +16,8 @@ class Tester(private val name: String) {
     val parser = PrintParser()
     val ast = parser.parse(tokens)
     val tracer = ReadableTracer()
-    val interpreter = TracingInterpreter(tracer)
+    val input = ConsoleInput()
+    val interpreter = TracingInterpreter(tracer, input)
     interpreter.interpret(ast.iterator())
     assert(tracer.getOutput() == loader.loadOutput())
   }

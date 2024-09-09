@@ -4,6 +4,7 @@ import com.printscript.cli.Result
 import com.printscript.cli.TXTHandler
 import com.printscript.interpreter.CatchableInterpreter
 import com.printscript.interpreter.TracingInterpreter
+import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.tracer.ReadableTracer
 import com.printscript.lexer.Lexer
 import com.printscript.parser.CatchableParser
@@ -15,7 +16,8 @@ class Execute : CommandExecute {
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
     val tracer = ReadableTracer()
-    val interpreter = CatchableInterpreter(TracingInterpreter(tracer))
+    val input = ConsoleInput()
+    val interpreter = CatchableInterpreter(TracingInterpreter(tracer, input))
     interpreter.interpret(ast)
     return if (interpreter.hasException()) {
       Result(interpreter.getException()!!.message!!, listOf())
