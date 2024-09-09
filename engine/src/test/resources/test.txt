@@ -1,6 +1,8 @@
-let a : string = readInput("string: ");
-let b : boolean =  readInput("bool: ");
-let c : number = readInput("number: ");
+let a : number = readEnv("gravity");
 println(a);
+let b : number = readEnv("pi");
 println(b);
+let c : string = readEnv("BEST_FOOTBALL_CLUB");
 println(c);
+let d : string = readInput("What is the best football club? = ");
+println(d);

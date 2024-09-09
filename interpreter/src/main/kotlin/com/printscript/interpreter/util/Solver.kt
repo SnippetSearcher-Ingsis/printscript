@@ -5,6 +5,7 @@ import com.printscript.interpreter.ReferenceException
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
+import com.printscript.models.node.ReadEnvNode
 import com.printscript.models.node.ReadInputNode
 
 internal object Solver {
@@ -26,6 +27,14 @@ internal object Solver {
               response
             }
           }
+        }
+      }
+
+      is ReadEnvNode -> {
+        val env = getValue(context, node.expression)
+        when (Environment.hasGlobalVariable(env.toString())) {
+          true -> Environment.getGlobalVariable(env.toString())!!
+          false -> throw ReferenceException("Environment variable $env not found.")
         }
       }
 
