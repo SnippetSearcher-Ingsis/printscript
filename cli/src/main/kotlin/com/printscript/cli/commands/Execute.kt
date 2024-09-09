@@ -16,7 +16,7 @@ class Execute : CommandExecute {
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
     val tracer = ReadableTracer()
-    val input = ConsoleInput()
+    val input = ConsoleInput(tracer)
     val interpreter = CatchableInterpreter(TracingInterpreter(tracer, input))
     interpreter.interpret(ast)
     return if (interpreter.hasException()) {

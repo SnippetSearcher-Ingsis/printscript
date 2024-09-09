@@ -16,7 +16,7 @@ class Tester(private val name: String) {
     val parser = PrintParser()
     val ast = parser.parse(tokens)
     val tracer = ReadableTracer()
-    val input = ConsoleInput()
+    val input = ConsoleInput(tracer)
     val interpreter = TracingInterpreter(tracer, input)
     interpreter.interpret(ast.iterator())
     assert(tracer.getOutput() == loader.loadOutput())

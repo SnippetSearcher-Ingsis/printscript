@@ -80,8 +80,12 @@ object DummyAST {
   val readInput = listOf(
     VariableDeclarationNode(
       "hello",
-      "number",
+      "string",
       ReadInputNode(LiteralNode("\"best football club = \""), Position(0, 0)),
+      Position(0, 0)
+    ),
+    PrintStatementNode(
+      LiteralNode("hello"),
       Position(0, 0)
     )
   )
