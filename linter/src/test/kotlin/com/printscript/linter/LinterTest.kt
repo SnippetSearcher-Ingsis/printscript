@@ -91,7 +91,7 @@ class LinterTest {
         result.add(violation.toString())
       }
     }
-    val expectedAt0 = "Casing violation at 2:5, screaming_snake case expected"
+    val expectedAt0 = "Casing violation at 2:5, screaming snake case expected"
     val expectedAt1 = "Expression inside print statement at 4:1"
     assert(result.size == 2)
     assertEquals(expectedAt0, result[0])
@@ -108,7 +108,7 @@ class LinterTest {
         result.add(violation.toString())
       }
     }
-    val expectedAt0 = "Casing violation at 2:5, screaming_kebab case expected"
+    val expectedAt0 = "Casing violation at 2:5, screaming kebab case expected"
     val expectedAt1 = "Expression inside print statement at 5:1"
     assert(result.size == 2)
     assertEquals(expectedAt0, result[0])

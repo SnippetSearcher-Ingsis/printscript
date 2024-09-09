@@ -1,5 +1,5 @@
 {
-  "casing" : "screaming_kebab",
-  "noExpressionsInsidePrints" : true,
-    "noExpressionsInsideReadInputs" : true
+  "identifier_format" : "screaming kebab case",
+  "mandatory-variable-or-literal-in-println" : true,
+  "mandatory-variable-or-literal-in-readInput" : true
 }
