@@ -2,7 +2,6 @@ package com.printscript.interpreter.util
 
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.ReferenceException
-import com.printscript.interpreter.input.Input
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
@@ -11,11 +10,12 @@ import com.printscript.models.node.ReadInputNode
 
 internal object Solver {
   @Throws(Exception::class)
-  fun getValue(context: Context, node: ASTNode, input: Input): Any {
+  fun getValue(services: Services, node: ASTNode): Any {
     return when (node) {
       is ReadInputNode -> {
-        val value = getValue(context, node.expression, input)
-        val response = input.read(value.toString())
+        val value = getValue(services, node.expression)
+        services.output write value.toString()
+        val response = services.input read value.toString()
         try {
           response.toBooleanStrict()
         } catch (e: IllegalArgumentException) {
@@ -32,7 +32,7 @@ internal object Solver {
       }
 
       is ReadEnvNode -> {
-        val env = getValue(context, node.expression, input)
+        val env = getValue(services, node.expression)
         when (Environment.hasGlobalVariable(env.toString())) {
           true -> Environment.getGlobalVariable(env.toString())!!
           false -> throw ReferenceException("Environment variable $env not found.")
@@ -41,14 +41,14 @@ internal object Solver {
 
       is LiteralNode<*> -> {
         when {
-          node.value is String -> getLiteral(context, node.value as String)
+          node.value is String -> getLiteral(services.context, node.value as String)
           else -> node.value!!
         }
       }
 
       is DoubleExpressionNode -> {
-        val a = getValue(context, node.left, input)
-        val b = getValue(context, node.right, input)
+        val a = getValue(services, node.left)
+        val b = getValue(services, node.right)
         when (node.operator) {
           "+" -> add(a, b)
           "-" -> subtract(a, b)
