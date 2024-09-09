@@ -12,7 +12,9 @@ import com.printscript.models.node.ASTNode
 class PrintInterpreter : Interpreter {
   private val context = Context()
 
-  private val strategy = TracingStrategy(PrintTracer(), ConsoleInput())
+  private val tracer = PrintTracer()
+
+  private val strategy = TracingStrategy(tracer, ConsoleInput(tracer))
 
   override fun interpret(iterator: Iterator<ASTNode>) {
     iterator.forEachRemaining { strategy.visit(context, it) }

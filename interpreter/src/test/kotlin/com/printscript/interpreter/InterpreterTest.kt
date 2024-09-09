@@ -1,5 +1,6 @@
 package com.printscript.interpreter
 
+import com.printscript.interpreter.tracer.ReadableTracer
 import org.junit.jupiter.api.Test
 
 class InterpreterTest {
@@ -55,5 +56,14 @@ class InterpreterTest {
   fun testReadEnv() {
     val interpreter = PrintInterpreter()
     interpreter interpret DummyAST.readEnv.iterator()
+  }
+
+  @Test
+  fun testReadInput() {
+    val tracer = ReadableTracer()
+    val input = DummyInput(tracer)
+    val interpreter = TracingInterpreter(tracer, input)
+    interpreter interpret DummyAST.readInput.iterator()
+    assert(tracer.getOutput() == listOf("best football club = ", "Newell's Old Boys"))
   }
 }

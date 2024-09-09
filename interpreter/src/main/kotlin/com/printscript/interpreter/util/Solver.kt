@@ -14,7 +14,8 @@ internal object Solver {
   fun getValue(context: Context, node: ASTNode, input: Input): Any {
     return when (node) {
       is ReadInputNode -> {
-        val response = input.read()
+        val value = getValue(context, node.expression, input)
+        val response = input.read(value.toString())
         try {
           response.toBooleanStrict()
         } catch (e: IllegalArgumentException) {

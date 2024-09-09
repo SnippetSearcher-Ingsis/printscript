@@ -1,8 +1,10 @@
 package com.printscript.interpreter.input
 
-class ConsoleInput : Input {
+import com.printscript.interpreter.tracer.Tracer
+
+class ConsoleInput(private val tracer: Tracer) : Input {
   override fun read(message: String?): String {
-    print(message ?: "")
+    tracer.print(message ?: "")
     return readlnOrNull() ?: ""
   }
 }
