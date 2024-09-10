@@ -1,5 +1,6 @@
 package com.printscript.linter
 
+import com.google.gson.Gson
 import com.printscript.lexer.Lexer
 import com.printscript.parser.PrintParser
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -7,12 +8,13 @@ import org.junit.jupiter.api.Test
 import java.io.File
 
 class LinterTest {
-  private val style1: File = File(this::class.java.getResource("/style1.json")!!.file)
-  private val style2: File = File(this::class.java.getResource("/style2.json")!!.file)
-  private val style3: File = File(this::class.java.getResource("/style3.json")!!.file)
-  private val style4: File = File(this::class.java.getResource("/style4.json")!!.file)
-  private val style5: File = File(this::class.java.getResource("/style5.json")!!.file)
-  private val style6: File = File(this::class.java.getResource("/style6.json")!!.file)
+  private val gson = Gson()
+  private val style1 = gson.fromJson(File(this::class.java.getResource("/style1.json")!!.file).readText(), LinterConfig::class.java)
+  private val style2 = gson.fromJson(File(this::class.java.getResource("/style2.json")!!.file).readText(), LinterConfig::class.java)
+  private val style3 = gson.fromJson(File(this::class.java.getResource("/style3.json")!!.file).readText(), LinterConfig::class.java)
+  private val style4 = gson.fromJson(File(this::class.java.getResource("/style4.json")!!.file).readText(), LinterConfig::class.java)
+  private val style5 = gson.fromJson(File(this::class.java.getResource("/style5.json")!!.file).readText(), LinterConfig::class.java)
+  private val style6 = gson.fromJson(File(this::class.java.getResource("/style6.json")!!.file).readText(), LinterConfig::class.java)
 
   @Test
   fun testStyle1() {

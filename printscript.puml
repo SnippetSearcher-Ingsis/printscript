@@ -1,0 +1,142 @@
+@startuml
+
+class Position {
+    +<<create>>(line: Int, column: Int)
+}
+
+interface ASTNode
+
+interface DeclarationNode implements ASTNode {
+    +identifier: String
+    +type: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class ConstantDeclarationNode implements DeclarationNode {
+    +identifier: String
+    +type: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class ConstantNode implements DeclarationNode {
+    +identifier: String
+    +type: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class VariableDeclarationNode implements DeclarationNode {
+    +identifier: String
+    +type: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class VariableNode implements DeclarationNode {
+    +identifier: String
+    +type: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class AssignationNode implements ASTNode {
+    +identifier: String
+    +expression: ASTNode
+    +position: Position
+}
+
+class DoubleExpressionNode implements ASTNode {
+    +operator: String
+    +left: ASTNode
+    +right: ASTNode
+}
+
+class ErrorNode implements ASTNode {
+    +error: String
+}
+
+class IfElseNode implements ASTNode {
+    +ifBranch: List<ASTNode>
+    +elseBranch: List<ASTNode>
+    +condition: LiteralNode<*>
+}
+
+class LiteralNode<T> implements ASTNode {
+    +value: T
+}
+
+class PrintStatementNode implements ASTNode {
+    +expression: ASTNode
+    +position: Position
+}
+
+class ReadEnvNode implements ASTNode {
+    +expression: ASTNode
+    +position: Position
+}
+
+class ReadInputNode implements ASTNode {
+    +expression: ASTNode
+    +position: Position
+}
+
+interface Catchable {
+    +hasException(): Boolean
+    +getException(): Exception?
+}
+
+interface Parser {
+    +parse(tokens: Iterator<List<Token>>): Iterator<ASTNode>
+}
+
+class PrintParser implements Parser {
+    +parse(tokens: Iterator<List<Token>>): Iterator<ASTNode>
+}
+
+class CatchableParser implements Parser, Catchable {
+    +<<create>>(parser: Parser)
+    +parse(tokens: Iterator<List<Token>>): Iterator<ASTNode>
+}
+
+interface Input {
+    +read(message: String): String
+}
+
+class ConsoleInput implements Input {
+    +read(message: String): String
+}
+
+interface Output {
+    +write(message: String)
+}
+
+class ConsoleOutput implements Output {
+    +write(message: String)
+}
+
+class ReadableOutput implements Output {
+    +write(message: String)
+    +getOutput(): List<String>
+}
+
+interface Interpreter {
+    +interpret(iterator: Iterator<ASTNode>)
+}
+
+class PrintInterpreter implements Interpreter {
+    +interpret(iterator: Iterator<ASTNode>)
+}
+
+class GoatedInterpreter implements Interpreter {
+    +<<create>>(input: Input, output: Output)
+    +interpret(iterator: Iterator<ASTNode>)
+}
+
+class CatchableInterpreter implements Interpreter, Catchable {
+    +<<create>>(interpreter: Interpreter)
+    +interpret(iterator: Iterator<ASTNode>)
+}
+
+@enduml

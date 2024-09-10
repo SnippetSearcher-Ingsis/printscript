@@ -1,6 +1,8 @@
 package com.printscript.linter.violation
 
-data class ExpressionInsidePrintViolation(private val position: com.printscript.models.node.Position) : Violation {
+import com.printscript.models.node.Position
+
+data class ExpressionInsidePrintViolation(private val position: Position) : Violation {
   override fun toString(): String {
     return "Expression inside print statement at $position"
   }
