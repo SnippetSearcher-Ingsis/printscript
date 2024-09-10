@@ -6,7 +6,7 @@ import com.printscript.linter.rule.NoExpressionsInsidePrints
 import com.printscript.linter.rule.NoExpressionsInsideReadInputs
 
 data class LinterConfig(
-  val casing: String,
+  val casing: String?,
   val noExpressionsInsidePrints: Boolean,
   val noExpressionsInsideReadInputs: Boolean
 ) {
