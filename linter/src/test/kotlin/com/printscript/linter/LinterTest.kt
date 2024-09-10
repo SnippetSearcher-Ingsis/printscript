@@ -15,6 +15,7 @@ class LinterTest {
   private val style4 = gson.fromJson(File(this::class.java.getResource("/style4.json")!!.file).readText(), LinterConfig::class.java)
   private val style5 = gson.fromJson(File(this::class.java.getResource("/style5.json")!!.file).readText(), LinterConfig::class.java)
   private val style6 = gson.fromJson(File(this::class.java.getResource("/style6.json")!!.file).readText(), LinterConfig::class.java)
+  private val style7 = gson.fromJson(File(this::class.java.getResource("/style7.json")!!.file).readText(), LinterConfig::class.java)
 
   @Test
   fun testStyle1() {
@@ -115,5 +116,21 @@ class LinterTest {
     assert(result.size == 2)
     assertEquals(expectedAt0, result[0])
     assertEquals(expectedAt1, result[1])
+  }
+
+  @Test
+  fun testStyle72() {
+    val lexer = Lexer()
+    val astList = PrintParser().parse(lexer.lex(File("src/test/resources/style7.txt").reader()))
+    val result = mutableListOf<String>()
+    while (astList.hasNext()) {
+      Linter.lint(astList.next(), style7).forEach { violation ->
+        result.add(violation.toString())
+      }
+    }
+    println(result)
+    val expectedAt0 = "Expression inside read input statement at 2:5"
+    assert(result.size == 1)
+    assertEquals(expectedAt0, result[0])
   }
 }
