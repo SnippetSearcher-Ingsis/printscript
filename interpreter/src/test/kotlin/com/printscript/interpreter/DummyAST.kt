@@ -1,6 +1,7 @@
 package com.printscript.interpreter
 
 import com.printscript.models.node.AssignationNode
+import com.printscript.models.node.ConstantDeclarationNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.ErrorNode
 import com.printscript.models.node.LiteralNode
@@ -19,7 +20,7 @@ object DummyAST {
   )
 
   val invalidDeclaration = listOf(
-    VariableDeclarationNode(
+    ConstantDeclarationNode(
       "hello",
       "number",
       LiteralNode("\"world\""),
