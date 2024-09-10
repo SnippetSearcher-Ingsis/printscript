@@ -11,6 +11,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:5.11.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("com.google.code.gson:gson:2.8.9")
     implementation(project(":lexer"))
     implementation(project(":parser"))
     implementation(project(":interpreter"))
