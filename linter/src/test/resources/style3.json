@@ -1,5 +1,5 @@
 {
-  "casing" : "pascal",
-  "noExpressionsInsidePrints" : true,
-    "noExpressionsInsideReadInputs" : true
+  "identifier_format" : "pascal case",
+  "mandatory-variable-or-literal-in-println" : true,
+  "mandatory-variable-or-literal-in-readInput" : true
 }

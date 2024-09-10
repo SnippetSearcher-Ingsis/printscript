@@ -36,11 +36,8 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
   }
 
   fun handleDeclaration(node: DeclarationNode) {
-    if (node is ConstantDeclarationNode) {
-      append("const ${node.variable}")
-    } else {
-      append("let ${node.variable}")
-    }
+    append(if (node is ConstantDeclarationNode) "const " else "let ")
+    append(node.variable)
     append(config.spaceAroundColonsRule.apply())
     append(node.variableType)
     append(config.spaceAroundEqualsRule.apply())
