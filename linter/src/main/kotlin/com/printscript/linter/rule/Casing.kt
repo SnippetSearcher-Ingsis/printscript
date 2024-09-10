@@ -1,6 +1,5 @@
 package com.printscript.linter.rule
 
-import com.printscript.linter.rule.caseTypes.AnyCase
 import com.printscript.linter.rule.caseTypes.CamelCase
 import com.printscript.linter.rule.caseTypes.Case
 import com.printscript.linter.rule.caseTypes.KebabCase

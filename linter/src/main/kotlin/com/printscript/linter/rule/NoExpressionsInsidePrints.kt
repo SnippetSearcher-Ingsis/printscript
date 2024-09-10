@@ -7,17 +7,10 @@ import com.printscript.models.node.PrintStatementNode
 
 data class NoExpressionsInsidePrints(private val active: Boolean) : LintRule {
   override fun check(node: ASTNode): ExpressionInsidePrintViolation? {
-    if (!active || node !is PrintStatementNode) {
-      return null
-    }
-    return check(node)
+    return if (!active || node !is PrintStatementNode) null else check(node)
   }
 
   private fun check(node: PrintStatementNode): ExpressionInsidePrintViolation? {
-    return if (node.expression !is LiteralNode<*>) {
-      ExpressionInsidePrintViolation(node.position)
-    } else {
-      null
-    }
+    return if (node.expression !is LiteralNode<*>) ExpressionInsidePrintViolation(node.position) else null
   }
 }
