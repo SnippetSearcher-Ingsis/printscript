@@ -30,8 +30,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "string",
+        identifier = "a",
+        valueType = "string",
         expression = LiteralNode("\"Hello World\""),
         position = Position(1, 1)
       )
@@ -67,8 +67,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "string",
+        identifier = "a",
+        valueType = "string",
         expression = LiteralNode("\"Hello World\""),
         position = Position(1, 1)
       ),
@@ -102,8 +102,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "number",
+        identifier = "a",
+        valueType = "number",
         expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
@@ -136,8 +136,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "number",
+        identifier = "a",
+        valueType = "number",
         expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
@@ -170,8 +170,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "number",
+        identifier = "a",
+        valueType = "number",
         expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
@@ -204,8 +204,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "number",
+        identifier = "a",
+        valueType = "number",
         expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),
@@ -243,8 +243,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "string",
+        identifier = "a",
+        valueType = "string",
         expression = DoubleExpressionNode(
           left = LiteralNode("\"Hello World\""),
           right = LiteralNode(2),
@@ -282,8 +282,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "string",
+        identifier = "a",
+        valueType = "string",
         expression = DoubleExpressionNode(
           left = LiteralNode("\"Hello World\""),
           right = LiteralNode(2),
@@ -353,8 +353,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "string",
+        identifier = "a",
+        valueType = "string",
         expression = LiteralNode("\"Hello World\""),
         position = Position(0, 0)
       ),
@@ -396,8 +396,8 @@ class PrintParserTest {
     )
     val ast = listOf(
       VariableDeclarationNode(
-        variable = "a",
-        variableType = "number",
+        identifier = "a",
+        valueType = "number",
         expression = DoubleExpressionNode(
           left = LiteralNode(1),
           right = LiteralNode(2),

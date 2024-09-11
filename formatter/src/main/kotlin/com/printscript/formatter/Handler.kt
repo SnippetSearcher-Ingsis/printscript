@@ -10,6 +10,8 @@ import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.PrintStatementNode
 import com.printscript.models.node.ReadEnvNode
 import com.printscript.models.node.ReadInputNode
+import com.printscript.models.node.VariableDeclarationNode
+import com.printscript.models.node.VariableNode
 import com.printscript.models.tool.Tool
 
 class Handler(private val config: FormatterConfig, private val outputCode: StringBuilder, private val visitor: FormatterVisitor) : Tool {
@@ -36,10 +38,17 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
   }
 
   fun handleDeclaration(node: DeclarationNode) {
-    append(if (node is ConstantDeclarationNode) "const " else "let ")
-    append(node.variable)
+    append(
+      when (node) {
+        is ConstantDeclarationNode -> "const "
+        is VariableDeclarationNode -> "let "
+        is VariableNode -> "let "
+        else -> throw UnsupportedOperationException("Unsupported node type")
+      }
+    )
+    append(node.identifier)
     append(config.spaceAroundColonsRule.apply())
-    append(node.variableType)
+    append(node.valueType)
     append(config.spaceAroundEqualsRule.apply())
     evaluate(node.expression)
     endStatement()
@@ -64,16 +73,18 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     append(")")
   }
 
-  fun handleBranch(node: IfElseNode) {
+  fun handleIfElse(node: IfElseNode) {
     append("if (")
     evaluate(node.condition)
-    append(") { \n")
+    append(")")
+    append(config.inlineIfBraceRule.apply())
     node.ifBranch.forEach { indent(); evaluate(it) }
-    append("} \n")
+    append("}\n")
     if (node.elseBranch.isEmpty()) return
-    append("else { \n")
+    append("else")
+    append(config.inlineIfBraceRule.apply())
     node.elseBranch.forEach { indent(); evaluate(it) }
-    append("} \n")
+    append("}\n")
   }
 
   private fun append(string: String) {

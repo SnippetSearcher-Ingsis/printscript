@@ -17,16 +17,16 @@ import com.printscript.models.node.VariableNode
 
 internal object Handler {
   fun declareValue(services: Services, node: DeclarationNode) {
-    val key = node.variable
+    val key = node.identifier
     val value = when (node) {
       is VariableNode, is ConstantNode -> null
-      else -> getValue(services, key, node.variableType, node.expression)
+      else -> getValue(services, key, node.valueType, node.expression)
     }
     when (node) {
-      is ConstantDeclarationNode -> services.context.put(key, Constant(node.variableType, value))
-      is VariableDeclarationNode -> services.context.put(key, Variable(node.variableType, value))
-      is VariableNode -> services.context.put(key, Variable(node.variableType, null))
-      is ConstantNode -> services.context.put(key, Constant(node.variableType, null))
+      is ConstantDeclarationNode -> services.context.put(key, Constant(node.valueType, value))
+      is VariableDeclarationNode -> services.context.put(key, Variable(node.valueType, value))
+      is VariableNode -> services.context.put(key, Variable(node.valueType, null))
+      is ConstantNode -> services.context.put(key, Constant(node.valueType, null))
     }
   }
 
