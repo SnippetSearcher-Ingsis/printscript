@@ -76,6 +76,7 @@ internal object Solver {
       a is String && b is Number -> a + b.toString()
       a is String && b is String -> a + b
       a is String && b is Boolean -> a + b.toString()
+      a is Boolean && b is String -> a.toString() + b
       else -> throw OperationException("Operation $a + $b not supported.")
     }
   }

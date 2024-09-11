@@ -28,7 +28,7 @@ internal class GoatedStrategy : Strategy {
       is ErrorNode -> Handler.error(node)
       is ReadEnvNode -> {}
       is ReadInputNode -> {}
-      is IfElseNode -> Handler.branch(services, node)
+      is IfElseNode -> Handler.selectBranch(services, node)
     }
   }
 }
