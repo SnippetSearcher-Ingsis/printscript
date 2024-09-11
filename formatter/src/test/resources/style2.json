@@ -1,7 +1,7 @@
 {
-  "lineBreaksBeforePrints": 2,
-  "spaceAroundEquals": false,
-  "spaceBeforeColon": true,
-  "spaceAfterColon": false,
-  "indent": 4
+  "line-breaks-before-println": 2,
+  "enforce-no-spacing-around-equals": true,
+  "enforce-spacing-before-colon-in-declaration": true,
+  "enforce-spacing-after-colon-in-declaration": false,
+  "indent-inside-if": 4
 }

@@ -1,0 +1,26 @@
+package com.printscript.engine
+
+import com.printscript.interpreter.GoatedInterpreter
+import com.printscript.interpreter.input.ConsoleInput
+import com.printscript.interpreter.output.ConsoleOutput
+import com.printscript.lexer.Lexer
+import com.printscript.parser.PrintParser
+
+fun main() {
+  val lexer = Lexer()
+  val parser = PrintParser()
+  val input = ConsoleInput()
+  val output = ConsoleOutput()
+  val interpreter = GoatedInterpreter(input, output)
+  output.write("PrintScript v.1.1")
+  while (true) {
+    try {
+      val read = readln()
+      val tokens = lexer.lex(read.reader())
+      val ast = parser.parse(tokens)
+      interpreter.interpret(ast)
+    } catch (e: Throwable) {
+      output.write(e.message ?: "An error occurred")
+    }
+  }
+}

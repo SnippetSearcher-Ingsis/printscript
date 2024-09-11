@@ -1,5 +1,5 @@
 {
-  "casing" : "screaming_snake",
-  "noExpressionsInsidePrints" : true,
-    "noExpressionsInsideReadInputs" : true
+  "identifier_format" : "screaming snake case",
+  "mandatory-variable-or-literal-in-println" : true,
+  "mandatory-variable-or-literal-in-readInput" : true
 }

@@ -50,3 +50,7 @@ local.properties
 
 # Formatter styles
 !formatter/src/test/resources
+
+# Gradle properties
+gradle.properties
+!/engine/src/test/resources/integral/
