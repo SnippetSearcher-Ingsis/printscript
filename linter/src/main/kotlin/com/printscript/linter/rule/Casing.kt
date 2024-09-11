@@ -22,13 +22,10 @@ data class Casing(private val caseType: String?) : LintRule {
   }
 
   override fun check(node: com.printscript.models.node.ASTNode): CasingViolation? {
-    if (node !is com.printscript.models.node.VariableDeclarationNode || case == null) {
-      return null
-    }
-    return check(node)
+    return if (node !is com.printscript.models.node.VariableDeclarationNode || case == null) null else check(node)
   }
 
   private fun check(node: com.printscript.models.node.VariableDeclarationNode): CasingViolation? {
-    return if (!case!!.check(node.variable)) CasingViolation(node.position, caseType!!) else null
+    return if (!case!!.check(node.identifier)) CasingViolation(node.position, caseType!!) else null
   }
 }

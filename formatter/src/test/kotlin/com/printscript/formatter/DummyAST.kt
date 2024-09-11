@@ -15,8 +15,8 @@ object DummyAST {
   )
 
   fun declaration(): ASTNode = VariableDeclarationNode(
-    variable = "variable",
-    variableType = "String",
+    identifier = "variable",
+    valueType = "String",
     expression = LiteralNode("\"Hello World\""),
     position = Position(0, 0)
   )
@@ -36,16 +36,16 @@ object DummyAST {
   fun ifElse(): ASTNode = IfElseNode(
     ifBranch = listOf(
       VariableDeclarationNode(
-        variable = "variable",
-        variableType = "String",
+        identifier = "variable",
+        valueType = "String",
         expression = LiteralNode("\"Hello World\""),
         position = Position(0, 0)
       )
     ),
     elseBranch = listOf(
       VariableDeclarationNode(
-        variable = "variable",
-        variableType = "String",
+        identifier = "variable",
+        valueType = "String",
         expression = LiteralNode("\"Hello World\""),
         position = Position(0, 0)
       )

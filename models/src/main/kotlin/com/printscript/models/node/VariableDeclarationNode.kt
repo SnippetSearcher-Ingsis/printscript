@@ -1,16 +1,16 @@
 package com.printscript.models.node
 
 data class VariableDeclarationNode(
-  override val variable: String,
-  override val variableType: String,
+  override val identifier: String,
+  override val valueType: String,
   override val expression: ASTNode,
   override val position: Position,
 ) : DeclarationNode {
   override fun equals(other: Any?): Boolean {
     return when {
       other is VariableDeclarationNode -> {
-        this.variable == other.variable &&
-          this.variableType == other.variableType &&
+        this.identifier == other.identifier &&
+          this.valueType == other.valueType &&
           this.expression == other.expression
       }
       else -> super.equals(other)
@@ -18,8 +18,8 @@ data class VariableDeclarationNode(
   }
 
   override fun hashCode(): Int {
-    var result = variable.hashCode()
-    result = 31 * result + variableType.hashCode()
+    var result = identifier.hashCode()
+    result = 31 * result + valueType.hashCode()
     result = 31 * result + expression.hashCode()
     result = 31 * result + position.hashCode()
     return result

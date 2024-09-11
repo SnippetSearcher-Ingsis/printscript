@@ -1,13 +1,13 @@
 package com.printscript.formatter.rule
 
-data class SpaceAroundColons(private val before: Boolean, private val after: Boolean) : FormatRule {
+data class SpaceAroundEqualsRule(private val active: Boolean) : FormatRule {
   override fun apply(): String {
     val result = StringBuilder()
-    if (before) {
+    if (active) {
       result.append(" ")
     }
-    result.append(":")
-    if (after) {
+    result.append("=")
+    if (active) {
       result.append(" ")
     }
     return result.toString()
