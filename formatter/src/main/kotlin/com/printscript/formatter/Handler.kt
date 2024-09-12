@@ -3,6 +3,7 @@ package com.printscript.formatter
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
+import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DeclarationNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.IfElseNode
@@ -41,9 +42,9 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     append(
       when (node) {
         is ConstantDeclarationNode -> "const "
+        is ConstantNode -> "const"
         is VariableDeclarationNode -> "let "
         is VariableNode -> "let "
-        else -> throw UnsupportedOperationException("Unsupported node type")
       }
     )
     append(node.identifier)

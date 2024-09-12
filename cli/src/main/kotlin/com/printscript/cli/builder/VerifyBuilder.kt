@@ -5,11 +5,10 @@ import com.printscript.cli.commands.Verify
 
 class VerifyBuilder : CommandBuilder {
   override fun build(command: List<String>): Result {
-    if (command.isEmpty()) {
-      return Result("Missing Arguments", emptyList())
-    } else if (command.size > 1) {
-      return Result("Too Many Arguments", emptyList())
+    return when {
+      command.isEmpty() -> Result("Missing Arguments", emptyList())
+      command.size > 1 -> Result("Too Many Arguments", emptyList())
+      else -> Verify().execute(command[0])
     }
-    return Verify().execute(command[0])
   }
 }
