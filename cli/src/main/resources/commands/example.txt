@@ -1,1 +1,1 @@
-execute test.txt
+format test.txt formatterConfig.json
