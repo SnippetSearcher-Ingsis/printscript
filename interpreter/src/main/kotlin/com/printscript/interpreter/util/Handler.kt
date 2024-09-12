@@ -41,7 +41,7 @@ internal object Handler {
     }
   }
 
-  fun branch(services: Services, node: IfElseNode) {
+  fun selectBranch(services: Services, node: IfElseNode) {
     val bool = when (val condition = node.condition.value.toString()) {
       "true" -> true
       "false" -> false
@@ -54,7 +54,7 @@ internal object Handler {
     val branch = if (bool) node.ifBranch else node.elseBranch
     val branchContext = services.context.clone()
     val newServices = services withContext branchContext
-    branch.forEach { services.interpret(newServices, it) }
+    branch.forEach { services.visit(newServices, it) }
     services.context.merge(branchContext)
   }
 

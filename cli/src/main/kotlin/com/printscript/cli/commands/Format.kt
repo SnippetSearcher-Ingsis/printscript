@@ -14,15 +14,18 @@ class Format : CommandExecute {
     val lexer = Lexer()
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
-    var lastNode: com.printscript.models.node.ASTNode?
+
     val configFile = File("cli/src/main/resources/config/${file[1]}")
     if (!configFile.exists()) return Result("Config file ${file[1]} not found", listOf())
+
     val res: MutableList<String> = mutableListOf()
+
     while (ast.hasNext()) {
-      lastNode = ast.next()
-      if (lastNode is com.printscript.models.node.ErrorNode) break
-      res.add(Formatter.format(lastNode, configFile))
+      val node = ast.next()
+      if (ast.hasException()) break
+      res.add(Formatter.format(node, configFile))
     }
+
     if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())
     return Result("", res)
   }

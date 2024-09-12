@@ -5,11 +5,10 @@ import com.printscript.cli.commands.Analyze
 
 class AnalyzeBuilder : CommandBuilder {
   override fun build(command: List<String>): Result {
-    if (command.size <= 1) {
-      return Result("Missing Arguments", emptyList())
-    } else if (command.size > 2) {
-      return Result("Too Many Arguments", emptyList())
+    return when {
+      command.size < 2 -> Result("Missing Arguments", emptyList())
+      command.size > 2 -> Result("Too Many Arguments", emptyList())
+      else -> Analyze().execute(command[0], command[1])
     }
-    return Analyze().execute(command[0], command[1])
   }
 }

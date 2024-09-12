@@ -6,6 +6,7 @@ import com.printscript.cli.TXTHandler
 import com.printscript.lexer.Lexer
 import com.printscript.linter.Linter
 import com.printscript.linter.LinterConfig
+import com.printscript.linter.violation.Violation
 import com.printscript.parser.CatchableParser
 import java.io.File
 
@@ -16,18 +17,29 @@ class Analyze : CommandExecute {
     val lexer = Lexer()
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
-    var lastNode: com.printscript.models.node.ASTNode?
+
     val configFile = File("cli/src/main/resources/config/${file[1]}")
     if (!configFile.exists()) return Result("Config file ${file[1]} not found", emptyList())
+
+    val config = Gson().fromJson(configFile.readText(), LinterConfig::class.java)
+    val res: MutableList<Violation> = mutableListOf()
+
     while (ast.hasNext()) {
-      lastNode = ast.next()
-      if (lastNode is com.printscript.models.node.ErrorNode) break
-      val gson = Gson()
-      val config = gson.fromJson(configFile.readText(), LinterConfig::class.java)
-      val res = Linter.lint(lastNode, config)
-      if (res.isNotEmpty()) return Result(res.toString(), emptyList())
+      val node = ast.next()
+      if (ast.hasException()) break
+
+      val violations = Linter.lint(node, config)
+      if (violations.isNotEmpty()) {
+        res.addAll(violations)
+      }
     }
+
     if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())
+
+    if (res.isNotEmpty()) {
+      return Result(res.map { it.toString() }.toString(), emptyList())
+    }
+
     return Result("", listOf("No linter flag has been raised"))
   }
 }
