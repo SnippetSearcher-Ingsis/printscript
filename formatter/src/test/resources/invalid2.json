@@ -1,0 +1,5 @@
+{
+  "if-brace-below-line": true,
+  "if-brace-same-line": true,
+  "indent-inside-if": 1
+}

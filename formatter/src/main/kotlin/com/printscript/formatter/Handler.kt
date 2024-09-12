@@ -31,18 +31,18 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
   }
 
   fun handlePrintStatement(node: PrintStatementNode) {
-    append(config.lineBreaksBeforePrintsRule.apply())
     append("println(")
     evaluate(node.expression)
     append(")")
     endStatement()
+    append(config.lineBreaksAfterPrintsRule.apply())
   }
 
   fun handleDeclaration(node: DeclarationNode) {
     append(
       when (node) {
         is ConstantDeclarationNode -> "const "
-        is ConstantNode -> "const"
+        is ConstantNode -> "const "
         is VariableDeclarationNode -> "let "
         is VariableNode -> "let "
       }
@@ -66,12 +66,14 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     append("readEnv(")
     evaluate(node.expression)
     append(")")
+    endStatement()
   }
 
   fun handleReadInput(node: ReadInputNode) {
     append("readInput(")
     evaluate(node.expression)
     append(")")
+    endStatement()
   }
 
   fun handleIfElse(node: IfElseNode) {

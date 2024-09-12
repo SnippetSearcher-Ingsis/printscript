@@ -1,0 +1,6 @@
+{
+  "enforce-no-spacing-around-equals": true,
+  "enforce-spacing-around-equals": true,
+  "enforce-spacing-before-colon-in-declaration": false,
+  "enforce-spacing-after-colon-in-declaration": true
+}

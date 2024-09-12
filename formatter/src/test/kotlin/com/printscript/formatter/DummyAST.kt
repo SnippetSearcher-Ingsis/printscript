@@ -2,38 +2,42 @@ package com.printscript.formatter
 
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
+import com.printscript.models.node.ConstantDeclarationNode
+import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.IfElseNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.Position
 import com.printscript.models.node.PrintStatementNode
+import com.printscript.models.node.ReadEnvNode
+import com.printscript.models.node.ReadInputNode
 import com.printscript.models.node.VariableDeclarationNode
 
-object DummyAST {
-  fun print(): ASTNode = PrintStatementNode(
+data object DummyAST {
+  internal val print: ASTNode = PrintStatementNode(
     expression = LiteralNode("\"Hello World\""),
     position = Position(0, 0)
   )
 
-  fun declaration(): ASTNode = VariableDeclarationNode(
+  internal val declaration: ASTNode = VariableDeclarationNode(
     identifier = "variable",
     valueType = "String",
     expression = LiteralNode("\"Hello World\""),
     position = Position(0, 0)
   )
 
-  fun assignation(): ASTNode =
+  internal val assignation: ASTNode =
     AssignationNode(
       variable = "variable",
       expression = LiteralNode("\"Hello Universe\""),
       position = Position(0, 0)
     )
 
-  fun doubleExpressionAndPrint(): ASTNode = PrintStatementNode(
+  internal val doubleExpressionAndPrint: ASTNode = PrintStatementNode(
     expression = LiteralNode("a"),
     position = Position(0, 0)
   )
 
-  fun ifElse(): ASTNode = IfElseNode(
+  internal val ifElse: ASTNode = IfElseNode(
     ifBranch = listOf(
       VariableDeclarationNode(
         identifier = "variable",
@@ -47,6 +51,52 @@ object DummyAST {
         identifier = "variable",
         valueType = "String",
         expression = LiteralNode("\"Hello World\""),
+        position = Position(0, 0)
+      )
+    ),
+    condition = LiteralNode("true")
+  )
+
+  internal val integral: ASTNode = IfElseNode(
+    ifBranch = listOf(
+      ReadEnvNode(
+        expression = LiteralNode(2),
+        position = Position(0, 0)
+      ),
+      PrintStatementNode(
+        expression = DoubleExpressionNode(
+          operator = "-",
+          left = LiteralNode(3),
+          right = DoubleExpressionNode(
+            operator = "*",
+            left = LiteralNode(1),
+            right = LiteralNode(4)
+          )
+        ),
+        position = Position(0, 0)
+      ),
+      VariableDeclarationNode(
+        identifier = "variable",
+        valueType = "String",
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(0, 0)
+      )
+    ),
+    elseBranch = listOf(
+      VariableDeclarationNode(
+        identifier = "variable",
+        valueType = "String",
+        expression = LiteralNode("\"Hello World\""),
+        position = Position(0, 0)
+      ),
+      ReadInputNode(
+        expression = LiteralNode("hola"),
+        position = Position(0, 0)
+      ),
+      ConstantDeclarationNode(
+        identifier = "constant",
+        valueType = "number",
+        expression = LiteralNode(2),
         position = Position(0, 0)
       )
     ),
