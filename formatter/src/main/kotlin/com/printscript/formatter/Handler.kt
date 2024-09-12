@@ -3,6 +3,7 @@ package com.printscript.formatter
 import com.printscript.models.node.ASTNode
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
+import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DeclarationNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.IfElseNode
@@ -30,20 +31,20 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
   }
 
   fun handlePrintStatement(node: PrintStatementNode) {
-    append(config.lineBreaksBeforePrintsRule.apply())
     append("println(")
     evaluate(node.expression)
     append(")")
     endStatement()
+    append(config.lineBreaksAfterPrintsRule.apply())
   }
 
   fun handleDeclaration(node: DeclarationNode) {
     append(
       when (node) {
         is ConstantDeclarationNode -> "const "
+        is ConstantNode -> "const "
         is VariableDeclarationNode -> "let "
         is VariableNode -> "let "
-        else -> throw UnsupportedOperationException("Unsupported node type")
       }
     )
     append(node.identifier)
@@ -65,12 +66,14 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     append("readEnv(")
     evaluate(node.expression)
     append(")")
+    endStatement()
   }
 
   fun handleReadInput(node: ReadInputNode) {
     append("readInput(")
     evaluate(node.expression)
     append(")")
+    endStatement()
   }
 
   fun handleIfElse(node: IfElseNode) {

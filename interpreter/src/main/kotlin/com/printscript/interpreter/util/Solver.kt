@@ -18,13 +18,13 @@ internal object Solver {
         val response = services.input read value.toString()
         try {
           response.toBooleanStrict()
-        } catch (e: IllegalArgumentException) {
+        } catch (_: IllegalArgumentException) {
           try {
             response.toInt()
-          } catch (e: NumberFormatException) {
+          } catch (_: NumberFormatException) {
             try {
               response.toDouble()
-            } catch (e: NumberFormatException) {
+            } catch (_: NumberFormatException) {
               response
             }
           }
@@ -76,6 +76,7 @@ internal object Solver {
       a is String && b is Number -> a + b.toString()
       a is String && b is String -> a + b
       a is String && b is Boolean -> a + b.toString()
+      a is Boolean && b is String -> a.toString() + b
       else -> throw OperationException("Operation $a + $b not supported.")
     }
   }
