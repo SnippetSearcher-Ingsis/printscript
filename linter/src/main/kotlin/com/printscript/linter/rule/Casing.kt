@@ -9,7 +9,7 @@ import com.printscript.linter.rule.caseTypes.ScreamingSnakeCase
 import com.printscript.linter.rule.caseTypes.SnakeCase
 import com.printscript.linter.violation.CasingViolation
 
-data class Casing(private val caseType: String?) : LintRule {
+class Casing(private val caseType: String?) : LintRule {
   private val case: Case? = when (caseType) {
     "camel case" -> CamelCase
     "pascal case" -> PascalCase

@@ -6,7 +6,7 @@ import com.printscript.models.node.DeclarationNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.ReadInputNode
 
-data class NoExpressionsInsideReadInputs(private val active: Boolean) : LintRule {
+class NoExpressionsInsideReadInputs(private val active: Boolean) : LintRule {
   override fun check(node: ASTNode): ExpressionInsideReadInputViolation? {
     return if (!active || node !is DeclarationNode) null else check(node)
   }

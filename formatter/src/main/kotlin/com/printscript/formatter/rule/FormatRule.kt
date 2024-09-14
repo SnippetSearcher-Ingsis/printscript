@@ -1,5 +1,5 @@
 package com.printscript.formatter.rule
 
-sealed interface FormatRule {
+interface FormatRule {
   fun apply(): String
 }
