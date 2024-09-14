@@ -4,7 +4,6 @@ object PreConfiguredProviders {
   val VERSION_1_0 = StrategyProvider.builder {
     add strategy AssignationStrategy()
     add strategy DoubleExpressionStrategy()
-    add strategy ErrorStrategy()
     add strategy LiteralStrategy()
     add strategy PrintStatementStrategy()
     add strategy VariableDeclarationStrategy()

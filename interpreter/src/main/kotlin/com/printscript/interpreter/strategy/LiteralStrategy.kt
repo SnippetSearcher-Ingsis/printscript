@@ -21,6 +21,7 @@ class LiteralStrategy : Strategy<LiteralNode<*>> {
   private fun handleReference(services: Services, identifier: String): Any {
     return when {
       identifier !in services.context -> throw ReferenceException("Identifier $identifier not found.")
+      (services.context get identifier)?.value == null -> throw ReferenceException("Identifier $identifier is null.")
       else -> (services.context get identifier)?.value!!
     }
   }

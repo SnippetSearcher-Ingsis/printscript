@@ -18,6 +18,11 @@ sealed interface StrategyProvider {
    */
   operator fun plus(other: StrategyProvider): StrategyProvider
 
+  /**
+   * Returns an iterator over the [Pair] of [Class] and [Strategy] of this [StrategyProvider].
+   */
+  fun iterator(): Iterator<Pair<Class<out ASTNode>, Strategy<out ASTNode>>>
+
   companion object {
     /**
      * Creates a new [StrategyProvider] with the given [Strategy].
@@ -39,8 +44,12 @@ sealed interface StrategyProvider {
     }
 
     override fun plus(other: StrategyProvider): StrategyProvider {
-      val provider = other as StrategyProviderImplementation
-      return StrategyProviderImplementation(strategies + provider.strategies)
+      val map = mutableMapOf<Class<out ASTNode>, Strategy<out ASTNode>>()
+      strategies.forEach { (k, v) -> map[k] = v }
+      other.iterator().forEach { (k, v) -> map[k] = v }
+      return StrategyProviderImplementation(map.toMap())
     }
+
+    override fun iterator() = strategies.map { it.toPair() }.iterator()
   }
 }
