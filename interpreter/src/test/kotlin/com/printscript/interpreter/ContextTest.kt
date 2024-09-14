@@ -15,6 +15,6 @@ class ContextTest {
     val context = Context()
     context.put("hello", Variable("string", "world"))
     context.clear()
-    assert(!(context has "hello"))
+    assert("hello" !in context)
   }
 }
