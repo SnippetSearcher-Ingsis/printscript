@@ -1,8 +1,9 @@
 package com.printscript.engine
 
-import com.printscript.interpreter.GoatedInterpreter
+import com.printscript.interpreter.Interpreter
 import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.output.ConsoleOutput
+import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.lexer.Lexer
 import com.printscript.parser.PrintParser
 
@@ -11,7 +12,11 @@ fun main() {
   val parser = PrintParser()
   val input = ConsoleInput()
   val output = ConsoleOutput()
-  val interpreter = GoatedInterpreter(input, output)
+  val interpreter = Interpreter builder {
+    add input input
+    add output output
+    add provider VERSION_1_1
+  }
   output.write("PrintScript v.1.1")
   while (true) {
     try {

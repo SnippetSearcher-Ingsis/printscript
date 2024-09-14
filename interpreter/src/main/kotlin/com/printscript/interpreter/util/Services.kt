@@ -10,6 +10,6 @@ import com.printscript.models.node.ASTNode
  * @param output the output handler to use.
  * @param visit a recursive callback to re-send requests to the interpreter from inside a strategy.
  */
-internal data class Services(val context: Context, val input: Input, val output: Output, val visit: (services: Services, node: ASTNode) -> Unit) {
+class Services(val context: Context, val input: Input, val output: Output, val visit: (services: Services, node: ASTNode) -> Any?) {
   infix fun withContext(context: Context) = Services(context, input, output, visit)
 }
