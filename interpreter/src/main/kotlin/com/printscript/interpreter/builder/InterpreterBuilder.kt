@@ -1,4 +1,4 @@
-package com.printscript.interpreter.builders
+package com.printscript.interpreter.builder
 
 import com.printscript.interpreter.BuilderException
 import com.printscript.interpreter.Interpreter
@@ -11,8 +11,6 @@ import kotlin.jvm.Throws
  * A builder for the [Interpreter].
  */
 class InterpreterBuilder {
-  val add = this
-
   private var input: Input? = null
 
   private var output: Output? = null
@@ -22,21 +20,21 @@ class InterpreterBuilder {
   /**
    * Sets the [Input] for the [Interpreter].
    */
-  infix fun input(input: Input) {
+  infix fun setInput(input: Input) {
     this.input = input
   }
 
   /**
    * Sets the [Output] for the [Interpreter].
    */
-  infix fun output(output: Output) {
+  infix fun setOutput(output: Output) {
     this.output = output
   }
 
   /**
    * Sets the [StrategyProvider] for the [Interpreter].
    */
-  infix fun provider(provider: StrategyProvider) {
+  infix fun setProvider(provider: StrategyProvider) {
     this.provider = provider
   }
 
@@ -45,11 +43,14 @@ class InterpreterBuilder {
    */
   @Throws(BuilderException::class)
   fun build(): Interpreter {
+    val input = input
+    val output = output
+    val provider = provider
     when {
       input == null -> throw BuilderException("Input is required")
       output == null -> throw BuilderException("Output is required")
       provider == null -> throw BuilderException("Strategy provider is required")
-      else -> return Interpreter.implementation(input!!, output!!, provider!!)
+      else -> return Interpreter.implementation(input, output, provider)
     }
   }
 }

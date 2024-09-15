@@ -8,9 +8,9 @@ import org.junit.jupiter.api.Test
 class RetroInterpreterTest {
   private val interpreter = CatchableInterpreter(
     Interpreter builder {
-      add input ConsoleInput()
-      add output ConsoleOutput()
-      add provider VERSION_1_0
+      this setInput ConsoleInput()
+      this setOutput ConsoleOutput()
+      this setProvider VERSION_1_0
     }
   )
 
