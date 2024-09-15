@@ -13,9 +13,9 @@ fun main() {
   val input = ConsoleInput()
   val output = ConsoleOutput()
   val interpreter = Interpreter builder {
-    add input input
-    add output output
-    add provider VERSION_1_1
+    this setInput input
+    this setOutput output
+    this setProvider VERSION_1_1
   }
   output.write("PrintScript v.1.1")
   while (true) {

@@ -17,11 +17,10 @@ class Tester(private val name: String) {
     val parser = PrintParser()
     val ast = parser.parse(tokens)
     val output = ReadableOutput()
-    val input = ConsoleInput()
     val interpreter = Interpreter builder {
-      add input input
-      add output output
-      add provider VERSION_1_1
+      this setInput ConsoleInput()
+      this setOutput output
+      this setProvider VERSION_1_1
     }
     interpreter.interpret(ast.iterator())
     assert(output.getOutput() == loader.loadOutput())

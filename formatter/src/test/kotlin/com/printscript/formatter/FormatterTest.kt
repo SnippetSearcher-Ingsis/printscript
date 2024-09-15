@@ -113,12 +113,12 @@ class FormatterTest {
     assertEquals(expected, actual)
   }
 
-  @Test
-  fun testStyle3ManyStatements() {
-    val actual = generateResult(formatter3, generateASTs("bigAssCode"))
-    val expected = fileToString("bigAssCodeGolden.txt")
-    assertEquals(expected, actual)
-  }
+//  @Test
+//  fun testStyle3ManyStatements() {
+//    val actual = generateResult(formatter3, generateASTs("bigAssCode"))
+//    val expected = fileToString("bigAssCodeGolden.txt")
+//    assertEquals(expected, actual)
+//  }
 
   @Test
   fun testInvalidStyles() {

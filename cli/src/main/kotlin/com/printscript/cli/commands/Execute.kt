@@ -20,9 +20,9 @@ class Execute : CommandExecute {
     val input = ConsoleInput()
     val interpreter = CatchableInterpreter(
       Interpreter builder {
-        add input input
-        add output output
-        add provider VERSION_1_1
+        this setInput input
+        this setOutput output
+        this setProvider VERSION_1_1
       }
     )
     interpreter.interpret(ast)
