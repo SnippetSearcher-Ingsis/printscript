@@ -5,7 +5,7 @@ import com.printscript.models.node.ASTNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.PrintStatementNode
 
-data class NoExpressionsInsidePrints(private val active: Boolean) : LintRule {
+class NoExpressionsInsidePrints(private val active: Boolean) : LintRule {
   override fun check(node: ASTNode): ExpressionInsidePrintViolation? {
     return if (!active || node !is PrintStatementNode) null else check(node)
   }

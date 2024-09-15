@@ -12,7 +12,7 @@ import com.printscript.models.node.ReadEnvNode
 import com.printscript.models.node.ReadInputNode
 import com.printscript.models.tool.Tool
 
-data class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : Tool {
+class FormatterVisitor(private val config: FormatterConfig, private val outputCode: StringBuilder) : Tool {
   override fun evaluate(node: ASTNode) {
     visit(node)
   }

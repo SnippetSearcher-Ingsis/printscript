@@ -1,19 +1,18 @@
 package com.printscript.formatter
 
-import com.google.gson.Gson
-import java.io.File
+class Formatter(private val config: FormatterConfig) {
+  init {
+    checkConfig()
+  }
 
-data object Formatter {
-  fun format(node: com.printscript.models.node.ASTNode, json: File): String {
-    val config = Gson().fromJson(json.readText(Charsets.UTF_8), FormatterConfig::class.java)
-    checkConfig(config)
+  fun format(node: com.printscript.models.node.ASTNode): String {
     val result = StringBuilder()
     val visitor = FormatterVisitor(config, result)
     visitor.evaluate(node)
     return result.toString()
   }
 
-  private fun checkConfig(config: FormatterConfig) {
+  private fun checkConfig() {
     if (config.ifBraceSameLine == config.ifBraceBelowLine && config.ifBraceSameLine != null) {
       throw IllegalArgumentException(
         "Illegal formatting parameters, 'if-brace-same-line' and 'if-brace-below-line' should be different"

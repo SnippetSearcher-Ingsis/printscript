@@ -28,7 +28,7 @@ class Analyze : CommandExecute {
       val node = ast.next()
       if (ast.hasException()) break
 
-      val violations = Linter.lint(node, config)
+      val violations = Linter(config).lint(node)
       if (violations.isNotEmpty()) {
         res.addAll(violations)
       }
