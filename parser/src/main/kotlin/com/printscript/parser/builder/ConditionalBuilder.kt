@@ -22,7 +22,7 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
       parseElseBranch(handler)
     }
 
-    return IfElseNode(ifBranch, elseBranch, LiteralNode(condition))
+    return IfElseNode(ifBranch, elseBranch, LiteralNode(condition.toBooleanStrictOrNull() ?: condition))
   }
 
   private fun parseCondition(handler: TokenHandler): String {
