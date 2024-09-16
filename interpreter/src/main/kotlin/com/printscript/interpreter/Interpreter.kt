@@ -1,6 +1,6 @@
 package com.printscript.interpreter
 
-import com.printscript.interpreter.builders.InterpreterBuilder
+import com.printscript.interpreter.builder.InterpreterBuilder
 import com.printscript.interpreter.input.Input
 import com.printscript.interpreter.output.Output
 import com.printscript.interpreter.strategy.StrategyProvider

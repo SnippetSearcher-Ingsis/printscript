@@ -1,7 +1,7 @@
 package com.printscript.interpreter.strategy
 
 import com.printscript.interpreter.Interpreter
-import com.printscript.interpreter.builders.StrategyProviderBuilder
+import com.printscript.interpreter.builder.StrategyProviderBuilder
 import com.printscript.models.node.ASTNode
 
 /**
