@@ -1,6 +1,7 @@
 package com.printscript.models.token
 
 enum class TokenType {
+  COMMENT,
   LET,
   PRINTLN,
   TYPE,

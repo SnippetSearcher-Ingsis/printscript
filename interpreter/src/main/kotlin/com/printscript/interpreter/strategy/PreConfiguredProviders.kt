@@ -1,6 +1,6 @@
 package com.printscript.interpreter.strategy
 
-object PreConfiguredProviders {
+data object PreConfiguredProviders {
   val VERSION_1_0 = StrategyProvider.builder {
     this addStrategy AssignationStrategy()
     this addStrategy DoubleExpressionStrategy()
@@ -16,5 +16,6 @@ object PreConfiguredProviders {
     this addStrategy IfElseStrategy()
     this addStrategy ReadEnvStrategy()
     this addStrategy ReadInputStrategy()
+    this addStrategy CommentStrategy()
   }
 }
