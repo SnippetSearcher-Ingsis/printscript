@@ -24,14 +24,9 @@ class Analyze : CommandExecute {
     val config = Gson().fromJson(configFile.readText(), LinterConfig::class.java)
     val res: MutableList<Violation> = mutableListOf()
 
-    while (ast.hasNext()) {
-      val node = ast.next()
-      if (ast.hasException()) break
-
-      val violations = Linter(config).lint(node)
-      if (violations.isNotEmpty()) {
-        res.addAll(violations)
-      }
+    val violations = Linter(config).lint(ast)
+    if (violations.isNotEmpty()) {
+      res.addAll(violations)
     }
 
     if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())

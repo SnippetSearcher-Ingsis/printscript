@@ -7,7 +7,7 @@ import com.printscript.parser.generator.ASTGenerator
 
 class PrintParser : Parser {
 
-  override fun parse(tokens: Iterator<List<Token>>): Iterator<ASTNode> {
+  override fun parse(tokens: Iterator<List<Token>>): ParserIterator {
     return ParserIterator(tokens)
   }
 

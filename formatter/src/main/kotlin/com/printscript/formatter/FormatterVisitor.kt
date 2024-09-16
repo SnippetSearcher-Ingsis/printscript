@@ -29,7 +29,6 @@ class FormatterVisitor(private val config: FormatterConfig, private val outputCo
       is ReadEnvNode -> handler.handleReadEnv(node)
       is ReadInputNode -> handler.handleReadInput(node)
       is IfElseNode -> handler.handleIfElse(node)
-      else -> throw IllegalArgumentException(node::class.simpleName ?: "Unknown")
     }
   }
 }
