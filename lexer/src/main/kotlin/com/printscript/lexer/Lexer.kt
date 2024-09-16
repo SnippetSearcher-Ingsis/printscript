@@ -9,6 +9,7 @@ import java.io.Reader
 class Lexer {
 
   private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
+    "//.*$" to TokenType.COMMENT,
     "\\blet\\b" to TokenType.LET,
     "\\bconst\\b" to TokenType.CONST,
     "\\bif\\b" to TokenType.IF,

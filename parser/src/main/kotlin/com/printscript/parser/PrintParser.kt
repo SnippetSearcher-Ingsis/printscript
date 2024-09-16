@@ -26,7 +26,7 @@ class PrintParser : Parser {
           token += tokens.next()
         }
       }
-      return astGenerator.tokensToAST(token)
+      return astGenerator.createAST(token)
     }
   }
 }

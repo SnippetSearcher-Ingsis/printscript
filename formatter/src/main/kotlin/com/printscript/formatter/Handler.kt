@@ -7,6 +7,7 @@ import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DeclarationNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.IfElseNode
+import com.printscript.models.node.LineCommentNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.PrintStatementNode
 import com.printscript.models.node.ReadEnvNode
@@ -88,6 +89,11 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     append(config.inlineIfBraceRule.apply())
     node.elseBranch.forEach { indent(); evaluate(it) }
     append("}\n")
+  }
+
+  fun handleComment(node: LineCommentNode) {
+    append(node.comment)
+    append("\n")
   }
 
   private fun append(string: String) {

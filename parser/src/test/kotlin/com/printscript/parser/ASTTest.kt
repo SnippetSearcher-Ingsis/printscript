@@ -21,7 +21,7 @@ class ASTTest {
       ),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
-    val result = ASTGenerator().tokensToAST(example1)
+    val result = ASTGenerator().createAST(example1)
     println(result)
   }
 
@@ -36,7 +36,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 18),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
-    val result = ASTGenerator().tokensToAST(example2)
+    val result = ASTGenerator().createAST(example2)
     println(result)
   }
 
@@ -48,7 +48,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 18),
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
-    val result = ASTGenerator().tokensToAST(example)
+    val result = ASTGenerator().createAST(example)
     println(result)
   }
 
@@ -68,7 +68,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
 
-    val result = ASTGenerator().tokensToAST(example)
+    val result = ASTGenerator().createAST(example)
     println(result)
   }
 
@@ -90,7 +90,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
 
-    val result = ASTGenerator().tokensToAST(example)
+    val result = ASTGenerator().createAST(example)
     println(result)
   }
 
@@ -109,7 +109,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
 
-    val result = ASTGenerator().tokensToAST(example)
+    val result = ASTGenerator().createAST(example)
     println(result)
   }
 
@@ -128,7 +128,7 @@ class ASTTest {
       com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
     )
 
-    val result = ASTGenerator().tokensToAST(example)
+    val result = ASTGenerator().createAST(example)
     println(result)
   }
 
@@ -147,6 +147,6 @@ class ASTTest {
         18
       ),
     )
-    assertThrows<IllegalStateException> { ASTGenerator().tokensToAST(example) }
+    assertThrows<IllegalStateException> { ASTGenerator().createAST(example) }
   }
 }
