@@ -1,4 +1,4 @@
-package com.printscript.interpreter.builders
+package com.printscript.interpreter.builder
 
 import com.printscript.interpreter.Interpreter
 import com.printscript.interpreter.strategy.Strategy

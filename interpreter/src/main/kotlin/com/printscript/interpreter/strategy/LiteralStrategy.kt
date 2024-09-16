@@ -7,30 +7,22 @@ import com.printscript.models.node.LiteralNode
 class LiteralStrategy : Strategy<LiteralNode<*>> {
   override fun visit(services: Services, node: LiteralNode<*>): Any {
     return when {
-      node.isReference() -> handleReference(services, node.value as String)
-      node.value is String -> getLiteral(node.value as String)
+      node.isString() -> handleString(services, node.value as String)
       else -> node.value!!
     }
   }
 
-  private fun LiteralNode<*>.isReference(): Boolean {
-    val value = this.value
-    return value is String && !value.startsWith("\"") && !value.startsWith("'")
+  private fun LiteralNode<*>.isString(): Boolean {
+    return value is String
   }
 
-  private fun handleReference(services: Services, identifier: String): Any {
+  private fun handleString(services: Services, identifier: String): Any {
     return when {
+      identifier.startsWith("\"") -> identifier.replace("\"", "")
+      identifier.startsWith("'") -> identifier.replace("'", "")
       identifier !in services.context -> throw ReferenceException("Identifier $identifier not found.")
       (services.context get identifier)?.value == null -> throw ReferenceException("Identifier $identifier is null.")
       else -> (services.context get identifier)?.value!!
-    }
-  }
-
-  private fun getLiteral(string: String): String {
-    return when {
-      string.startsWith("\"") -> string.replace("\"", "")
-      string.startsWith("'") -> string.replace("'", "")
-      else -> string
     }
   }
 }
