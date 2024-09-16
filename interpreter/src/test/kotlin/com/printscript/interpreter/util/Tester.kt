@@ -16,6 +16,7 @@ class Tester(private val name: String, private val ast: Iterator<ASTNode>) {
       this setProvider VERSION_1_1
     }
     interpreter interpret ast
+    println(loader.loadOutput())
     assert(output.getOutput() == loader.loadOutput())
   }
 }
