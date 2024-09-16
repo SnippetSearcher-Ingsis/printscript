@@ -1,8 +1,9 @@
 package com.printscript.interpreter
 
-import com.printscript.interpreter.output.ConsoleOutput
 import com.printscript.interpreter.output.ReadableOutput
+import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_0
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
+import com.printscript.interpreter.util.Tester
 import org.junit.jupiter.api.Test
 
 class InterpreterTest {
