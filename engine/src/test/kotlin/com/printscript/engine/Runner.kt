@@ -13,8 +13,5 @@ fun main() {
   val test = parser.parse(lexer.lex(File("engine/src/test/resources/test.txt").reader()))
   val configFile = File("engine/src/test/resources/formatterConfig.json")
   val config = Gson().fromJson(configFile.readText(), FormatterConfig::class.java)
-  while (test.hasNext()) {
-    val node = test.next()
-    println(Formatter(config).format(node))
-  }
+  println(Formatter(config).format(test))
 }

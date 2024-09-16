@@ -21,25 +21,20 @@ class Format : CommandExecute {
     // bro que es esto la carpeta config ni si quiera existe
 
     val res: MutableList<String> = mutableListOf()
-
-    while (ast.hasNext()) {
-      val node = ast.next()
-      if (ast.hasException()) break
-      res.add(
-        Formatter(
-          FormatterConfig(
-            0,
-            spaceAroundEquals = true,
-            noSpaceAroundEquals = null,
-            spaceBeforeColon = false,
-            spaceAfterColon = true,
-            ifBraceSameLine = true,
-            ifBraceBelowLine = null,
-            indent = 2
-          )
-        ).format(node)
-      )
-    }
+    res.add(
+      Formatter(
+        FormatterConfig(
+          0,
+          spaceAroundEquals = true,
+          noSpaceAroundEquals = null,
+          spaceBeforeColon = false,
+          spaceAfterColon = true,
+          ifBraceSameLine = true,
+          ifBraceBelowLine = null,
+          indent = 2
+        )
+      ).format(ast)
+    )
 
     if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())
     return Result("", res)

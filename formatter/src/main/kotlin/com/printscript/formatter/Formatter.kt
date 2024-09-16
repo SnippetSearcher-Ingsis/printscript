@@ -1,10 +1,16 @@
 package com.printscript.formatter
 
+import com.printscript.models.node.ErrorNode
+
 class Formatter(private val config: FormatterConfig) {
-  fun format(node: com.printscript.models.node.ASTNode): String {
+  fun format(asts: Iterator<com.printscript.models.node.ASTNode>): String {
     val result = StringBuilder()
     val visitor = FormatterVisitor(config, result)
-    visitor.evaluate(node)
+    while (asts.hasNext()) {
+      val node = asts.next()
+      if (node is ErrorNode) break
+      visitor.evaluate(node)
+    }
     return result.toString()
   }
 
