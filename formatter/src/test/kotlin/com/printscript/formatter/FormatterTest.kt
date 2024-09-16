@@ -12,7 +12,8 @@ import java.io.File
 class FormatterTest {
   fun fileToString(fileName: String): String {
     val inputStream = this::class.java.classLoader.getResourceAsStream(fileName)
-    return inputStream?.bufferedReader().use { it?.readText() } ?: throw IllegalArgumentException("File not found: $fileName")
+    return (inputStream?.bufferedReader().use { it?.readText() })?.replace("\r", "")
+      ?: throw IllegalArgumentException("File not found: $fileName")
   }
   private val gson = Gson()
   private val lexer = Lexer()
@@ -113,18 +114,18 @@ class FormatterTest {
     assertEquals(expected, actual)
   }
 
-//  @Test
-//  fun testStyle3ManyStatements() {
-//    val actual = generateResult(formatter3, generateASTs("bigAssCode"))
-//    val expected = fileToString("bigAssCodeGolden.txt")
-//    assertEquals(expected, actual)
-//  }
+  @Test
+  fun testStyle3ManyStatements() {
+    val actual = generateResult(formatter3, generateASTs("bigAssCode"))
+    val expected = fileToString("bigAssCodeGolden.txt")
+    assertEquals(expected, actual)
+  }
 
   @Test
   fun testInvalidStyles() {
-    assertThrows<IllegalArgumentException> { generateFormatter("invalid1") }
-    assertThrows<IllegalArgumentException> { generateFormatter("invalid2") }
-    assertThrows<IllegalArgumentException> { generateFormatter("invalid3") }
+    assertThrows<IllegalParameterException> { generateFormatter("invalid1") }
+    assertThrows<IllegalParameterException> { generateFormatter("invalid2") }
+    assertThrows<IllegalParameterException> { generateFormatter("invalid3") }
   }
 }
 // holi

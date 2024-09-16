@@ -31,7 +31,7 @@ class Format : CommandExecute {
             0,
             spaceAroundEquals = true,
             noSpaceAroundEquals = null,
-            spaceBeforeColon = true,
+            spaceBeforeColon = false,
             spaceAfterColon = true,
             ifBraceSameLine = true,
             ifBraceBelowLine = null,
