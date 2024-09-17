@@ -107,6 +107,7 @@ class InterpreterTest {
   fun testIntegralValid() {
     val tester = Tester("integral_valid", IntegralAST.valid.iterator())
     tester.test()
+    assert(!interpreter.hasException())
   }
 
   @Test
@@ -114,5 +115,17 @@ class InterpreterTest {
     interpreter interpret ErrorAST.invalidAssignationType.iterator()
     println(interpreter.getException())
     assert(interpreter.getException() is AssignationException)
+  }
+
+  @Test
+  fun testRepeatedVariable() {
+    interpreter interpret ErrorAST.repeatedVariable.iterator()
+    assert(interpreter.getException() is DeclarationException)
+  }
+
+  @Test
+  fun testRepeatedConstant() {
+    interpreter interpret ErrorAST.repeatedConstant.iterator()
+    assert(interpreter.getException() is DeclarationException)
   }
 }

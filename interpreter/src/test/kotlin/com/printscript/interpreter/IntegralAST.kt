@@ -5,6 +5,7 @@ import com.printscript.models.node.ConstantDeclarationNode
 import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.IfElseNode
+import com.printscript.models.node.LineCommentNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.Position
 import com.printscript.models.node.PrintStatementNode
@@ -19,6 +20,10 @@ object IntegralAST {
       "constant",
       "number",
       LiteralNode(null),
+      Position(0, 0)
+    ),
+    PrintStatementNode(
+      LiteralNode("constant"),
       Position(0, 0)
     ),
     AssignationNode(
@@ -252,6 +257,9 @@ object IntegralAST {
       "boolean",
       LiteralNode(true),
       Position(0, 0)
+    ),
+    LineCommentNode(
+      "This is a comment",
     ),
   )
 }

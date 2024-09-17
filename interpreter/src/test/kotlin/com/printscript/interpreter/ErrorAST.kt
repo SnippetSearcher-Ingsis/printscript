@@ -2,6 +2,7 @@ package com.printscript.interpreter
 
 import com.printscript.models.node.AssignationNode
 import com.printscript.models.node.ConstantDeclarationNode
+import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.Position
@@ -132,6 +133,36 @@ object ErrorAST {
       "hello",
       "invalid type",
       LiteralNode(1),
+      Position(0, 0)
+    )
+  )
+
+  val repeatedVariable = listOf(
+    VariableNode(
+      "hello",
+      "number",
+      LiteralNode(null),
+      Position(0, 0)
+    ),
+    VariableNode(
+      "hello",
+      "number",
+      LiteralNode(null),
+      Position(0, 0)
+    )
+  )
+
+  val repeatedConstant = listOf(
+    ConstantNode(
+      "hello",
+      "number",
+      LiteralNode(null),
+      Position(0, 0)
+    ),
+    ConstantNode(
+      "hello",
+      "number",
+      LiteralNode(null),
       Position(0, 0)
     )
   )

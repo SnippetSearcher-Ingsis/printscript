@@ -9,7 +9,11 @@ class IOTest {
   @Test
   fun testConsoleInput() {
     val input = ConsoleInput()
-    input.read("test")
+    System.setIn("test\n".byteInputStream())
+    assert(input read "test" == "test")
+    System.setIn("".byteInputStream())
+    assert(input read "test" == "")
+    assert(input read "" == "")
   }
 
   @Test
