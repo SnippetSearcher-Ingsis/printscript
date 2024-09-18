@@ -24,4 +24,8 @@ data class VariableDeclarationNode(
     result = 31 * result + position.hashCode()
     return result
   }
+
+  override fun toString(): String {
+    return "VD($identifier = $expression)"
+  }
 }

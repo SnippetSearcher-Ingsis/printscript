@@ -1,6 +1,7 @@
 package com.printscript.interpreter
 
 import com.printscript.models.node.AssignationNode
+import com.printscript.models.node.Branch
 import com.printscript.models.node.ConstantDeclarationNode
 import com.printscript.models.node.ConstantNode
 import com.printscript.models.node.DoubleExpressionNode
@@ -107,31 +108,39 @@ object IntegralAST {
       Position(0, 0)
     ),
     IfElseNode(
-      listOf(
-        PrintStatementNode(
-          LiteralNode("\"true\""),
-          Position(0, 0)
+      Branch(
+        listOf(
+          PrintStatementNode(
+            LiteralNode("\"true\""),
+            Position(0, 0)
+          )
         )
       ),
-      listOf(
-        PrintStatementNode(
-          LiteralNode("\"false\""),
-          Position(0, 0)
+      Branch(
+        listOf(
+          PrintStatementNode(
+            LiteralNode("\"false\""),
+            Position(0, 0)
+          )
         )
       ),
       LiteralNode(true),
     ),
     IfElseNode(
-      listOf(
-        PrintStatementNode(
-          LiteralNode("\"true\""),
-          Position(0, 0)
+      Branch(
+        listOf(
+          PrintStatementNode(
+            LiteralNode("\"true\""),
+            Position(0, 0)
+          )
         )
       ),
-      listOf(
-        PrintStatementNode(
-          LiteralNode("\"false\""),
-          Position(0, 0)
+      Branch(
+        listOf(
+          PrintStatementNode(
+            LiteralNode("\"false\""),
+            Position(0, 0)
+          )
         )
       ),
       LiteralNode(false),

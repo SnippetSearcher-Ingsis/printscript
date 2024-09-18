@@ -82,12 +82,12 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
     evaluate(node.condition)
     append(")")
     append(config.inlineIfBraceRule.apply())
-    node.ifBranch.forEach { indent(); evaluate(it) }
+    node.ifBranch.children.forEach { indent(); evaluate(it) }
     append("}\n")
-    if (node.elseBranch.isEmpty()) return
+    if (node.elseBranch == null) return
     append("else")
     append(config.inlineIfBraceRule.apply())
-    node.elseBranch.forEach { indent(); evaluate(it) }
+    node.elseBranch!!.children.forEach { indent(); evaluate(it) }
     append("}\n")
   }
 

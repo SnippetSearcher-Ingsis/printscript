@@ -5,7 +5,7 @@ data class TokenHandler(val line: List<Token>) {
 
   fun collectExpressionTokens(with: Boolean): List<Token> {
     val tokens = mutableListOf<Token>()
-    while (!isAtEnd() && peek().type != TokenType.SEMICOLON) {
+    while (!isAtEnd() && (peek().type != TokenType.SEMICOLON)) {
       tokens.add(advance())
     }
     if (with) {
@@ -54,5 +54,9 @@ data class TokenHandler(val line: List<Token>) {
     } else {
       throw IllegalStateException("No previous token.")
     }
+  }
+
+  override fun toString(): String {
+    return line.joinToString(" ") { it.value } + " CTI = $currentTokenIndex '" + peek() + "'"
   }
 }

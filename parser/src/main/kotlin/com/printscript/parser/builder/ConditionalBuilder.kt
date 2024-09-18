@@ -1,6 +1,7 @@
 package com.printscript.parser.builder
 
 import com.printscript.models.node.ASTNode
+import com.printscript.models.node.Branch
 import com.printscript.models.node.IfElseNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.token.Token
@@ -17,7 +18,7 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
     val ifBranch = parseBranch(handler)
 
     val elseBranch = if (handler.isAtEnd() || handler.peek().type != TokenType.ELSE) {
-      emptyList()
+      null
     } else {
       parseElseBranch(handler)
     }
@@ -36,17 +37,21 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
     return condition
   }
 
-  private fun parseBranch(handler: TokenHandler): List<ASTNode> {
-    val branch = mutableListOf<ASTNode>()
+  private fun parseBranch(handler: TokenHandler): Branch {
+    val branch = Branch()
     handler.consume(TokenType.OPEN_BRACKET, "Se esperaba '{'")
-    while (handler.peek().type != TokenType.CLOSE_BRACKET) {
-      branch.add(ASTGenerator().createAST(handler.collectExpressionTokens(true)))
+    while (!handler.isAtEnd()) {
+      if (handler.peek().type == TokenType.CLOSE_BRACKET) break
+      val line = handler.collectExpressionTokens(true)
+      branch.add(ASTGenerator().createAST(line))
     }
-    handler.consume(TokenType.CLOSE_BRACKET, "Se esperaba '}'")
+    if (!handler.isAtEnd() && handler.peek().type == TokenType.CLOSE_BRACKET)
+      handler.consume(TokenType.CLOSE_BRACKET, "Se esperaba '}'")
+    if (!handler.isAtEnd() && handler.peek().type != TokenType.ELSE) branch.add(ASTGenerator().createAST(handler.collectExpressionTokens(true)))
     return branch
   }
 
-  private fun parseElseBranch(handler: TokenHandler): List<ASTNode> {
+  private fun parseElseBranch(handler: TokenHandler): Branch {
     handler.advance()
     return parseBranch(handler)
   }

@@ -10,6 +10,6 @@ internal class Loader(private val name: String) {
 
   fun loadOutput(): List<String> {
     val resource = this::class.java.getResource("/integral/$name.txt")
-    return resource?.readText()?.replace("\n", "")?.split("\r") ?: throw IllegalArgumentException("Output file not found")
+    return resource?.readText()?.split(Regex("\\r?\\n")) ?: throw IllegalArgumentException("Output file not found")
   }
 }

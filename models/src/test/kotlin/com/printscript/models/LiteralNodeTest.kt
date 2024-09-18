@@ -9,7 +9,7 @@ class LiteralNodeTest {
   fun literalNodeTest() {
     val literalNode = com.printscript.models.node.LiteralNode("Hello, World!")
     assertEquals("Hello, World!", literalNode.value)
-    assertEquals("LiteralNode(value=Hello, World!)", literalNode.toString())
+    assertEquals("Hello, World!", literalNode.toString())
     assertNotEquals(com.printscript.models.node.LiteralNode("Hello, Universe!"), literalNode)
     assertNotEquals(
       com.printscript.models.node.PrintStatementNode(

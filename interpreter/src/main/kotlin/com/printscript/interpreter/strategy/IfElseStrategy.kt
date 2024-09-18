@@ -2,7 +2,7 @@ package com.printscript.interpreter.strategy
 
 import com.printscript.interpreter.OperationException
 import com.printscript.interpreter.util.Services
-import com.printscript.models.node.ASTNode
+import com.printscript.models.node.Branch
 import com.printscript.models.node.IfElseNode
 
 class IfElseStrategy : Strategy<IfElseNode> {
@@ -16,10 +16,11 @@ class IfElseStrategy : Strategy<IfElseNode> {
     return null
   }
 
-  private fun handleBranch(services: Services, branch: List<ASTNode>) {
+  private fun handleBranch(services: Services, branch: Branch?) {
+    if (branch == null) return
     val branchContext = services.context.clone()
     val branchServices = services.withContext(branchContext)
-    branch.forEach { branchServices.visit(branchServices, it) }
+    branch.children.forEach { branchServices.visit(branchServices, it) }
     services.context replace branchContext
   }
 }

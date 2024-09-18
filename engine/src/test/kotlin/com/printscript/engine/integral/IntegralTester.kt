@@ -6,12 +6,23 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class IntegralTester {
-//  @Test
-//  fun testMixedScript() {
-//    val tester = Tester("mixed_script_valid")
-//    // Commented out so that GitHub actions don't fail
-//    assertThrows<Exception> { tester.test() }
-//  }
+  @Test
+  fun testMixedScript() {
+    val tester = Tester("mixed_script_valid")
+    tester.test()
+  }
+
+  @Test
+  fun testSimpleIfElse() {
+    val tester = Tester("simple_if_else")
+    tester.test()
+  }
+
+  @Test
+  fun nestedIfElse() {
+    val tester = Tester("nested_if_else_valid")
+    tester.test()
+  }
 
   @Test
   fun testConstReAssignation() {

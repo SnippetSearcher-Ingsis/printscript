@@ -6,6 +6,7 @@ import com.printscript.interpreter.output.ReadableOutput
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.lexer.Lexer
 import com.printscript.parser.PrintParser
+import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.jvm.Throws
 
 class Tester(private val name: String) {
@@ -23,6 +24,8 @@ class Tester(private val name: String) {
       this setProvider VERSION_1_1
     }
     interpreter.interpret(ast.iterator())
-    assert(output.getOutput() == loader.loadOutput())
+    val expected = loader.loadOutput()
+    val actual = output.getOutput()
+    assertEquals(expected, actual)
   }
 }

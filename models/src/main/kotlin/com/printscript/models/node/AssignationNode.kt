@@ -4,4 +4,8 @@ data class AssignationNode(
   val variable: String?,
   val expression: ASTNode,
   val position: Position
-) : ASTNode
+) : ASTNode {
+  override fun toString(): String {
+    return "$variable = $expression"
+  }
+}

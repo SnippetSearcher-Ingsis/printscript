@@ -21,11 +21,25 @@ class PrintParser : Parser {
     override fun next(): ASTNode {
       if (!tokens.hasNext()) throw NoSuchElementException("No more AST nodes to parse.")
       val token = tokens.next().toMutableList()
+
       if (token[0].type == TokenType.IF) {
-        while (tokens.hasNext() && token.last().type != TokenType.CLOSE_BRACKET) {
-          token += tokens.next()
+        var nestingLevel = 1 // Start with 1 because we found an IF
+
+        while (tokens.hasNext() && nestingLevel > 0) {
+          val nextTokenList = tokens.next()
+          token += nextTokenList
+
+          // Check the first token of the list for nesting
+          for (nextToken in nextTokenList) {
+            if (nextToken.type == TokenType.OPEN_BRACKET) {
+              nestingLevel++
+            } else if (nextToken.type == TokenType.CLOSE_BRACKET) {
+              nestingLevel--
+            }
+          }
         }
       }
+      val result = astGenerator.createAST(token)
       return astGenerator.createAST(token)
     }
   }

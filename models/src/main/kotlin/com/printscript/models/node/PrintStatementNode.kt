@@ -14,4 +14,8 @@ data class PrintStatementNode(val expression: ASTNode, val position: Position) :
     result = 31 * result + position.hashCode()
     return result
   }
+
+  override fun toString(): String {
+    return "println($expression)"
+  }
 }
