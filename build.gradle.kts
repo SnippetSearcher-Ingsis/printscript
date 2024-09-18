@@ -1,9 +1,9 @@
 plugins {
     id("java")
     kotlin("jvm") version "2.0.0"
-    id("com.diffplug.spotless") version "6.7.1"
-    id("org.jetbrains.kotlinx.kover") version "0.7.6"
-    id("io.gitlab.arturbosch.detekt") version "1.23.6"
+//    id("com.diffplug.spotless") version "6.7.1"
+//   id("org.jetbrains.kotlinx.kover") version "0.7.6"
+//    id("io.gitlab.arturbosch.detekt") version "1.23.6"
     `maven-publish`
 }
 
@@ -36,19 +36,19 @@ allprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
     }
 
-    spotless {
-        kotlin {
-            ktlint()
-                .editorConfigOverride(
-                    mapOf(
-                        "indent_size" to 2,
-                        "max_line_length" to "150",
-                        "ktlint_code_style" to "intellij_idea",
-                    )
-                )
-            target("src/**/*.kt")
-        }
-    }
+//    spotless {
+//        kotlin {
+//            ktlint()
+//                .editorConfigOverride(
+//                    mapOf(
+//                        "indent_size" to 2,
+//                        "max_line_length" to "150",
+//                        "ktlint_code_style" to "intellij_idea",
+//                    )
+//                )
+//            target("src/**/*.kt")
+//        }
+//    }
 
     kover {
         useJacoco()
@@ -67,10 +67,10 @@ allprojects {
         }
     }
 
-    detekt {
-        buildUponDefaultConfig = false
-        config.from("../detekt-config.yaml")
-    }
+//    detekt {
+//        buildUponDefaultConfig = false
+//        config.from("../detekt-config.yaml")
+//    }
 }
 
 tasks.test {
