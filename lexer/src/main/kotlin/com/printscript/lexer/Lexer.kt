@@ -1,37 +1,11 @@
 package com.printscript.lexer
 
 import com.printscript.models.token.Token
-import com.printscript.models.token.TokenType
 import com.printscript.models.token.ValuedToken
 import java.io.BufferedReader
 import java.io.Reader
 
-class Lexer {
-
-  private val tokenPatterns: List<Pair<String, TokenType>> = listOf(
-    "//.*$" to TokenType.COMMENT,
-    "\\blet\\b" to TokenType.LET,
-    "\\bconst\\b" to TokenType.CONST,
-    "\\bif\\b" to TokenType.IF,
-    "\\belse\\b" to TokenType.ELSE,
-    "\\bprintln\\b" to TokenType.PRINTLN,
-    "\\breadInput\\b" to TokenType.READ_INPUT,
-    "\\breadEnv\\b" to TokenType.READ_ENV,
-    "\\bstring\\b" to TokenType.TYPE,
-    "\\bnumber\\b" to TokenType.TYPE,
-    "\\bboolean\\b" to TokenType.TYPE,
-    "\\btrue\\b" to TokenType.LITERAL,
-    "\\bfalse\\b" to TokenType.LITERAL,
-    "[a-zA-Z_][a-zA-Z_0-9-]*" to TokenType.IDENTIFIER,
-    "[=]" to TokenType.EQUAL,
-    "[0-9]+(\\.[0-9]+)?" to TokenType.LITERAL,
-    "\"[^\"]*\"|'[^']*'" to TokenType.LITERAL,
-    "[+\\-*/]" to TokenType.OPERATOR,
-    "[{]" to TokenType.OPEN_BRACKET,
-    "[}]" to TokenType.CLOSE_BRACKET,
-    "[:()]" to TokenType.SYNTAX,
-    "[;]" to TokenType.SEMICOLON
-  )
+class Lexer(private val tokenPatterns: TokenProvider) {
 
   fun lex(reader: Reader): Iterator<List<Token>> {
     return LexerIterator(reader)
@@ -66,24 +40,17 @@ class Lexer {
 
         if (position >= line.length) break
 
-        var matched = false
-        for ((pattern, tokenType) in tokenPatterns) {
-          val regex = Regex(pattern)
-          val matchResult = regex.find(line, position)
-          if (matchResult != null && matchResult.range.first == position) {
-            val value = matchResult.value
-            val token = ValuedToken(tokenType, value, lineNumber, column)
-            tokens.add(token)
-            position += value.length
-            column += value.length
-            matched = true
-            break
-          }
-        }
+        val matchResult = tokenPatterns.getTokenFor(line, position)
 
-        if (!matched) {
+        if (matchResult == null) {
           throw IllegalArgumentException("Unexpected character at line $lineNumber, column $column")
         }
+
+        val (value, tokenType) = matchResult
+        val token = ValuedToken(tokenType, value, lineNumber, column)
+        tokens.add(token)
+        position += value.length
+        column += value.length
       }
 
       return tokens

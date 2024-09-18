@@ -2,6 +2,7 @@ package com.printscript.linter
 
 import com.google.gson.Gson
 import com.printscript.lexer.Lexer
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
 import com.printscript.parser.CatchableParser
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
@@ -9,7 +10,7 @@ import java.io.File
 
 class LinterTest {
   private val gson = Gson()
-  private val lexer = Lexer()
+  private val lexer = Lexer(TOKENS_1_1)
   private val parser = CatchableParser()
   private fun generateASTs(name: String): CatchableParser.CatchableParserIterator {
     return parser.parse(lexer.lex(File("src/test/resources/$name.ts").reader()))

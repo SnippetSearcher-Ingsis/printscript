@@ -1,7 +1,7 @@
 package com.printscript.interpreter.strategy
 
 data object PreConfiguredProviders {
-  val VERSION_1_0 = StrategyProvider.builder {
+  val VERSION_1_0 = StrategyProvider builder {
     this addStrategy AssignationStrategy()
     this addStrategy DoubleExpressionStrategy()
     this addStrategy LiteralStrategy()
