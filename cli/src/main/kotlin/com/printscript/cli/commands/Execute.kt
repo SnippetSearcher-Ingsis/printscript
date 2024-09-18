@@ -8,12 +8,13 @@ import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.output.ReadableOutput
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.lexer.Lexer
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
 import com.printscript.parser.CatchableParser
 class Execute : CommandExecute {
   override fun execute(vararg file: String): Result {
     val code = TXTHandler.content("/scripts/${file[0]}")
       ?: return Result("File ${file[0]} not found", listOf())
-    val lexer = Lexer()
+    val lexer = Lexer(TOKENS_1_1)
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
     val output = ReadableOutput()

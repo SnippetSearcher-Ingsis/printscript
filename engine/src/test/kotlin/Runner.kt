@@ -4,6 +4,7 @@ import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.output.ConsoleOutput
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.lexer.Lexer
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
 import com.printscript.parser.PrintParser
 import java.io.File
 import java.io.FileReader
@@ -21,7 +22,7 @@ fun main() {
       "println(\"Hello, universe!\");\n"
   )
   val reader = FileReader(file)
-  val tokens = Lexer().lex(reader)
+  val tokens = Lexer(TOKENS_1_1).lex(reader)
   interpreter.interpret(PrintParser().parse(tokens))
 
   // CLI().executeFile("example.txt")

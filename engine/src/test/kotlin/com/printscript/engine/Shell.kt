@@ -5,10 +5,11 @@ import com.printscript.interpreter.input.ConsoleInput
 import com.printscript.interpreter.output.ConsoleOutput
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.lexer.Lexer
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
 import com.printscript.parser.PrintParser
 
 fun main() {
-  val lexer = Lexer()
+  val lexer = Lexer(TOKENS_1_1)
   val parser = PrintParser()
   val input = ConsoleInput()
   val output = ConsoleOutput()

@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.printscript.cli.Result
 import com.printscript.cli.TXTHandler
 import com.printscript.lexer.Lexer
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
 import com.printscript.linter.Linter
 import com.printscript.linter.LinterConfig
 import com.printscript.linter.violation.Violation
@@ -14,7 +15,7 @@ class Analyze : CommandExecute {
   override fun execute(vararg file: String): Result {
     val code = TXTHandler.content("/scripts/${file[0]}")
       ?: return Result("File ${file[0]} not found", emptyList())
-    val lexer = Lexer()
+    val lexer = Lexer(TOKENS_1_1)
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
 
