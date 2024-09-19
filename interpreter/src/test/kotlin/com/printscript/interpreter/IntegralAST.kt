@@ -109,38 +109,32 @@ object IntegralAST {
     ),
     IfElseNode(
       Branch(
-        listOf(
-          PrintStatementNode(
-            LiteralNode("\"true\""),
-            Position(0, 0)
-          )
+        PrintStatementNode(
+          LiteralNode("\"true\""),
+          Position(0, 0)
         )
       ),
       Branch(
-        listOf(
-          PrintStatementNode(
-            LiteralNode("\"false\""),
-            Position(0, 0)
-          )
+
+        PrintStatementNode(
+          LiteralNode("\"false\""),
+          Position(0, 0)
         )
+
       ),
       LiteralNode(true),
     ),
     IfElseNode(
       Branch(
-        listOf(
-          PrintStatementNode(
-            LiteralNode("\"true\""),
-            Position(0, 0)
-          )
+        PrintStatementNode(
+          LiteralNode("\"true\""),
+          Position(0, 0)
         )
       ),
       Branch(
-        listOf(
-          PrintStatementNode(
-            LiteralNode("\"false\""),
-            Position(0, 0)
-          )
+        PrintStatementNode(
+          LiteralNode("\"false\""),
+          Position(0, 0)
         )
       ),
       LiteralNode(false),

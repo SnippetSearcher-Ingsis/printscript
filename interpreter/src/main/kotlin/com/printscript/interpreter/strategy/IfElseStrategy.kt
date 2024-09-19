@@ -11,13 +11,12 @@ class IfElseStrategy : Strategy<IfElseNode> {
     when {
       condition !is Boolean -> throw OperationException("Condition must be a boolean.")
       condition -> handleBranch(services, node.ifBranch)
-      else -> handleBranch(services, node.elseBranch)
+      else -> node.elseBranch?.let { handleBranch(services, it) }
     }
     return null
   }
 
-  private fun handleBranch(services: Services, branch: Branch?) {
-    if (branch == null) return
+  private fun handleBranch(services: Services, branch: Branch) {
     val branchContext = services.context.clone()
     val branchServices = services.withContext(branchContext)
     branch.children.forEach { branchServices.visit(branchServices, it) }

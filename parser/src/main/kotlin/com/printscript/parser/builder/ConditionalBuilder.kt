@@ -38,17 +38,17 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
   }
 
   private fun parseBranch(handler: TokenHandler): Branch {
-    val branch = Branch()
+    val list = mutableListOf<ASTNode>()
     handler.consume(TokenType.OPEN_BRACKET, "Se esperaba '{'")
     while (!handler.isAtEnd()) {
       if (handler.peek().type == TokenType.CLOSE_BRACKET) break
       val line = handler.collectExpressionTokens(true)
-      branch.add(ASTGenerator().createAST(line))
+      list.add(ASTGenerator().createAST(line))
     }
     if (!handler.isAtEnd() && handler.peek().type == TokenType.CLOSE_BRACKET)
       handler.consume(TokenType.CLOSE_BRACKET, "Se esperaba '}'")
-    if (!handler.isAtEnd() && handler.peek().type != TokenType.ELSE) branch.add(ASTGenerator().createAST(handler.collectExpressionTokens(true)))
-    return branch
+    if (!handler.isAtEnd() && handler.peek().type != TokenType.ELSE) list.add(ASTGenerator().createAST(handler.collectExpressionTokens(true)))
+    return Branch(*list.toTypedArray())
   }
 
   private fun parseElseBranch(handler: TokenHandler): Branch {
