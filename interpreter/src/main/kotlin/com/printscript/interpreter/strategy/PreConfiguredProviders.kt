@@ -2,20 +2,20 @@ package com.printscript.interpreter.strategy
 
 data object PreConfiguredProviders {
   val VERSION_1_0 = StrategyProvider builder {
-    this addStrategy AssignationStrategy()
-    this addStrategy DoubleExpressionStrategy()
-    this addStrategy LiteralStrategy()
-    this addStrategy PrintStatementStrategy()
-    this addStrategy VariableDeclarationStrategy()
-    this addStrategy VariableStrategy()
+    this addStrategy assignationStrategy
+    this addStrategy doubleExpressionStrategy
+    this addStrategy literalStrategy
+    this addStrategy printStatementStrategy
+    this addStrategy variableDeclarationStrategy
+    this addStrategy variableStrategy
   }
 
   val VERSION_1_1 = VERSION_1_0 + StrategyProvider.builder {
-    this addStrategy ConstantDeclarationStrategy()
-    this addStrategy ConstantStrategy()
-    this addStrategy IfElseStrategy()
-    this addStrategy ReadEnvStrategy()
-    this addStrategy ReadInputStrategy()
-    this addStrategy CommentStrategy()
+    this addStrategy constantDeclarationStrategy
+    this addStrategy constantStrategy
+    this addStrategy ifElseStrategy
+    this addStrategy readEnvStrategy
+    this addStrategy readInputStrategy
+    this addStrategy commentStrategy
   }
 }
