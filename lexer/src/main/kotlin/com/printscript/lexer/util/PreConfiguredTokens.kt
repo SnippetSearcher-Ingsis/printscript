@@ -3,7 +3,7 @@ package com.printscript.lexer.util
 import com.printscript.lexer.TokenProvider
 import com.printscript.models.token.TokenType
 
-data object PreConfiguredTokens {
+object PreConfiguredTokens {
   val TOKENS_1_0 = TokenProvider builder (
     mapOf(
       "//.*$" to TokenType.COMMENT,

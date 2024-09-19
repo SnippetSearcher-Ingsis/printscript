@@ -12,7 +12,7 @@ import com.printscript.models.node.ReadEnvNode
 import com.printscript.models.node.ReadInputNode
 import com.printscript.models.node.VariableDeclarationNode
 
-data object DummyAST {
+object DummyAST {
   internal val print: ASTNode = PrintStatementNode(
     expression = LiteralNode("\"Hello World\""),
     position = Position(0, 0)
