@@ -1,0 +1,23 @@
+name: Sallemi Data Object Validation
+
+on:
+  push:
+    branches: [ "main", "PrintScript-1.0" ]
+  pull_request:
+    branches: [ "main", "PrintScript-1.0" ]
+
+jobs:
+  validate:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Data Object usage
+        run: |
+          banned_words=("data object")
+          for word in "${banned_words[@]}"; do
+            if grep -r --include="*.kt" "$word" .; then
+              echo "Error: Found banned word '$word' in the codebase."
+              exit 1
+            fi
+          done
