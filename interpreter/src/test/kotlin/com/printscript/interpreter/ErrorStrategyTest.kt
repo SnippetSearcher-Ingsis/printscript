@@ -1,9 +1,9 @@
 package com.printscript.interpreter
 
 import com.printscript.interpreter.output.ConsoleOutput
-import com.printscript.interpreter.strategy.ErrorStrategy
 import com.printscript.interpreter.strategy.PreConfiguredProviders.VERSION_1_1
 import com.printscript.interpreter.strategy.StrategyProvider
+import com.printscript.interpreter.strategy.errorStrategy
 import com.printscript.models.node.ErrorNode
 import org.junit.jupiter.api.Test
 
@@ -13,7 +13,7 @@ class ErrorStrategyTest {
       this setInput DummyInput()
       this setOutput ConsoleOutput()
       this setProvider VERSION_1_1 + StrategyProvider.builder {
-        this addStrategy ErrorStrategy()
+        this addStrategy errorStrategy
       }
     }
   )

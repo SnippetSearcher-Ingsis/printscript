@@ -7,7 +7,7 @@ import kotlin.jvm.Throws
 /**
  * A type safe strategy pattern used to visit a [ASTNode] in the AST.
  */
-interface Strategy<T>
+fun interface Strategy<T>
         where T : ASTNode {
   /**
    * Visits the given [ASTNode] and returns the result of the visit.
