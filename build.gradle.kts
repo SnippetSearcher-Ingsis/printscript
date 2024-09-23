@@ -1,9 +1,9 @@
 plugins {
     id("java")
     kotlin("jvm") version "2.0.0"
-//    id("com.diffplug.spotless") version "6.7.1"
-//   id("org.jetbrains.kotlinx.kover") version "0.7.6"
-//    id("io.gitlab.arturbosch.detekt") version "1.23.6"
+    id("com.diffplug.spotless") version "6.7.1"
+    id("org.jetbrains.kotlinx.kover") version "0.7.6"
+    id("io.gitlab.arturbosch.detekt") version "1.23.6"
     `maven-publish`
 }
 
