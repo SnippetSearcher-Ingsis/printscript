@@ -103,6 +103,15 @@ subprojects {
                     password = System.getenv("GITHUB_TOKEN")
                 }
             }
+
+            maven {
+                name = "NotMavenCentral"
+                url = uri("https://maven.mediaversetv.com")
+                credentials {
+                    username = System.getenv("NOT_MAVEN_CENTRAL_USERNAME")
+                    password = System.getenv("NOT_MAVEN_CENTRAL_PASSWORD")
+                }
+            }
         }
     }
 }
