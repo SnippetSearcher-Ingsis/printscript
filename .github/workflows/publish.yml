@@ -32,3 +32,5 @@ jobs:
         run: ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOT_MAVEN_CENTRAL_USERNAME: ${{ secrets.NOT_MAVEN_CENTRAL_USERNAME }}
+          NOT_MAVEN_CENTRAL_PASSWORD: ${{ secrets.NOT_MAVEN_CENTRAL_PASSWORD }}
