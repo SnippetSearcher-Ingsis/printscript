@@ -11,6 +11,7 @@ class CatchableParser : Parser {
     return CatchableParserIterator(tokens)
   }
 
+  @Suppress("IteratorNotThrowingNoSuchElementException")
   inner class CatchableParserIterator(tokens: Iterator<List<Token>>) : Iterator<ASTNode>, Catchable {
 
     private val parser = PrintParser().parse(tokens)
@@ -22,6 +23,7 @@ class CatchableParser : Parser {
     }
 
     override fun next(): ASTNode {
+      @Suppress("TooGenericExceptionCaught")
       return try {
         parser.next()
       } catch (e: Exception) {

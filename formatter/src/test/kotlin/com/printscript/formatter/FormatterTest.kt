@@ -10,7 +10,7 @@ import org.junit.jupiter.api.assertThrows
 import java.io.File
 
 class FormatterTest {
-  fun fileToString(fileName: String): String {
+  private fun fileToString(fileName: String): String {
     val inputStream = this::class.java.classLoader.getResourceAsStream(fileName)
     return (inputStream?.bufferedReader().use { it?.readText() })?.replace("\r", "")
       ?: throw IllegalArgumentException("File not found: $fileName")
@@ -22,7 +22,8 @@ class FormatterTest {
     return parser.parse(lexer.lex(File("src/test/resources/$name.ts").reader()))
   }
   private fun generateFormatter(name: String): Formatter {
-    return Formatter(gson.fromJson(File(this::class.java.getResource("/$name.json")!!.file).readText(), FormatterConfig::class.java))
+    val file = this::class.java.getResource("/$name.json")!!.file
+    return Formatter(gson.fromJson(File(file).readText(), FormatterConfig::class.java))
   }
   private val formatter1 = generateFormatter("style1")
   private val formatter2 = generateFormatter("style2")

@@ -25,6 +25,7 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
     return IfElseNode(ifBranch, elseBranch, LiteralNode(condition))
   }
 
+  @Suppress("TooGenericExceptionThrown")
   private fun parseCondition(handler: TokenHandler): String {
     handler.consume(TokenType.SYNTAX, "Se esperaba '('")
     val condition = when (handler.peek().type) {

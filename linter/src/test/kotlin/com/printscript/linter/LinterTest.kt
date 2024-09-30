@@ -16,7 +16,8 @@ class LinterTest {
     return parser.parse(lexer.lex(File("src/test/resources/$name.ts").reader()))
   }
   private fun generateLinter(name: String): Linter {
-    return Linter(gson.fromJson(File(this::class.java.getResource("/$name.json")!!.file).readText(), LinterConfig::class.java))
+    val resource = this::class.java.getResource("/$name.json")!!.file
+    return Linter(gson.fromJson(File(resource).readText(), LinterConfig::class.java))
   }
   private val linter1 = generateLinter("style1")
   private val linter2 = generateLinter("style2")

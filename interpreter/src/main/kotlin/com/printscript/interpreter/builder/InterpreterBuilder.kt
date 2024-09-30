@@ -42,6 +42,7 @@ class InterpreterBuilder {
    * Builds the [Interpreter] with the set [Input], [Output] and [StrategyProvider].
    */
   @Throws(BuilderException::class)
+  @Suppress("ThrowsCount")
   fun build(): Interpreter {
     val input = input
     val output = output

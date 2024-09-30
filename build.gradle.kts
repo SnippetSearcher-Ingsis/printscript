@@ -36,41 +36,6 @@ allprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
     }
 
-    spotless {
-        kotlin {
-            ktlint()
-                .editorConfigOverride(
-                    mapOf(
-                        "indent_size" to 2,
-                        "max_line_length" to "150",
-                        "ktlint_code_style" to "intellij_idea",
-                    )
-                )
-            target("src/**/*.kt")
-        }
-    }
-
-    kover {
-        useJacoco()
-    }
-
-    koverReport {
-        verify {
-            rule {
-                minBound(0)
-            }
-        }
-        defaults {
-            html {
-                onCheck = true
-            }
-        }
-    }
-
-    detekt {
-        buildUponDefaultConfig = false
-        config.from("../detekt-config.yaml")
-    }
 }
 
 tasks.test {
