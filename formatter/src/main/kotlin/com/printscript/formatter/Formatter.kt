@@ -1,9 +1,10 @@
 package com.printscript.formatter
 
+import com.printscript.models.node.ASTNode
 import com.printscript.models.node.ErrorNode
 
 class Formatter(private val config: FormatterConfig) {
-  fun format(asts: Iterator<com.printscript.models.node.ASTNode>): String {
+  fun format(asts: Iterator<ASTNode>): String {
     val result = StringBuilder()
     val visitor = FormatterVisitor(config, result)
     while (asts.hasNext()) {
