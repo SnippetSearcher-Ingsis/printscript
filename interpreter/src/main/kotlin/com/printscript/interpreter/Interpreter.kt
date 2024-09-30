@@ -15,7 +15,7 @@ sealed interface Interpreter {
   /**
    * Interprets an iterator of [ASTNode] recursively.
    */
-  infix fun interpret(iterator: Iterator<ASTNode>)
+  infix fun interpret(iterator:     Iterator<ASTNode>)
 
   companion object {
     /**

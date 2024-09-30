@@ -6,6 +6,10 @@ dependencies {
     implementation("org.eclipse.jgit:org.eclipse.jgit:7.0.0.202409031743-r")
 }
 
+kotlin {
+    jvmToolchain(17)
+}
+
 allprojects {
     group = "com.printscript"
     version = "1.1-SNAPSHOT"
@@ -19,4 +23,9 @@ allprojects {
         implementation("org.jetbrains.kotlin:kotlin-reflect")
     }
 
+}
+
+subprojects {
+    apply(plugin = "com.printscript.spotless-convention")
+    apply(plugin = "com.printscript.detekt-conventios")
 }

@@ -20,9 +20,3 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
-
-kotlin {
-    jvmToolchain {
-        this.languageVersion.set(JavaLanguageVersion.of(19))
-    }
-}
