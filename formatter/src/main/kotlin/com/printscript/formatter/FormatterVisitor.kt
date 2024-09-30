@@ -6,6 +6,7 @@ import com.printscript.models.node.DeclarationNode
 import com.printscript.models.node.DoubleExpressionNode
 import com.printscript.models.node.ErrorNode
 import com.printscript.models.node.IfElseNode
+import com.printscript.models.node.LineCommentNode
 import com.printscript.models.node.LiteralNode
 import com.printscript.models.node.PrintStatementNode
 import com.printscript.models.node.ReadEnvNode
@@ -29,7 +30,7 @@ class FormatterVisitor(private val config: FormatterConfig, private val outputCo
       is ReadEnvNode -> handler.handleReadEnv(node)
       is ReadInputNode -> handler.handleReadInput(node)
       is IfElseNode -> handler.handleIfElse(node)
-      else -> throw IllegalArgumentException(node::class.simpleName ?: "Unknown")
+      is LineCommentNode -> handler.handleComment(node)
     }
   }
 }

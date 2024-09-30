@@ -2,18 +2,18 @@ package com.printscript.linter
 
 import com.google.gson.Gson
 import com.printscript.lexer.Lexer
-import com.printscript.models.node.ASTNode
-import com.printscript.parser.PrintParser
+import com.printscript.lexer.util.PreConfiguredTokens.TOKENS_1_1
+import com.printscript.parser.CatchableParser
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import java.io.File
 
 class LinterTest {
   private val gson = Gson()
-  private val lexer = Lexer()
-  private val printParser = PrintParser()
-  private fun generateASTs(name: String): Iterator<ASTNode> {
-    return printParser.parse(lexer.lex(File("src/test/resources/$name.ts").reader()))
+  private val lexer = Lexer(TOKENS_1_1)
+  private val parser = CatchableParser()
+  private fun generateASTs(name: String): CatchableParser.CatchableParserIterator {
+    return parser.parse(lexer.lex(File("src/test/resources/$name.ts").reader()))
   }
   private fun generateLinter(name: String): Linter {
     return Linter(gson.fromJson(File(this::class.java.getResource("/$name.json")!!.file).readText(), LinterConfig::class.java))
@@ -26,86 +26,70 @@ class LinterTest {
   private val linter6 = generateLinter("style6")
   private val linter7 = generateLinter("style7")
 
-  private fun generateResult(linter: Linter, asts: Iterator<ASTNode>): List<String> {
-    val result = mutableListOf<String>()
-    while (asts.hasNext()) {
-      linter.lint(asts.next()).forEach { violation ->
-        result.add(violation.toString())
-      }
-    }
-    return result
-  }
-
   @Test
   fun testStyle1() {
-    val astList = generateASTs("style1")
-    val result = generateResult(linter1, astList)
+    val result = linter1.lint(generateASTs("style1"))
     val expectedAt0 = "Casing violation at 2:5, camel case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
-    assertEquals(expectedAt0, result[0])
-    assertEquals(expectedAt1, result[1])
+    assertEquals(expectedAt0, result[0].toString())
+    assertEquals(expectedAt1, result[1].toString())
   }
 
   @Test
   fun testStyle2() {
-    val astList = generateASTs("style2")
-    val result = generateResult(linter2, astList)
+    val result = linter2.lint(generateASTs("style2"))
     val expectedAt0 = "Casing violation at 1:5, snake case expected"
     assert(result.size == 1)
-    assertEquals(expectedAt0, result[0])
+    assertEquals(expectedAt0, result[0].toString())
   }
 
   @Test
   fun testStyle3() {
     val astList = generateASTs("style3")
-    val result = generateResult(linter3, astList)
+    val result = linter3.lint(astList)
     val expectedAt0 = "Casing violation at 1:5, pascal case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
-    assertEquals(expectedAt0, result[0])
-    assertEquals(expectedAt1, result[1])
+    assertEquals(expectedAt0, result[0].toString())
+    assertEquals(expectedAt1, result[1].toString())
   }
 
   @Test
   fun testStyle4() {
-    val astList = generateASTs("style4")
-    val result = generateResult(linter4, astList)
+    val result = linter4.lint(generateASTs("style4"))
     val expectedAt0 = "Casing violation at 1:5, kebab case expected"
     val expectedAt1 = "Expression inside print statement at 3:1"
     assert(result.size == 2)
-    assertEquals(expectedAt0, result[0])
-    assertEquals(expectedAt1, result[1])
+    assertEquals(expectedAt0, result[0].toString())
+    assertEquals(expectedAt1, result[1].toString())
   }
 
   @Test
   fun testStyle5() {
-    val astList = generateASTs("style5")
-    val result = generateResult(linter5, astList)
+    val result = linter5.lint(generateASTs("style5"))
     val expectedAt0 = "Casing violation at 2:5, screaming snake case expected"
     val expectedAt1 = "Expression inside print statement at 4:1"
     assert(result.size == 2)
-    assertEquals(expectedAt0, result[0])
-    assertEquals(expectedAt1, result[1])
+    assertEquals(expectedAt0, result[0].toString())
+    assertEquals(expectedAt1, result[1].toString())
   }
 
   @Test
   fun testStyle6() {
-    val astList = generateASTs("style6")
-    val result = generateResult(linter6, astList)
+    val result = linter6.lint(generateASTs("style6"))
     val expectedAt0 = "Casing violation at 2:5, screaming kebab case expected"
     val expectedAt1 = "Expression inside print statement at 5:1"
     assert(result.size == 2)
-    assertEquals(expectedAt0, result[0])
-    assertEquals(expectedAt1, result[1])
+    assertEquals(expectedAt0, result[0].toString())
+    assertEquals(expectedAt1, result[1].toString())
   }
 
   @Test
-  fun testStyle72() {
-    val astList = generateASTs("style7")
-    val result = generateResult(linter7, astList)
+  fun testStyle7() {
+    val result = linter7.lint(generateASTs("style7"))
     val expectedAt0 = "Expression inside read input statement at 2:5"
     assert(result.size == 1)
-    assertEquals(expectedAt0, result[0])
+    assertEquals(expectedAt0, result[0].toString())
   }
 }

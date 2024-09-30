@@ -62,10 +62,19 @@ subprojects {
         repositories {
             maven {
                 name = "GithubPackages"
-                url = uri("https://maven.pkg.github.com/pedroramirezneira/printscript")
+                url = uri("https://maven.pkg.github.com/snippetsearcher-ingsis/printscript")
                 credentials {
                     username = System.getenv("GITHUB_ACTOR")
                     password = System.getenv("GITHUB_TOKEN")
+                }
+            }
+
+            maven {
+                name = "NotMavenCentral"
+                url = uri("https://maven.mediaversetv.com/snapshots")
+                credentials {
+                    username = System.getenv("NOT_MAVEN_CENTRAL_USERNAME")
+                    password = System.getenv("NOT_MAVEN_CENTRAL_PASSWORD")
                 }
             }
         }

@@ -40,7 +40,7 @@ class ConditionalBuilder(private val line: List<Token>) : Builder {
     val branch = mutableListOf<ASTNode>()
     handler.consume(TokenType.OPEN_BRACKET, "Se esperaba '{'")
     while (handler.peek().type != TokenType.CLOSE_BRACKET) {
-      branch.add(ASTGenerator().tokensToAST(handler.collectExpressionTokens(true)))
+      branch.add(ASTGenerator().createAST(handler.collectExpressionTokens(true)))
     }
     handler.consume(TokenType.CLOSE_BRACKET, "Se esperaba '}'")
     return branch

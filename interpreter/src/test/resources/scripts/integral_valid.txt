@@ -1,0 +1,20 @@
+null
+1
+2
+3
+4
+5
+21
+0
+2.25
+1
+true
+false
+best football club =
+Newell's Old Boys
+San Lorenzo
+Leo Messi 10
+10 Leo Messi
+Is the goat =true
+true= Is the goat
+Leo Messi is the goat

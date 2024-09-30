@@ -1,9 +1,9 @@
 let my_var: string = readInput("Enter " + "your name: ");
 println(1 + 1);
 println("Hello, " + my_var + "!");
-
 if (true) {
     println("True");
 } else {
-    println("False");
+    println("TGETE");
 }
+// hola
