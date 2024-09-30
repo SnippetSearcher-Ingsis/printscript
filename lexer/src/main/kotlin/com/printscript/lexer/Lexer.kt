@@ -42,9 +42,7 @@ class Lexer(private val tokenPatterns: TokenProvider) {
 
         val matchResult = tokenPatterns.getTokenFor(line, position)
 
-        if (matchResult == null) {
-          throw IllegalArgumentException("Unexpected character at line $lineNumber, column $column")
-        }
+        require(matchResult != null) { "Unexpected character at line $lineNumber, column $column" }
 
         val (value, tokenType) = matchResult
         val token = ValuedToken(tokenType, value, lineNumber, column)

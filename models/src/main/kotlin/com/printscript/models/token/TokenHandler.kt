@@ -32,11 +32,9 @@ data class TokenHandler(val line: List<Token>) {
   }
 
   fun peek(): Token {
-    return if (currentTokenIndex < line.size) {
-      line[currentTokenIndex]
-    } else {
-      throw IllegalStateException("Expected token but reached end of line. At line ${line.last().line} column ${line.last().column}")
-    }
+    val m = "Expected token but reached end of line. At line ${line.last().line} column ${line.last().column}"
+    check(currentTokenIndex < line.size) { m }
+    return line[currentTokenIndex]
   }
 
   fun consume(type: TokenType, message: String): Token {
@@ -49,10 +47,7 @@ data class TokenHandler(val line: List<Token>) {
   }
 
   private fun previous(): Token {
-    if (currentTokenIndex > 0) {
-      return line[currentTokenIndex - 1]
-    } else {
-      throw IllegalStateException("No previous token.")
-    }
+    check(currentTokenIndex >= 0) { "No previous token." }
+    return line[currentTokenIndex - 1]
   }
 }

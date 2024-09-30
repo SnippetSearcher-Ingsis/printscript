@@ -16,27 +16,31 @@ import com.printscript.models.node.VariableDeclarationNode
 import com.printscript.models.node.VariableNode
 import com.printscript.models.tool.Tool
 
-class Handler(private val config: FormatterConfig, private val outputCode: StringBuilder, private val visitor: FormatterVisitor) : Tool {
+class Handler(
+  private val config: FormatterConfig,
+  private val outputCode: StringBuilder,
+  private val visitor: FormatterVisitor
+) : Tool {
   override fun evaluate(node: ASTNode) {
     visitor.visit(node)
   }
 
   fun handleDoubleExpression(node: DoubleExpressionNode) {
-    handleExpression(node.left)
-    append(" ${node.operator} ")
-    handleExpression(node.right)
+    handleExpression(node.left, visitor, outputCode)
+    append(" ${node.operator} ", outputCode)
+    handleExpression(node.right, visitor, outputCode)
   }
 
   fun handleLiteral(node: LiteralNode<*>) {
-    append(node.value.toString())
+    append(node.value.toString(), outputCode)
   }
 
   fun handlePrintStatement(node: PrintStatementNode) {
-    append("println(")
+    append("println(", outputCode)
     evaluate(node.expression)
-    append(")")
-    endStatement()
-    append(config.lineBreaksAfterPrintsRule.apply())
+    append(")", outputCode)
+    endStatement(outputCode)
+    append(config.lineBreaksAfterPrintsRule.apply(), outputCode)
   }
 
   fun handleDeclaration(node: DeclarationNode) {
@@ -46,83 +50,83 @@ class Handler(private val config: FormatterConfig, private val outputCode: Strin
         is ConstantNode -> "const "
         is VariableDeclarationNode -> "let "
         is VariableNode -> "let "
-      }
+      }, outputCode
     )
-    append(node.identifier)
-    append(config.spaceAroundColonsRule.apply())
-    append(node.valueType)
-    append(config.spaceAroundEqualsRule.apply())
+    append(node.identifier, outputCode)
+    append(config.spaceAroundColonsRule.apply(), outputCode)
+    append(node.valueType, outputCode)
+    append(config.spaceAroundEqualsRule.apply(), outputCode)
     evaluate(node.expression)
-    endStatement()
+    endStatement(outputCode)
   }
 
   fun handleAssignation(node: AssignationNode) {
-    append("${node.variable}")
-    append(config.spaceAroundEqualsRule.apply())
+    append("${node.variable}", outputCode)
+    append(config.spaceAroundEqualsRule.apply(), outputCode)
     evaluate(node.expression)
-    endStatement()
+    endStatement(outputCode)
   }
 
   fun handleReadEnv(node: ReadEnvNode) {
-    append("readEnv(")
+    append("readEnv(", outputCode)
     evaluate(node.expression)
-    append(")")
-    endStatement()
+    append(")", outputCode)
+    endStatement(outputCode)
   }
 
   fun handleReadInput(node: ReadInputNode) {
-    append("readInput(")
+    append("readInput(", outputCode)
     evaluate(node.expression)
-    append(")")
-    endStatement()
+    append(")", outputCode)
+    endStatement(outputCode)
   }
 
   fun handleIfElse(node: IfElseNode) {
-    append("if (")
+    append("if (", outputCode)
     evaluate(node.condition)
-    append(")")
-    append(config.inlineIfBraceRule.apply())
-    node.ifBranch.forEach { indent(); evaluate(it) }
-    append("}\n")
+    append(")", outputCode)
+    append(config.inlineIfBraceRule.apply(), outputCode)
+    node.ifBranch.forEach { indent(outputCode, config); evaluate(it) }
+    append("}\n", outputCode)
     if (node.elseBranch.isEmpty()) return
-    append("else")
-    append(config.inlineIfBraceRule.apply())
-    node.elseBranch.forEach { indent(); evaluate(it) }
-    append("}\n")
+    append("else", outputCode)
+    append(config.inlineIfBraceRule.apply(), outputCode)
+    node.elseBranch.forEach { indent(outputCode, config); evaluate(it) }
+    append("}\n", outputCode)
   }
 
   fun handleComment(node: LineCommentNode) {
-    append(node.comment)
-    append("\n")
+    append(node.comment, outputCode)
+    append("\n", outputCode)
   }
+}
 
-  private fun append(string: String) {
-    outputCode.append(string)
-  }
+private fun append(string: String, outputCode: StringBuilder) {
+  outputCode.append(string)
+}
 
-  private fun indent() {
-    outputCode.append(config.indentRule.apply())
-  }
+private fun indent(outputCode: StringBuilder, config: FormatterConfig) {
+  outputCode.append(config.indentRule.apply())
+}
 
-  private fun endStatement() {
-    outputCode.append(";\n")
-  }
+private fun endStatement(outputCode: StringBuilder) {
+  outputCode.append(";\n")
+}
 
-  private fun openExpression() {
-    outputCode.append("(")
-  }
+private fun openExpression(outputCode: StringBuilder) {
+  outputCode.append("(")
+}
 
-  private fun closeExpression() {
-    outputCode.append(")")
-  }
+private fun closeExpression(outputCode: StringBuilder) {
+  outputCode.append(")")
+}
 
-  private fun handleExpression(node: ASTNode) {
-    if (node is LiteralNode<*>) {
-      visitor.visit(node)
-    } else if (node is DoubleExpressionNode) {
-      openExpression()
-      visitor.visit(node)
-      closeExpression()
-    }
+private fun handleExpression(node: ASTNode, visitor: FormatterVisitor, outputCode: StringBuilder) {
+  if (node is LiteralNode<*>) {
+    visitor.visit(node)
+  } else if (node is DoubleExpressionNode) {
+    openExpression(outputCode)
+    visitor.visit(node)
+    closeExpression(outputCode)
   }
 }

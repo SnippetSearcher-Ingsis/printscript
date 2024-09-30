@@ -4,36 +4,36 @@ import com.printscript.interpreter.modifier.Modifier
 import kotlin.jvm.Throws
 
 class Context {
-  private val context = mutableMapOf<String, Modifier>()
+  private val contextMap = mutableMapOf<String, Modifier>()
 
   @Throws(Exception::class)
   fun put(key: String, modifier: Modifier) {
-    context[key] = modifier
+    contextMap[key] = modifier
   }
 
   infix fun get(key: String): Modifier? {
-    return context[key]
+    return contextMap[key]
   }
 
   operator fun contains(key: String): Boolean {
-    return context.containsKey(key)
+    return contextMap.containsKey(key)
   }
 
   fun clone(): Context {
     val context = Context()
-    context.context.putAll(this.context)
+    context.contextMap.putAll(this.contextMap)
     return context
   }
 
   infix fun replace(context: Context) {
-    context.context.forEach { (key, value) ->
-      if (key in this.context) {
+    context.contextMap.forEach { (key, value) ->
+      if (key in this.contextMap) {
         this.put(key, value)
       }
     }
   }
 
   fun clear() {
-    context.clear()
+    contextMap.clear()
   }
 }

@@ -31,8 +31,9 @@ class Format : CommandExecute {
         )
       ).format(ast)
     )
-
-    if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())
-    return Result("", res)
+    return when {
+      ast.hasException() -> Result(ast.getException()!!.message!!, emptyList())
+      else -> Result("", res)
+    }
   }
 }

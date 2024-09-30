@@ -1,4 +1,6 @@
 package com.printscript.parser
+import com.printscript.models.token.TokenType
+import com.printscript.models.token.ValuedToken
 import com.printscript.parser.generator.ASTGenerator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -8,18 +10,18 @@ class ASTTest {
   @Test
   fun simpleStringGenTreeTest() {
     val example1 = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "string", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "string", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18
       ),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
     val result = ASTGenerator().createAST(example1)
     println(result)
@@ -28,13 +30,13 @@ class ASTTest {
   @Test
   fun simpleNumberGenTreeTest() {
     val example2 = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 18),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "9", 1, 18),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
     val result = ASTGenerator().createAST(example2)
     println(result)
@@ -43,10 +45,10 @@ class ASTTest {
   @Test
   fun alreadyExistingVariableTest() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 18),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 1),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.LITERAL, "9", 1, 18),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
     val result = ASTGenerator().createAST(example)
     println(result)
@@ -55,17 +57,17 @@ class ASTTest {
   @Test
   fun parenthesisTest() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "+", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "8", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 16),
+      ValuedToken(TokenType.LITERAL, "9", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "+", 1, 16),
+      ValuedToken(TokenType.LITERAL, "8", 1, 16),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 16),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
 
     val result = ASTGenerator().createAST(example)
@@ -75,19 +77,19 @@ class ASTTest {
   @Test
   fun complexExpressionTest() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "9", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "+", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "8", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "*", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "8", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 16),
+      ValuedToken(TokenType.LITERAL, "9", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "+", 1, 16),
+      ValuedToken(TokenType.LITERAL, "8", 1, 16),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "*", 1, 16),
+      ValuedToken(TokenType.LITERAL, "8", 1, 16),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
 
     val result = ASTGenerator().createAST(example)
@@ -97,16 +99,16 @@ class ASTTest {
   @Test
   fun readEnv() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.READ_ENV, "readEnv", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "\"pi\"", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.READ_ENV, "readEnv", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 16),
+      ValuedToken(TokenType.LITERAL, "\"pi\"", 1, 16),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 16),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
 
     val result = ASTGenerator().createAST(example)
@@ -116,16 +118,16 @@ class ASTTest {
   @Test
   fun readInput() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.READ_ENV, "readInput", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, "(", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LITERAL, "\"best football club = \"", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ")", 1, 16),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SEMICOLON, ";", 1, 31),
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(TokenType.READ_ENV, "readInput", 1, 16),
+      ValuedToken(TokenType.SYNTAX, "(", 1, 16),
+      ValuedToken(TokenType.LITERAL, "\"best football club = \"", 1, 16),
+      ValuedToken(TokenType.SYNTAX, ")", 1, 16),
+      ValuedToken(TokenType.SEMICOLON, ";", 1, 31),
     )
 
     val result = ASTGenerator().createAST(example)
@@ -135,13 +137,13 @@ class ASTTest {
   @Test
   fun exceptionTest() {
     val example = listOf(
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.LET, "let", 1, 1),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.IDENTIFIER, "a", 1, 5),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.SYNTAX, ":", 1, 7),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.TYPE, "number", 1, 9),
-      com.printscript.models.token.ValuedToken(com.printscript.models.token.TokenType.EQUAL, "=", 1, 16),
-      com.printscript.models.token.ValuedToken(
-        com.printscript.models.token.TokenType.LITERAL,
+      ValuedToken(TokenType.LET, "let", 1, 1),
+      ValuedToken(TokenType.IDENTIFIER, "a", 1, 5),
+      ValuedToken(TokenType.SYNTAX, ":", 1, 7),
+      ValuedToken(TokenType.TYPE, "number", 1, 9),
+      ValuedToken(TokenType.EQUAL, "=", 1, 16),
+      ValuedToken(
+        TokenType.LITERAL,
         "\"Hello World\"",
         1,
         18

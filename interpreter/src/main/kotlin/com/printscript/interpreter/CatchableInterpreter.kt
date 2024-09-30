@@ -13,6 +13,7 @@ class CatchableInterpreter(private val interpreter: Interpreter) :
   private var exception: Exception? = null
 
   override fun interpret(iterator: Iterator<ASTNode>) {
+    @Suppress("TooGenericExceptionCaught")
     try {
       exception = null
       interpreter.interpret(iterator)

@@ -10,11 +10,16 @@ import com.printscript.linter.LinterConfig
 import com.printscript.linter.violation.Violation
 import com.printscript.parser.CatchableParser
 import java.io.File
+import java.io.InputStreamReader
 
 class Analyze : CommandExecute {
   override fun execute(vararg file: String): Result {
     val code = TXTHandler.content("/scripts/${file[0]}")
       ?: return Result("File ${file[0]} not found", emptyList())
+    return result(code, file)
+  }
+
+  private fun result(code: InputStreamReader, file: Array<out String>): Result {
     val lexer = Lexer(TOKENS_1_1)
     val parser = CatchableParser()
     val ast = parser.parse(lexer.lex(code))
@@ -28,14 +33,12 @@ class Analyze : CommandExecute {
     val violations = Linter(config).lint(ast)
     if (violations.isNotEmpty()) {
       res.addAll(violations)
-    }
+      }
 
-    if (ast.hasException()) return Result(ast.getException()!!.message!!, emptyList())
-
-    if (res.isNotEmpty()) {
-      return Result(res.map { it.toString() }.toString(), emptyList())
-    }
-
-    return Result("", listOf("No linter flag has been raised"))
+    return when {
+      ast.hasException() -> Result(ast.getException()!!.message!!, emptyList())
+      res.isNotEmpty() -> Result(res.map { it.toString() }.toString(), emptyList())
+      else -> Result("", listOf("No linter flag has been raised"))
+      }
   }
 }

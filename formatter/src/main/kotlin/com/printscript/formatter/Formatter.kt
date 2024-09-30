@@ -22,7 +22,8 @@ class Formatter(private val config: FormatterConfig) {
       throw IllegalParameterException("\"if-brace-same-line\" and \"if-brace-below-line\" should be different")
     }
     if (config.spaceAroundEquals == config.noSpaceAroundEquals && config.spaceAroundEquals != null) {
-      throw IllegalParameterException("\"enforce-spacing-around-equals\" and \"enforce-no-spacing-around-equals\" should be different")
+      throw IllegalParameterException("\"enforce-spacing-around-equals\" " +
+              "and \"enforce-no-spacing-around-equals\" should be different")
     }
     config.lineBreaksAfterPrints?.takeIf { it < 0 || it > 2 }?.let {
       throw IllegalParameterException("\"line-breaks-after-println\" must be between 0 and 2, $it was provided")
