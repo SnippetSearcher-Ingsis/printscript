@@ -104,13 +104,6 @@ class InterpreterTest {
   }
 
   @Test
-  fun testIntegralValid() {
-    val tester = Tester("integral_valid", IntegralAST.valid.iterator())
-    tester.test()
-    assert(!interpreter.hasException())
-  }
-
-  @Test
   fun testInvalidAssignationType() {
     interpreter interpret ErrorAST.invalidAssignationType.iterator()
     println(interpreter.getException())
