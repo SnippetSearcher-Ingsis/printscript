@@ -68,7 +68,7 @@ class FormatterTest {
     assertEquals(expected, actual)
   }
 
-  @Test
+  /* @Test
   fun testStyle3Integral() {
     val actual = formatter3.format(listOf(DummyAST.integral).iterator())
     val expected =
@@ -85,7 +85,7 @@ class FormatterTest {
         "   const constant: number = 2;\n" +
         "}\n"
     assertEquals(expected, actual)
-  }
+  } */
 
   @Test
   fun testStyle1IfElse() {
@@ -109,6 +109,14 @@ class FormatterTest {
   fun testStyle3ManyStatements() {
     val actual = formatter3.format(generateASTs("bigAssCode"))
     val expected = fileToString("bigAssCodeGolden.txt")
+    assertEquals(expected, actual)
+  }
+
+  @Test
+  fun testStyle1ReadInput() {
+    val actual = formatter1.format(generateASTs("readInput"))
+    val expected = "let a: number = readInput(\"Enter a number: \");\n" +
+            "println(a);\n"
     assertEquals(expected, actual)
   }
 

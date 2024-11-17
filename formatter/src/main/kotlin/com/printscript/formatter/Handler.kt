@@ -71,14 +71,12 @@ class Handler(
     append("readEnv(", outputCode)
     evaluate(node.expression)
     append(")", outputCode)
-    endStatement(outputCode)
   }
 
   fun handleReadInput(node: ReadInputNode) {
     append("readInput(", outputCode)
     evaluate(node.expression)
     append(")", outputCode)
-    endStatement(outputCode)
   }
 
   fun handleIfElse(node: IfElseNode) {
